@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libpng-ext"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libpng-ext.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libpng-ext-complete.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-stamp/libpng-ext-build.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-stamp/libpng-ext-configure.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-stamp/libpng-ext-download.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-stamp/libpng-ext-install.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-stamp/libpng-ext-mkdir.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-stamp/libpng-ext-patch.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-stamp/libpng-ext-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"libpng-ext"
+		],
+		"name" : "libpng-ext"
+	}
+}

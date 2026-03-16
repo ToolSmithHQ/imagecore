@@ -1,0 +1,10 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-simulator/libtiff/cmake_install.cmake",
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-simulator/libtiff/port/cmake_install.cmake",
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-simulator/libtiff/libtiff/cmake_install.cmake",
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-simulator/libtiff/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-android-x86_64/zlib/cmake_install.cmake",
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-android-x86_64/zlib/test/cmake_install.cmake",
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-android-x86_64/zlib/contrib/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

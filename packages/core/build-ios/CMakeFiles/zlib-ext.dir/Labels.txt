@@ -1,0 +1,13 @@
+# Target labels
+ zlib-ext
+# Source files and their labels
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/zlib-ext
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/zlib-ext.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/zlib-ext-complete.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-stamp/zlib-ext-build.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-stamp/zlib-ext-configure.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-stamp/zlib-ext-download.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-stamp/zlib-ext-install.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-stamp/zlib-ext-mkdir.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-stamp/zlib-ext-patch.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-stamp/zlib-ext-update.rule

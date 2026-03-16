@@ -1,0 +1,13 @@
+# Target labels
+ libtiff-ext
+# Source files and their labels
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libtiff-ext
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libtiff-ext.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libtiff-ext-complete.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libtiff-ext-prefix/src/libtiff-ext-stamp/libtiff-ext-build.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libtiff-ext-prefix/src/libtiff-ext-stamp/libtiff-ext-configure.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libtiff-ext-prefix/src/libtiff-ext-stamp/libtiff-ext-download.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libtiff-ext-prefix/src/libtiff-ext-stamp/libtiff-ext-install.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libtiff-ext-prefix/src/libtiff-ext-stamp/libtiff-ext-mkdir.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libtiff-ext-prefix/src/libtiff-ext-stamp/libtiff-ext-patch.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libtiff-ext-prefix/src/libtiff-ext-stamp/libtiff-ext-update.rule

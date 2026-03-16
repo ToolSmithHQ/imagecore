@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/zlib-ext"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/zlib-ext.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/zlib-ext-complete.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-stamp/zlib-ext-build.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-stamp/zlib-ext-configure.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-stamp/zlib-ext-download.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-stamp/zlib-ext-install.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-stamp/zlib-ext-mkdir.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-stamp/zlib-ext-patch.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-stamp/zlib-ext-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"zlib-ext"
+		],
+		"name" : "zlib-ext"
+	}
+}

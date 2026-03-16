@@ -1,0 +1,17 @@
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/sharpyuv.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/webpdspdecode.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/webpdecode.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/webputilsdecode.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/webpdecoder.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/webpencode.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/webpdsp.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/webputils.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/webp.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/webpdemux.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/libwebpmux.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/edit_cache.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/rebuild_cache.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/list_install_components.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/install.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/install/local.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/CMakeFiles/install/strip.dir

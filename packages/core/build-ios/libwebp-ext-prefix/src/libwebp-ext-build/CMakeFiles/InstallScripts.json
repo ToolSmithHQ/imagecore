@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libwebp-ext-prefix/src/libwebp-ext-build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

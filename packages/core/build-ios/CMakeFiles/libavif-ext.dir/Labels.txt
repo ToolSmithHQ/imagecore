@@ -1,0 +1,13 @@
+# Target labels
+ libavif-ext
+# Source files and their labels
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libavif-ext
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libavif-ext.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libavif-ext-complete.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libavif-ext-prefix/src/libavif-ext-stamp/libavif-ext-build.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libavif-ext-prefix/src/libavif-ext-stamp/libavif-ext-configure.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libavif-ext-prefix/src/libavif-ext-stamp/libavif-ext-download.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libavif-ext-prefix/src/libavif-ext-stamp/libavif-ext-install.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libavif-ext-prefix/src/libavif-ext-stamp/libavif-ext-mkdir.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libavif-ext-prefix/src/libavif-ext-stamp/libavif-ext-patch.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libavif-ext-prefix/src/libavif-ext-stamp/libavif-ext-update.rule

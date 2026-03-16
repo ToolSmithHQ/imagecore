@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-build/cmake_install.cmake",
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-build/test/cmake_install.cmake",
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/zlib-ext-prefix/src/zlib-ext-build/contrib/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -1,0 +1,10 @@
+prefix=/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps
+exec_prefix=/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps
+libdir=/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps/lib
+includedir=/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps/include
+
+Name: libjpeg
+Description: A SIMD-accelerated JPEG codec that provides the libjpeg API
+Version: 3.1.4
+Libs: -L${libdir} -ljpeg
+Cflags: -I${includedir}

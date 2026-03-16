@@ -1,0 +1,3 @@
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/native/android/.cxx/Debug/ute5y861/arm64-v8a/CMakeFiles/imagecore-jni.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/native/android/.cxx/Debug/ute5y861/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/native/android/.cxx/Debug/ute5y861/arm64-v8a/CMakeFiles/rebuild_cache.dir

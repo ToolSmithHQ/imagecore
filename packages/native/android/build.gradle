@@ -1,0 +1,86 @@
+import java.nio.file.Paths
+
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+
+// Find node_modules by walking up the directory tree
+static def findNodeModules(baseDir) {
+    def basePath = baseDir.toPath().normalize()
+    while (basePath) {
+        def nodeModulesPath = Paths.get(basePath.toString(), "node_modules")
+        def reactNativePath = Paths.get(nodeModulesPath.toString(), "react-native")
+        if (nodeModulesPath.toFile().exists() && reactNativePath.toFile().exists()) {
+            return nodeModulesPath.toString()
+        }
+        basePath = basePath.getParent()
+    }
+    throw new GradleException("imagecore: Failed to find node_modules/")
+}
+
+def nodeModules = findNodeModules(rootProject.projectDir)
+def rnDir = file("$nodeModules/react-native")
+
+// Get RN version for CMake
+def reactProperties = new Properties()
+file("$rnDir/ReactAndroid/gradle.properties").withInputStream { reactProperties.load(it) }
+def FULL_RN_VERSION = reactProperties.getProperty("VERSION_NAME")
+def REACT_NATIVE_VERSION = FULL_RN_VERSION.split("\\.")[1].toInteger()
+
+logger.warn("imagecore: RN version: ${REACT_NATIVE_VERSION}, node_modules: ${nodeModules}")
+
+// Enable the React Native plugin for prefab support
+if (project.hasProperty("newArchEnabled") && project.newArchEnabled == "true") {
+    apply plugin: "com.facebook.react"
+}
+
+android {
+    namespace "com.toolsmith.imagecore"
+    compileSdk 35
+
+    defaultConfig {
+        minSdk 24
+        targetSdk 35
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++17", "-O2", "-fexceptions", "-frtti", "-DONANDROID"
+                abiFilters "arm64-v8a"
+                arguments "-DANDROID_STL=c++_shared",
+                          "-DREACT_NATIVE_VERSION=${REACT_NATIVE_VERSION}",
+                          "-DREACT_NATIVE_DIR=${rnDir.absolutePath}",
+                          "-DNODE_MODULES_DIR=${nodeModules}"
+            }
+        }
+    }
+
+    buildFeatures {
+        prefab true
+        buildConfig true
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ["src/main/java"]
+        }
+    }
+}
+
+dependencies {
+    implementation "com.facebook.react:react-android"
+    implementation "com.facebook.fbjni:fbjni"
+}

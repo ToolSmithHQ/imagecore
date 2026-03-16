@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-simulator/zlib/cmake_install.cmake",
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-simulator/zlib/test/cmake_install.cmake",
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-simulator/zlib/contrib/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

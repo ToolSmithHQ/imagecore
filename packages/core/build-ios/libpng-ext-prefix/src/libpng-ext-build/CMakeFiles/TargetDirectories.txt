@@ -1,0 +1,9 @@
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-build/CMakeFiles/png_genfiles.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-build/CMakeFiles/png_static.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-build/CMakeFiles/png_framework.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-build/CMakeFiles/edit_cache.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-build/CMakeFiles/rebuild_cache.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-build/CMakeFiles/list_install_components.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-build/CMakeFiles/install.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-build/CMakeFiles/install/local.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-build/CMakeFiles/install/strip.dir

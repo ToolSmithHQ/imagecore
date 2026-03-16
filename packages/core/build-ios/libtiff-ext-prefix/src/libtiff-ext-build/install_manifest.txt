@@ -1,0 +1,12 @@
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps/lib/pkgconfig/libtiff-4.pc
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps/lib/libtiff.a
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps/include/tiff.h
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps/include/tiffio.h
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps/include/tiffvers.h
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps/include/tiffconf.h
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps/lib/cmake/tiff/tiff-targets.cmake
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps/lib/cmake/tiff/tiff-targets-release.cmake
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps/lib/cmake/tiff/tiff-config-version.cmake
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps/lib/cmake/tiff/tiff-config.cmake
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps/lib/libtiffxx.a
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/deps/include/tiffio.hxx

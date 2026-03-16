@@ -1,0 +1,28 @@
+node_modules/
+dist/
+build/
+*.o
+*.a
+*.so
+*.dylib
+*.wasm
+*.js.map
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+packages/core/build/
+packages/web/build/imagecore.*
+packages/web/src/imagecore.js
+packages/web/src/imagecore.wasm
+
+# Expo
+*.xcworkspace
+*.xcodeproj
+Pods/

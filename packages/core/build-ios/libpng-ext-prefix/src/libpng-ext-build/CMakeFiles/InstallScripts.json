@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libpng-ext-prefix/src/libpng-ext-build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

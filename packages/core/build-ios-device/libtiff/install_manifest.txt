@@ -1,0 +1,12 @@
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install/lib/pkgconfig/libtiff-4.pc
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install/lib/libtiff.a
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install/include/tiff.h
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install/include/tiffio.h
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install/include/tiffvers.h
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install/include/tiffconf.h
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install/lib/cmake/tiff/tiff-targets.cmake
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install/lib/cmake/tiff/tiff-targets-release.cmake
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install/lib/cmake/tiff/tiff-config-version.cmake
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install/lib/cmake/tiff/tiff-config.cmake
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install/lib/libtiffxx.a
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install/include/tiffio.hxx

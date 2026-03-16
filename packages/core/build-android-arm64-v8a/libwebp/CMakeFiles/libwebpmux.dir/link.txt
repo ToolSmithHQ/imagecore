@@ -1,0 +1,2 @@
+/Users/ombhardwaj/Library/Android/sdk/ndk/28.0.12674087/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ar qc libwebpmux.a CMakeFiles/libwebpmux.dir/src/mux/anim_encode.c.o CMakeFiles/libwebpmux.dir/src/mux/muxedit.c.o CMakeFiles/libwebpmux.dir/src/mux/muxinternal.c.o CMakeFiles/libwebpmux.dir/src/mux/muxread.c.o
+/Users/ombhardwaj/Library/Android/sdk/ndk/28.0.12674087/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ranlib libwebpmux.a

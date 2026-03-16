@@ -1,0 +1,27 @@
+[submodule "packages/core/third_party/libjpeg-turbo"]
+	path = packages/core/third_party/libjpeg-turbo
+	url = https://github.com/libjpeg-turbo/libjpeg-turbo.git
+[submodule "packages/core/third_party/zlib"]
+	path = packages/core/third_party/zlib
+	url = https://github.com/madler/zlib.git
+[submodule "packages/core/third_party/libpng"]
+	path = packages/core/third_party/libpng
+	url = https://github.com/pnggroup/libpng.git
+[submodule "packages/core/third_party/libwebp"]
+	path = packages/core/third_party/libwebp
+	url = https://chromium.googlesource.com/webm/libwebp
+[submodule "packages/core/third_party/libtiff"]
+	path = packages/core/third_party/libtiff
+	url = https://gitlab.com/libtiff/libtiff.git
+[submodule "packages/core/third_party/libaom"]
+	path = packages/core/third_party/libaom
+	url = https://aomedia.googlesource.com/aom
+[submodule "packages/core/third_party/libde265"]
+	path = packages/core/third_party/libde265
+	url = https://github.com/strukturag/libde265.git
+[submodule "packages/core/third_party/libheif"]
+	path = packages/core/third_party/libheif
+	url = https://github.com/strukturag/libheif.git
+[submodule "packages/core/third_party/libavif"]
+	path = packages/core/third_party/libavif
+	url = https://github.com/AOMediaCodec/libavif.git

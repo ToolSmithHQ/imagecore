@@ -1,0 +1,1 @@
+/usr/bin/cc -O3 -DNDEBUG -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -Wl,-headerpad_max_install_names CMakeFiles/simdcoverage.dir/simdcoverage.c.o -o simdcoverage  ../libjpeg.a

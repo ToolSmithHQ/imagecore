@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/cmake_install.cmake",
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/simd/cmake_install.cmake",
+		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/src/md5/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

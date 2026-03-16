@@ -1,0 +1,20 @@
+{
+  "name": "@toolsmith/imagecore-web",
+  "version": "0.1.0",
+  "description": "WASM image processing for web/React — lossless JPEG ops, full format support",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build:wasm": "bash scripts/build-wasm.sh",
+    "build:ts": "tsc",
+    "build": "npm run build:wasm && npm run build:ts",
+    "clean": "rm -rf dist build/imagecore.*"
+  },
+  "dependencies": {
+    "@toolsmith/imagecore-types": "0.1.0"
+  }
+}

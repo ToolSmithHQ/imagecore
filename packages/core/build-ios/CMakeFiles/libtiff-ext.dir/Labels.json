@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libtiff-ext"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libtiff-ext.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libtiff-ext-complete.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libtiff-ext-prefix/src/libtiff-ext-stamp/libtiff-ext-build.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libtiff-ext-prefix/src/libtiff-ext-stamp/libtiff-ext-configure.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libtiff-ext-prefix/src/libtiff-ext-stamp/libtiff-ext-download.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libtiff-ext-prefix/src/libtiff-ext-stamp/libtiff-ext-install.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libtiff-ext-prefix/src/libtiff-ext-stamp/libtiff-ext-mkdir.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libtiff-ext-prefix/src/libtiff-ext-stamp/libtiff-ext-patch.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libtiff-ext-prefix/src/libtiff-ext-stamp/libtiff-ext-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"libtiff-ext"
+		],
+		"name" : "libtiff-ext"
+	}
+}

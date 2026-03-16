@@ -1,0 +1,2123 @@
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineSystem.cmake:12 (find_program)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_UNAME"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "uname"
+    candidate_directories:
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    searched_directories:
+      - "/Users/ombhardwaj/.local/bin/uname"
+      - "/Users/ombhardwaj/.wasmedge/bin/uname"
+      - "/Users/ombhardwaj/.pyenv/shims/uname"
+      - "/Users/ombhardwaj/.pyenv/bin/uname"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/uname"
+      - "/Users/ombhardwaj/.jenv/shims/uname"
+      - "/Users/ombhardwaj/.jenv/bin/uname"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/uname"
+      - "/opt/homebrew/bin/uname"
+      - "/opt/homebrew/sbin/uname"
+      - "/usr/local/bin/uname"
+      - "/System/Cryptexes/App/usr/bin/uname"
+    found: "/usr/bin/uname"
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineSystem.cmake:207 (message)"
+      - "CMakeLists.txt:16 (project)"
+    message: |
+      The target system is: iOS -  - aarch64
+      The host system is: Darwin - 25.3.0 - arm64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeUnixFindMake.cmake:5 (find_program)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_MAKE_PROGRAM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "gmake"
+      - "make"
+      - "smake"
+    candidate_directories:
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    searched_directories:
+      - "/Users/ombhardwaj/.local/bin/gmake"
+      - "/Users/ombhardwaj/.wasmedge/bin/gmake"
+      - "/Users/ombhardwaj/.pyenv/shims/gmake"
+      - "/Users/ombhardwaj/.pyenv/bin/gmake"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/gmake"
+      - "/Users/ombhardwaj/.jenv/shims/gmake"
+      - "/Users/ombhardwaj/.jenv/bin/gmake"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/gmake"
+      - "/opt/homebrew/bin/gmake"
+      - "/opt/homebrew/sbin/gmake"
+      - "/usr/local/bin/gmake"
+      - "/System/Cryptexes/App/usr/bin/gmake"
+      - "/usr/bin/gmake"
+      - "/bin/gmake"
+      - "/usr/sbin/gmake"
+      - "/sbin/gmake"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/gmake"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/gmake"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/gmake"
+      - "/opt/pmk/env/global/bin/gmake"
+      - "/Library/Apple/usr/bin/gmake"
+      - "/Users/ombhardwaj/.cargo/bin/gmake"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/gmake"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/gmake"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/gmake"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/gmake"
+      - "/Users/ombhardwaj/.local/bin/make"
+      - "/Users/ombhardwaj/.wasmedge/bin/make"
+      - "/Users/ombhardwaj/.pyenv/shims/make"
+      - "/Users/ombhardwaj/.pyenv/bin/make"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/make"
+      - "/Users/ombhardwaj/.jenv/shims/make"
+      - "/Users/ombhardwaj/.jenv/bin/make"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/make"
+      - "/opt/homebrew/bin/make"
+      - "/opt/homebrew/sbin/make"
+      - "/usr/local/bin/make"
+      - "/System/Cryptexes/App/usr/bin/make"
+    found: "/usr/bin/make"
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompiler.cmake:73 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:64 (_cmake_find_compiler)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER"
+    description: "C compiler"
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "cc"
+      - "gcc"
+      - "cl"
+      - "bcc"
+      - "xlc"
+      - "icx"
+      - "clang"
+    candidate_directories:
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    searched_directories:
+      - "/Users/ombhardwaj/.local/bin/cc"
+      - "/Users/ombhardwaj/.wasmedge/bin/cc"
+      - "/Users/ombhardwaj/.pyenv/shims/cc"
+      - "/Users/ombhardwaj/.pyenv/bin/cc"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/cc"
+      - "/Users/ombhardwaj/.jenv/shims/cc"
+      - "/Users/ombhardwaj/.jenv/bin/cc"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/cc"
+      - "/opt/homebrew/bin/cc"
+      - "/opt/homebrew/sbin/cc"
+      - "/usr/local/bin/cc"
+      - "/System/Cryptexes/App/usr/bin/cc"
+    found: "/usr/bin/cc"
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "/opt/homebrew/share/cmake/Modules/"
+    found: "/opt/homebrew/share/cmake/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:16 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is AppleClang, found in:
+        /Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/4.2.3/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:290 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:16 (project)"
+    message: |
+      Detecting C compiler apple sysroot: "/usr/bin/cc" "-E" "apple-sdk.c"
+        # 1 "apple-sdk.c"
+        # 1 "<built-in>" 1
+        # 1 "<built-in>" 3
+        # 466 "<built-in>" 3
+        # 1 "<command line>" 1
+        # 1 "<built-in>" 2
+        # 1 "apple-sdk.c" 2
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 1 3 4
+        # 89 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 90 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/TargetConditionals.h" 1 3 4
+        # 91 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 207 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 1 3 4
+        # 196 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 197 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 1 3 4
+        # 33 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 34 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 2 3 4
+        # 198 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h" 1 3 4
+        # 34 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 1 3 4
+        # 35 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h" 2 3 4
+        # 199 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 208 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 2 "apple-sdk.c" 2
+        
+        
+      Found apple sysroot: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ar"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    found: "/usr/bin/ar"
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_RANLIB"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ranlib"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    found: "/usr/bin/ranlib"
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_STRIP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "strip"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    found: "/usr/bin/strip"
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ld"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    found: "/usr/bin/ld"
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_NM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "nm"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    found: "/usr/bin/nm"
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJDUMP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "objdump"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    found: "/usr/bin/objdump"
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJCOPY"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "objcopy"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    searched_directories:
+      - "/usr/bin/objcopy"
+      - "/Users/ombhardwaj/.local/bin/objcopy"
+      - "/Users/ombhardwaj/.wasmedge/bin/objcopy"
+      - "/Users/ombhardwaj/.pyenv/shims/objcopy"
+      - "/Users/ombhardwaj/.pyenv/bin/objcopy"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/objcopy"
+      - "/Users/ombhardwaj/.jenv/shims/objcopy"
+      - "/Users/ombhardwaj/.jenv/bin/objcopy"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/objcopy"
+      - "/opt/homebrew/bin/objcopy"
+      - "/opt/homebrew/sbin/objcopy"
+      - "/usr/local/bin/objcopy"
+      - "/System/Cryptexes/App/usr/bin/objcopy"
+      - "/bin/objcopy"
+      - "/usr/sbin/objcopy"
+      - "/sbin/objcopy"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/objcopy"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/objcopy"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/objcopy"
+      - "/opt/pmk/env/global/bin/objcopy"
+      - "/Library/Apple/usr/bin/objcopy"
+      - "/Users/ombhardwaj/.cargo/bin/objcopy"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/objcopy"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/objcopy"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/objcopy"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/objcopy"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_READELF"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "readelf"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    searched_directories:
+      - "/usr/bin/readelf"
+      - "/Users/ombhardwaj/.local/bin/readelf"
+      - "/Users/ombhardwaj/.wasmedge/bin/readelf"
+      - "/Users/ombhardwaj/.pyenv/shims/readelf"
+      - "/Users/ombhardwaj/.pyenv/bin/readelf"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/readelf"
+      - "/Users/ombhardwaj/.jenv/shims/readelf"
+      - "/Users/ombhardwaj/.jenv/bin/readelf"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/readelf"
+      - "/opt/homebrew/bin/readelf"
+      - "/opt/homebrew/sbin/readelf"
+      - "/usr/local/bin/readelf"
+      - "/System/Cryptexes/App/usr/bin/readelf"
+      - "/bin/readelf"
+      - "/usr/sbin/readelf"
+      - "/sbin/readelf"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/readelf"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/readelf"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/readelf"
+      - "/opt/pmk/env/global/bin/readelf"
+      - "/Library/Apple/usr/bin/readelf"
+      - "/Users/ombhardwaj/.cargo/bin/readelf"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/readelf"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/readelf"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/readelf"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/readelf"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_DLLTOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "dlltool"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    searched_directories:
+      - "/usr/bin/dlltool"
+      - "/Users/ombhardwaj/.local/bin/dlltool"
+      - "/Users/ombhardwaj/.wasmedge/bin/dlltool"
+      - "/Users/ombhardwaj/.pyenv/shims/dlltool"
+      - "/Users/ombhardwaj/.pyenv/bin/dlltool"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/dlltool"
+      - "/Users/ombhardwaj/.jenv/shims/dlltool"
+      - "/Users/ombhardwaj/.jenv/bin/dlltool"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/dlltool"
+      - "/opt/homebrew/bin/dlltool"
+      - "/opt/homebrew/sbin/dlltool"
+      - "/usr/local/bin/dlltool"
+      - "/System/Cryptexes/App/usr/bin/dlltool"
+      - "/bin/dlltool"
+      - "/usr/sbin/dlltool"
+      - "/sbin/dlltool"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/dlltool"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/dlltool"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/dlltool"
+      - "/opt/pmk/env/global/bin/dlltool"
+      - "/Library/Apple/usr/bin/dlltool"
+      - "/Users/ombhardwaj/.cargo/bin/dlltool"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/dlltool"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/dlltool"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/dlltool"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/dlltool"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_ADDR2LINE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "addr2line"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    searched_directories:
+      - "/usr/bin/addr2line"
+      - "/Users/ombhardwaj/.local/bin/addr2line"
+      - "/Users/ombhardwaj/.wasmedge/bin/addr2line"
+      - "/Users/ombhardwaj/.pyenv/shims/addr2line"
+      - "/Users/ombhardwaj/.pyenv/bin/addr2line"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/addr2line"
+      - "/Users/ombhardwaj/.jenv/shims/addr2line"
+      - "/Users/ombhardwaj/.jenv/bin/addr2line"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/addr2line"
+      - "/opt/homebrew/bin/addr2line"
+      - "/opt/homebrew/sbin/addr2line"
+      - "/usr/local/bin/addr2line"
+      - "/System/Cryptexes/App/usr/bin/addr2line"
+      - "/bin/addr2line"
+      - "/usr/sbin/addr2line"
+      - "/sbin/addr2line"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/addr2line"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/addr2line"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/addr2line"
+      - "/opt/pmk/env/global/bin/addr2line"
+      - "/Library/Apple/usr/bin/addr2line"
+      - "/Users/ombhardwaj/.cargo/bin/addr2line"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/addr2line"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/addr2line"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/addr2line"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/addr2line"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_TAPI"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "tapi"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    searched_directories:
+      - "/usr/bin/tapi"
+      - "/Users/ombhardwaj/.local/bin/tapi"
+      - "/Users/ombhardwaj/.wasmedge/bin/tapi"
+      - "/Users/ombhardwaj/.pyenv/shims/tapi"
+      - "/Users/ombhardwaj/.pyenv/bin/tapi"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/tapi"
+      - "/Users/ombhardwaj/.jenv/shims/tapi"
+      - "/Users/ombhardwaj/.jenv/bin/tapi"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/tapi"
+      - "/opt/homebrew/bin/tapi"
+      - "/opt/homebrew/sbin/tapi"
+      - "/usr/local/bin/tapi"
+      - "/System/Cryptexes/App/usr/bin/tapi"
+      - "/bin/tapi"
+      - "/usr/sbin/tapi"
+      - "/sbin/tapi"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/tapi"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/tapi"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/tapi"
+      - "/opt/pmk/env/global/bin/tapi"
+      - "/Library/Apple/usr/bin/tapi"
+      - "/Users/ombhardwaj/.cargo/bin/tapi"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/tapi"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/tapi"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/tapi"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/tapi"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Platform/Darwin.cmake:76 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/Platform/iOS.cmake:1 (include)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInformation.cmake:32 (include)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_INSTALL_NAME_TOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "install_name_tool"
+    candidate_directories:
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.local/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.pyenv/shims/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.pyenv/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.jenv/shims/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.jenv/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/opt/homebrew/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/opt/homebrew/sbin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/local/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Cryptexes/App/usr/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/sbin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/sbin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/opt/pmk/env/global/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Library/Apple/usr/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.cargo/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/Library/Android/sdk/emulator/"
+      - "/Users/ombhardwaj/.local/bin/"
+      - "/Users/ombhardwaj/.wasmedge/bin/"
+      - "/Users/ombhardwaj/.pyenv/shims/"
+      - "/Users/ombhardwaj/.pyenv/bin/"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/"
+      - "/Users/ombhardwaj/.jenv/shims/"
+      - "/Users/ombhardwaj/.jenv/bin/"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/opt/pmk/env/global/bin/"
+      - "/Library/Apple/usr/bin/"
+      - "/Users/ombhardwaj/.cargo/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/tools/bin/"
+      - "/Users/ombhardwaj/Library/Android/sdk/platform-tools/"
+      - "/Users/ombhardwaj/Library/Android/sdk/emulator/"
+    searched_directories:
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.local/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.wasmedge/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.pyenv/shims/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.pyenv/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.local/share/solana/install/active_release/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.jenv/shims/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.jenv/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/opt/homebrew/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/opt/homebrew/sbin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/local/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Cryptexes/App/usr/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/sbin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/sbin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/opt/pmk/env/global/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Library/Apple/usr/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/.cargo/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/Library/Android/sdk/tools/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/Library/Android/sdk/tools/bin/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/Library/Android/sdk/platform-tools/install_name_tool"
+      - "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Users/ombhardwaj/Library/Android/sdk/emulator/install_name_tool"
+      - "/Users/ombhardwaj/.local/bin/install_name_tool"
+      - "/Users/ombhardwaj/.wasmedge/bin/install_name_tool"
+      - "/Users/ombhardwaj/.pyenv/shims/install_name_tool"
+      - "/Users/ombhardwaj/.pyenv/bin/install_name_tool"
+      - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin/install_name_tool"
+      - "/Users/ombhardwaj/.jenv/shims/install_name_tool"
+      - "/Users/ombhardwaj/.jenv/bin/install_name_tool"
+      - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin/install_name_tool"
+      - "/opt/homebrew/bin/install_name_tool"
+      - "/opt/homebrew/sbin/install_name_tool"
+      - "/usr/local/bin/install_name_tool"
+      - "/System/Cryptexes/App/usr/bin/install_name_tool"
+    found: "/usr/bin/install_name_tool"
+    search_context:
+      ENV{PATH}:
+        - "/Users/ombhardwaj/.local/bin"
+        - "/Users/ombhardwaj/.wasmedge/bin"
+        - "/Users/ombhardwaj/.pyenv/shims"
+        - "/Users/ombhardwaj/.pyenv/bin"
+        - "/Users/ombhardwaj/.local/share/solana/install/active_release/bin"
+        - "/Users/ombhardwaj/.jenv/shims"
+        - "/Users/ombhardwaj/.jenv/bin"
+        - "/Users/ombhardwaj/.nvm/versions/node/v24.2.0/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/opt/pmk/env/global/bin"
+        - "/Library/Apple/usr/bin"
+        - "/Users/ombhardwaj/.cargo/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/tools/bin"
+        - "/Users/ombhardwaj/Library/Android/sdk/platform-tools"
+        - "/Users/ombhardwaj/Library/Android/sdk/emulator"
+      CMAKE_INSTALL_PREFIX: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/install"
+      CMAKE_FIND_ROOT_PATH: "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:16 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-GO5G0V"
+      binary: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-GO5G0V"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "15.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-GO5G0V'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_5244f/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_5244f.dir/build.make CMakeFiles/cmTC_5244f.dir/build
+        Building C object CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0   -v -Wl,-v -MD -MT CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
+        Apple clang version 17.0.0 (clang-1700.6.3.2)
+        Target: arm64-apple-darwin25.3.0
+        Thread model: posix
+        InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+        clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
+         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-ios15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=26.2 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-a7 -target-feature +zcm -target-feature +zcz -target-feature +v8a -target-feature +aes -target-feature +fp-armv8 -target-feature +neon -target-feature +perfmon -target-feature +sha2 -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-GO5G0V -target-linker-version 1230.1 -v -fcoverage-compilation-dir=/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-GO5G0V -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -c-isystem /Users/ombhardwaj/.wasmedge/include -cxx-isystem /Users/ombhardwaj/.wasmedge/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/SubFrameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Library/Frameworks -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
+        clang -cc1 version 17.0.0 (clang-1700.6.3.2) default target arm64-apple-darwin25.3.0
+        ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/local/include"
+        ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Library/Frameworks"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /Users/ombhardwaj/.wasmedge/include
+         /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include
+         /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/include
+         /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+         /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks (framework directory)
+         /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/SubFrameworks (framework directory)
+        End of search list.
+        Linking C executable cmTC_5244f.app/cmTC_5244f
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5244f.dir/link.txt --verbose=1
+        Apple clang version 17.0.0 (clang-1700.6.3.2)
+        Target: arm64-apple-darwin25.3.0
+        Thread model: posix
+        InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version ios 15.0.0 26.2 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_5244f.app/cmTC_5244f -L/Users/ombhardwaj/.wasmedge/lib -headerpad_max_install_names -v CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.ios.a
+        @(#)PROGRAM:ld PROJECT:ld-1230.1
+        BUILD 06:36:05 Dec  2 2025
+        configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em armv8m.main armv8.1m.main
+        will use ld-classic for: armv6 armv7 armv7s i386 armv6m armv7k armv7m armv7em
+        LTO support using: LLVM version 17.0.0 (static support for 29, runtime is 29)
+        TAPI support using: Apple TAPI version 17.0.0 (tapi-1700.3.8)
+        Library search paths:
+        	/Users/ombhardwaj/.wasmedge/lib
+        	/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/lib
+        	/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/lib/swift
+        Framework search paths:
+        	/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks
+        /usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o -o cmTC_5244f.app/cmTC_5244f
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:16 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/Users/ombhardwaj/.wasmedge/include]
+          add: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include]
+          add: [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/include]
+          add: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        end of search list found
+        collapse include dir [/Users/ombhardwaj/.wasmedge/include] ==> [/Users/ombhardwaj/.wasmedge/include]
+        collapse include dir [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include]
+        collapse include dir [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/include] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/include]
+        collapse include dir [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        implicit include dirs: [/Users/ombhardwaj/.wasmedge/include;/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/include;/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:16 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: '/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-GO5G0V']
+        ignore line: []
+        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_5244f/fast]
+        ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_5244f.dir/build.make CMakeFiles/cmTC_5244f.dir/build]
+        ignore line: [Building C object CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0   -v -Wl -v -MD -MT CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [Apple clang version 17.0.0 (clang-1700.6.3.2)]
+        ignore line: [Target: arm64-apple-darwin25.3.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+        ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
+        ignore line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-ios15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=26.2 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-a7 -target-feature +zcm -target-feature +zcz -target-feature +v8a -target-feature +aes -target-feature +fp-armv8 -target-feature +neon -target-feature +perfmon -target-feature +sha2 -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-GO5G0V -target-linker-version 1230.1 -v -fcoverage-compilation-dir=/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-GO5G0V -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -c-isystem /Users/ombhardwaj/.wasmedge/include -cxx-isystem /Users/ombhardwaj/.wasmedge/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/SubFrameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Library/Frameworks -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [clang -cc1 version 17.0.0 (clang-1700.6.3.2) default target arm64-apple-darwin25.3.0]
+        ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/local/include"]
+        ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/Library/Frameworks"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /Users/ombhardwaj/.wasmedge/include]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/include]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks (framework directory)]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/SubFrameworks (framework directory)]
+        ignore line: [End of search list.]
+        ignore line: [Linking C executable cmTC_5244f.app/cmTC_5244f]
+        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5244f.dir/link.txt --verbose=1]
+        ignore line: [Apple clang version 17.0.0 (clang-1700.6.3.2)]
+        ignore line: [Target: arm64-apple-darwin25.3.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+        link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version ios 15.0.0 26.2 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_5244f.app/cmTC_5244f -L/Users/ombhardwaj/.wasmedge/lib -headerpad_max_install_names -v CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.ios.a]
+          arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+          arg [-demangle] ==> ignore
+          arg [-lto_library] ==> ignore, skip following value
+          arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+          arg [-dynamic] ==> ignore
+          arg [-arch] ==> ignore
+          arg [arm64] ==> ignore
+          arg [-platform_version] ==> ignore
+          arg [ios] ==> ignore
+          arg [15.0.0] ==> ignore
+          arg [26.2] ==> ignore
+          arg [-syslibroot] ==> ignore
+          arg [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk] ==> ignore
+          arg [-mllvm] ==> ignore
+          arg [-enable-linkonceodr-outlining] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_5244f.app/cmTC_5244f] ==> ignore
+          arg [-L/Users/ombhardwaj/.wasmedge/lib] ==> dir [/Users/ombhardwaj/.wasmedge/lib]
+          arg [-headerpad_max_install_names] ==> ignore
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_5244f.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lSystem] ==> lib [System]
+          arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.ios.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.ios.a]
+        linker tool for 'C': /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
+        Library search paths: [;/Users/ombhardwaj/.wasmedge/lib;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/lib;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/lib/swift]
+        Framework search paths: [;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks]
+        remove lib [System]
+        remove lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.ios.a]
+        collapse library dir [/Users/ombhardwaj/.wasmedge/lib] ==> [/Users/ombhardwaj/.wasmedge/lib]
+        collapse library dir [/Users/ombhardwaj/.wasmedge/lib] ==> [/Users/ombhardwaj/.wasmedge/lib]
+        collapse library dir [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/lib] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/lib]
+        collapse library dir [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/lib/swift] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/lib/swift]
+        collapse framework dir [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks]
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: [/Users/ombhardwaj/.wasmedge/lib;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/lib;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/usr/lib/swift]
+        implicit fwks: [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:16 (project)"
+    message: |
+      Running the C compiler's linker: "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" "-v"
+      @(#)PROGRAM:ld PROJECT:ld-1230.1
+      BUILD 06:36:05 Dec  2 2025
+      configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em armv8m.main armv8.1m.main
+      will use ld-classic for: armv6 armv7 armv7s i386 armv6m armv7k armv7m armv7em
+      LTO support using: LLVM version 17.0.0 (static support for 29, runtime is 29)
+      TAPI support using: Apple TAPI version 17.0.0 (tapi-1700.3.8)
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CheckIncludeFile.cmake:174 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckTypeSize.cmake:462 (check_include_file)"
+      - "CMakeLists.txt:491 (check_type_size)"
+    checks:
+      - "Looking for sys/types.h"
+    directories:
+      source: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-JHRJNR"
+      binary: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-JHRJNR"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "15.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk"
+    buildResult:
+      variable: "HAVE_SYS_TYPES_H"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-JHRJNR'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_61394/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_61394.dir/build.make CMakeFiles/cmTC_61394.dir/build
+        Building C object CMakeFiles/cmTC_61394.dir/CheckIncludeFile.c.o
+        /usr/bin/cc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -MD -MT CMakeFiles/cmTC_61394.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_61394.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_61394.dir/CheckIncludeFile.c.o -c /Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-JHRJNR/CheckIncludeFile.c
+        Linking C executable cmTC_61394.app/cmTC_61394
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_61394.dir/link.txt --verbose=1
+        /usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -Wl,-headerpad_max_install_names CMakeFiles/cmTC_61394.dir/CheckIncludeFile.c.o -o cmTC_61394.app/cmTC_61394
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CheckIncludeFile.cmake:174 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckTypeSize.cmake:463 (check_include_file)"
+      - "CMakeLists.txt:491 (check_type_size)"
+    checks:
+      - "Looking for stdint.h"
+    directories:
+      source: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-1dEQCf"
+      binary: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-1dEQCf"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "15.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk"
+    buildResult:
+      variable: "HAVE_STDINT_H"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-1dEQCf'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_f6ee2/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_f6ee2.dir/build.make CMakeFiles/cmTC_f6ee2.dir/build
+        Building C object CMakeFiles/cmTC_f6ee2.dir/CheckIncludeFile.c.o
+        /usr/bin/cc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -MD -MT CMakeFiles/cmTC_f6ee2.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_f6ee2.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_f6ee2.dir/CheckIncludeFile.c.o -c /Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-1dEQCf/CheckIncludeFile.c
+        Linking C executable cmTC_f6ee2.app/cmTC_f6ee2
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f6ee2.dir/link.txt --verbose=1
+        /usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -Wl,-headerpad_max_install_names CMakeFiles/cmTC_f6ee2.dir/CheckIncludeFile.c.o -o cmTC_f6ee2.app/cmTC_f6ee2
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CheckIncludeFile.cmake:174 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckTypeSize.cmake:464 (check_include_file)"
+      - "CMakeLists.txt:491 (check_type_size)"
+    checks:
+      - "Looking for stddef.h"
+    directories:
+      source: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-X7auLY"
+      binary: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-X7auLY"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "15.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk"
+    buildResult:
+      variable: "HAVE_STDDEF_H"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-X7auLY'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_848f6/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_848f6.dir/build.make CMakeFiles/cmTC_848f6.dir/build
+        Building C object CMakeFiles/cmTC_848f6.dir/CheckIncludeFile.c.o
+        /usr/bin/cc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -MD -MT CMakeFiles/cmTC_848f6.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_848f6.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_848f6.dir/CheckIncludeFile.c.o -c /Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-X7auLY/CheckIncludeFile.c
+        Linking C executable cmTC_848f6.app/cmTC_848f6
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_848f6.dir/link.txt --verbose=1
+        /usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -Wl,-headerpad_max_install_names CMakeFiles/cmTC_848f6.dir/CheckIncludeFile.c.o -o cmTC_848f6.app/cmTC_848f6
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CheckTypeSize.cmake:348 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckTypeSize.cmake:481 (__check_type_size_impl)"
+      - "CMakeLists.txt:491 (check_type_size)"
+    checks:
+      - "Check size of size_t"
+    directories:
+      source: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-ZHL28B"
+      binary: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-ZHL28B"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "15.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk"
+    buildResult:
+      variable: "HAVE_SIZE_T"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-ZHL28B'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_c06ef/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_c06ef.dir/build.make CMakeFiles/cmTC_c06ef.dir/build
+        Building C object CMakeFiles/cmTC_c06ef.dir/SIZE_T.c.o
+        /usr/bin/cc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -MD -MT CMakeFiles/cmTC_c06ef.dir/SIZE_T.c.o -MF CMakeFiles/cmTC_c06ef.dir/SIZE_T.c.o.d -o CMakeFiles/cmTC_c06ef.dir/SIZE_T.c.o -c /Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-ZHL28B/SIZE_T.c
+        Linking C executable cmTC_c06ef.app/cmTC_c06ef
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c06ef.dir/link.txt --verbose=1
+        /usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -Wl,-headerpad_max_install_names CMakeFiles/cmTC_c06ef.dir/SIZE_T.c.o -o cmTC_c06ef.app/cmTC_c06ef
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CheckTypeSize.cmake:348 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckTypeSize.cmake:481 (__check_type_size_impl)"
+      - "CMakeLists.txt:492 (check_type_size)"
+    checks:
+      - "Check size of unsigned long"
+    directories:
+      source: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-D9oHtl"
+      binary: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-D9oHtl"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "15.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk"
+    buildResult:
+      variable: "HAVE_UNSIGNED_LONG"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-D9oHtl'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_4330a/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_4330a.dir/build.make CMakeFiles/cmTC_4330a.dir/build
+        Building C object CMakeFiles/cmTC_4330a.dir/UNSIGNED_LONG.c.o
+        /usr/bin/cc   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -MD -MT CMakeFiles/cmTC_4330a.dir/UNSIGNED_LONG.c.o -MF CMakeFiles/cmTC_4330a.dir/UNSIGNED_LONG.c.o.d -o CMakeFiles/cmTC_4330a.dir/UNSIGNED_LONG.c.o -c /Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-D9oHtl/UNSIGNED_LONG.c
+        Linking C executable cmTC_4330a.app/cmTC_4330a
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4330a.dir/link.txt --verbose=1
+        /usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -Wl,-headerpad_max_install_names CMakeFiles/cmTC_4330a.dir/UNSIGNED_LONG.c.o -o cmTC_4330a.app/cmTC_4330a
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:495 (check_c_source_compiles)"
+    checks:
+      - "Performing Test HAVE_BUILTIN_CTZL"
+    directories:
+      source: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-7L8yzz"
+      binary: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-7L8yzz"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "15.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk"
+    buildResult:
+      variable: "HAVE_BUILTIN_CTZL"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-7L8yzz'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_89e13/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_89e13.dir/build.make CMakeFiles/cmTC_89e13.dir/build
+        Building C object CMakeFiles/cmTC_89e13.dir/src.c.o
+        /usr/bin/cc -DHAVE_BUILTIN_CTZL  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -MD -MT CMakeFiles/cmTC_89e13.dir/src.c.o -MF CMakeFiles/cmTC_89e13.dir/src.c.o.d -o CMakeFiles/cmTC_89e13.dir/src.c.o -c /Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-7L8yzz/src.c
+        Linking C executable cmTC_89e13.app/cmTC_89e13
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_89e13.dir/link.txt --verbose=1
+        /usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -Wl,-headerpad_max_install_names CMakeFiles/cmTC_89e13.dir/src.c.o -o cmTC_89e13.app/cmTC_89e13
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:530 (check_c_source_compiles)"
+    checks:
+      - "Performing Test HIDDEN_WORKS"
+    directories:
+      source: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-NvXjAF"
+      binary: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-NvXjAF"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "15.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk"
+    buildResult:
+      variable: "HIDDEN_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-NvXjAF'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_deb2e/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_deb2e.dir/build.make CMakeFiles/cmTC_deb2e.dir/build
+        Building C object CMakeFiles/cmTC_deb2e.dir/src.c.o
+        /usr/bin/cc -DHIDDEN_WORKS  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -MD -MT CMakeFiles/cmTC_deb2e.dir/src.c.o -MF CMakeFiles/cmTC_deb2e.dir/src.c.o.d -o CMakeFiles/cmTC_deb2e.dir/src.c.o -c /Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-NvXjAF/src.c
+        Linking C executable cmTC_deb2e.app/cmTC_deb2e
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_deb2e.dir/link.txt --verbose=1
+        /usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -Wl,-headerpad_max_install_names CMakeFiles/cmTC_deb2e.dir/src.c.o -o cmTC_deb2e.app/cmTC_deb2e
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:554 (check_c_source_compiles)"
+    checks:
+      - "Performing Test INLINE_WORKS"
+    directories:
+      source: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-EonxzM"
+      binary: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-EonxzM"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "15.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk"
+    buildResult:
+      variable: "INLINE_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-EonxzM'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_aa2a7/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_aa2a7.dir/build.make CMakeFiles/cmTC_aa2a7.dir/build
+        Building C object CMakeFiles/cmTC_aa2a7.dir/src.c.o
+        /usr/bin/cc -DINLINE_WORKS  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -MD -MT CMakeFiles/cmTC_aa2a7.dir/src.c.o -MF CMakeFiles/cmTC_aa2a7.dir/src.c.o.d -o CMakeFiles/cmTC_aa2a7.dir/src.c.o -c /Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-EonxzM/src.c
+        Linking C executable cmTC_aa2a7.app/cmTC_aa2a7
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_aa2a7.dir/link.txt --verbose=1
+        /usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -Wl,-headerpad_max_install_names CMakeFiles/cmTC_aa2a7.dir/src.c.o -o cmTC_aa2a7.app/cmTC_aa2a7
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:571 (check_c_source_compiles)"
+    checks:
+      - "Performing Test HAVE_THREAD_LOCAL"
+    directories:
+      source: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-DKyspO"
+      binary: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-DKyspO"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "15.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk"
+    buildResult:
+      variable: "HAVE_THREAD_LOCAL"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-DKyspO'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_dd61b/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_dd61b.dir/build.make CMakeFiles/cmTC_dd61b.dir/build
+        Building C object CMakeFiles/cmTC_dd61b.dir/src.c.o
+        /usr/bin/cc -DHAVE_THREAD_LOCAL  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -MD -MT CMakeFiles/cmTC_dd61b.dir/src.c.o -MF CMakeFiles/cmTC_dd61b.dir/src.c.o.d -o CMakeFiles/cmTC_dd61b.dir/src.c.o -c /Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-DKyspO/src.c
+        Linking C executable cmTC_dd61b.app/cmTC_dd61b
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dd61b.dir/link.txt --verbose=1
+        /usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -Wl,-headerpad_max_install_names CMakeFiles/cmTC_dd61b.dir/src.c.o -o cmTC_dd61b.app/cmTC_dd61b
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "simd/CMakeLists.txt:270 (check_c_source_compiles)"
+    checks:
+      - "Performing Test HAVE_VLD1_S16_X3"
+    directories:
+      source: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-pWZmCs"
+      binary: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-pWZmCs"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "15.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk"
+    buildResult:
+      variable: "HAVE_VLD1_S16_X3"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-pWZmCs'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_4f405/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_4f405.dir/build.make CMakeFiles/cmTC_4f405.dir/build
+        Building C object CMakeFiles/cmTC_4f405.dir/src.c.o
+        /usr/bin/cc -DHAVE_VLD1_S16_X3  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -MD -MT CMakeFiles/cmTC_4f405.dir/src.c.o -MF CMakeFiles/cmTC_4f405.dir/src.c.o.d -o CMakeFiles/cmTC_4f405.dir/src.c.o -c /Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-pWZmCs/src.c
+        Linking C executable cmTC_4f405.app/cmTC_4f405
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4f405.dir/link.txt --verbose=1
+        /usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -Wl,-headerpad_max_install_names CMakeFiles/cmTC_4f405.dir/src.c.o -o cmTC_4f405.app/cmTC_4f405
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "simd/CMakeLists.txt:281 (check_c_source_compiles)"
+    checks:
+      - "Performing Test HAVE_VLD1_U16_X2"
+    directories:
+      source: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-D1SjId"
+      binary: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-D1SjId"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "15.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk"
+    buildResult:
+      variable: "HAVE_VLD1_U16_X2"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-D1SjId'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_0b5b1/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_0b5b1.dir/build.make CMakeFiles/cmTC_0b5b1.dir/build
+        Building C object CMakeFiles/cmTC_0b5b1.dir/src.c.o
+        /usr/bin/cc -DHAVE_VLD1_U16_X2  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -MD -MT CMakeFiles/cmTC_0b5b1.dir/src.c.o -MF CMakeFiles/cmTC_0b5b1.dir/src.c.o.d -o CMakeFiles/cmTC_0b5b1.dir/src.c.o -c /Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-D1SjId/src.c
+        Linking C executable cmTC_0b5b1.app/cmTC_0b5b1
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0b5b1.dir/link.txt --verbose=1
+        /usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -Wl,-headerpad_max_install_names CMakeFiles/cmTC_0b5b1.dir/src.c.o -o cmTC_0b5b1.app/cmTC_0b5b1
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckCSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "simd/CMakeLists.txt:292 (check_c_source_compiles)"
+    checks:
+      - "Performing Test HAVE_VLD1Q_U8_X4"
+    directories:
+      source: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-Ma5t2n"
+      binary: "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-Ma5t2n"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "15.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk"
+    buildResult:
+      variable: "HAVE_VLD1Q_U8_X4"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-Ma5t2n'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_7b046/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_7b046.dir/build.make CMakeFiles/cmTC_7b046.dir/build
+        Building C object CMakeFiles/cmTC_7b046.dir/src.c.o
+        /usr/bin/cc -DHAVE_VLD1Q_U8_X4  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -MD -MT CMakeFiles/cmTC_7b046.dir/src.c.o -MF CMakeFiles/cmTC_7b046.dir/src.c.o.d -o CMakeFiles/cmTC_7b046.dir/src.c.o -c /Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libjpeg-turbo/CMakeFiles/CMakeScratch/TryCompile-Ma5t2n/src.c
+        Linking C executable cmTC_7b046.app/cmTC_7b046
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7b046.dir/link.txt --verbose=1
+        /usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -miphoneos-version-min=15.0 -Wl,-headerpad_max_install_names CMakeFiles/cmTC_7b046.dir/src.c.o -o cmTC_7b046.app/cmTC_7b046
+        
+      exitCode: 0
+...

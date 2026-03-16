@@ -1,0 +1,19 @@
+{
+  "name": "imagecore",
+  "private": true,
+  "workspaces": [
+    "packages/types",
+    "packages/native",
+    "packages/web"
+  ],
+  "scripts": {
+    "build:types": "cd packages/types && npm run build",
+    "build:wasm": "cd packages/web && npm run build:wasm",
+    "build": "npm run build:types",
+    "test:core": "cd packages/core && cmake --build build --target test",
+    "clean": "rm -rf packages/*/dist packages/core/build"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

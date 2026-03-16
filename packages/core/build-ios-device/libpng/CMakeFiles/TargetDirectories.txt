@@ -1,0 +1,9 @@
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libpng/CMakeFiles/png_genfiles.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libpng/CMakeFiles/png_static.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libpng/CMakeFiles/png_framework.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libpng/CMakeFiles/edit_cache.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libpng/CMakeFiles/rebuild_cache.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libpng/CMakeFiles/list_install_components.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libpng/CMakeFiles/install.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libpng/CMakeFiles/install/local.dir
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios-device/libpng/CMakeFiles/install/strip.dir

@@ -1,0 +1,13 @@
+# Target labels
+ libaom-ext
+# Source files and their labels
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libaom-ext
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libaom-ext.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libaom-ext-complete.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libaom-ext-prefix/src/libaom-ext-stamp/libaom-ext-build.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libaom-ext-prefix/src/libaom-ext-stamp/libaom-ext-configure.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libaom-ext-prefix/src/libaom-ext-stamp/libaom-ext-download.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libaom-ext-prefix/src/libaom-ext-stamp/libaom-ext-install.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libaom-ext-prefix/src/libaom-ext-stamp/libaom-ext-mkdir.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libaom-ext-prefix/src/libaom-ext-stamp/libaom-ext-patch.rule
+/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libaom-ext-prefix/src/libaom-ext-stamp/libaom-ext-update.rule

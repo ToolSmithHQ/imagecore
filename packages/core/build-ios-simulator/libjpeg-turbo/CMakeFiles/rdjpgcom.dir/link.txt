@@ -1,0 +1,1 @@
+/usr/bin/cc -O3 -DNDEBUG -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -mios-simulator-version-min=15.0 -Wl,-headerpad_max_install_names CMakeFiles/rdjpgcom.dir/src/rdjpgcom.c.o -o rdjpgcom

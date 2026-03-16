@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libaom-ext"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libaom-ext.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/CMakeFiles/libaom-ext-complete.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libaom-ext-prefix/src/libaom-ext-stamp/libaom-ext-build.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libaom-ext-prefix/src/libaom-ext-stamp/libaom-ext-configure.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libaom-ext-prefix/src/libaom-ext-stamp/libaom-ext-download.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libaom-ext-prefix/src/libaom-ext-stamp/libaom-ext-install.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libaom-ext-prefix/src/libaom-ext-stamp/libaom-ext-mkdir.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libaom-ext-prefix/src/libaom-ext-stamp/libaom-ext-patch.rule"
+		},
+		{
+			"file" : "/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-ios/libaom-ext-prefix/src/libaom-ext-stamp/libaom-ext-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"libaom-ext"
+		],
+		"name" : "libaom-ext"
+	}
+}

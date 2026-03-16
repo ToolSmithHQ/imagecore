@@ -1,0 +1,11 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "modules": [],
+    "podspecPath": "./ios/ImageCore.podspec"
+  },
+  "android": {
+    "modules": [],
+    "package": "com.toolsmith.imagecore.ImageCorePackage"
+  }
+}

@@ -1,0 +1,2 @@
+/Users/ombhardwaj/Library/Android/sdk/ndk/28.0.12674087/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ar qc libtiffxx.a CMakeFiles/tiffxx.dir/tif_stream.cxx.o
+/Users/ombhardwaj/Library/Android/sdk/ndk/28.0.12674087/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ranlib libtiffxx.a
