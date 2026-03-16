@@ -1,2 +1,0 @@
-/Users/ombhardwaj/Library/Android/sdk/ndk/28.0.12674087/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ar qc libcpufeatures-webp.a "CMakeFiles/cpufeatures-webp.dir/Users/ombhardwaj/Library/Android/sdk/ndk/28.0.12674087/sources/android/cpufeatures/cpu-features.c.o"
-/Users/ombhardwaj/Library/Android/sdk/ndk/28.0.12674087/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ranlib libcpufeatures-webp.a

@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-android-arm64-v8a/libpng/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

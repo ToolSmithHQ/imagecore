@@ -1,8 +1,0 @@
-/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-android-arm64-v8a/libpng/CMakeFiles/png_genfiles.dir
-/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-android-arm64-v8a/libpng/CMakeFiles/png_static.dir
-/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-android-arm64-v8a/libpng/CMakeFiles/edit_cache.dir
-/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-android-arm64-v8a/libpng/CMakeFiles/rebuild_cache.dir
-/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-android-arm64-v8a/libpng/CMakeFiles/list_install_components.dir
-/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-android-arm64-v8a/libpng/CMakeFiles/install.dir
-/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-android-arm64-v8a/libpng/CMakeFiles/install/local.dir
-/Users/ombhardwaj/Development/projects/aiotool/imagecore/packages/core/build-android-arm64-v8a/libpng/CMakeFiles/install/strip.dir

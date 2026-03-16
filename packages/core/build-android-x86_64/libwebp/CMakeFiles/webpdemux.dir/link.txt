@@ -1,2 +1,0 @@
-/Users/ombhardwaj/Library/Android/sdk/ndk/28.0.12674087/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ar qc libwebpdemux.a CMakeFiles/webpdemux.dir/src/demux/anim_decode.c.o CMakeFiles/webpdemux.dir/src/demux/demux.c.o
-/Users/ombhardwaj/Library/Android/sdk/ndk/28.0.12674087/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ranlib libwebpdemux.a
