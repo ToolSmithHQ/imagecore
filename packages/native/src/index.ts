@@ -32,7 +32,7 @@ export type {
 
 export { ImageFormat } from '@toolsmith/imagecore-types';
 
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules } from 'react-native';
 
 /**
  * Install the JSI host object by calling the native install() method.
@@ -51,21 +51,11 @@ function ensureInstalled(): void {
     );
   }
 
-  console.log('[imagecore] Calling install()...');
   const result = nativeModule.install();
-  console.log('[imagecore] install() returned:', result);
-
   if (!result) {
     throw new Error(
       '@toolsmith/imagecore-native: install() failed — bridge.runtime is nil.'
     );
-  }
-
-  // @ts-expect-error — global installed by JSI host object
-  const proxy = global.__ImageCoreProxy;
-  console.log('[imagecore] __ImageCoreProxy exists:', !!proxy);
-  if (proxy) {
-    console.log('[imagecore] Available methods:', Object.keys(proxy));
   }
 
   _installed = true;
@@ -82,15 +72,9 @@ function getNativeModule(): IImageCore {
   // @ts-expect-error — global installed by JSI host object
   const mod = global.__ImageCoreProxy;
   if (!mod) {
-    if (Platform.OS === 'android') {
-      throw new Error(
-        '@toolsmith/imagecore-native: C++ JSI module not available on Android yet. ' +
-        'Android NDK integration is in progress.'
-      );
-    }
     throw new Error(
       '@toolsmith/imagecore-native: __ImageCoreProxy not found after install(). ' +
-      'This is a bug in the native module.'
+      'Make sure you have rebuilt the app with npx expo prebuild --clean.'
     );
   }
   return mod;
