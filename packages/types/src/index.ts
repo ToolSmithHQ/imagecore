@@ -136,6 +136,12 @@ export interface ImageCore {
   /** Rotate decoded image by 90/180/270 degrees. */
   rotate(image: DecodedImage, rotation: Rotation): DecodedImage;
 
+  /** Flip decoded image horizontally (mirror). Returns new image. */
+  flipHorizontal(image: DecodedImage): DecodedImage;
+
+  /** Flip decoded image vertically. Returns new image. */
+  flipVertical(image: DecodedImage): DecodedImage;
+
   /* ── Metadata ──────────────────────────────────────────────────────── */
 
   /** Read EXIF data from an encoded image. */

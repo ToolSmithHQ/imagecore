@@ -123,11 +123,11 @@ export const ImageCore: IImageCore = {
   },
 
   flipHorizontal(image: DecodedImage): DecodedImage {
-    return (getNativeModule() as any).flipHorizontal(image);
+    return getNativeModule().flipHorizontal(image);
   },
 
   flipVertical(image: DecodedImage): DecodedImage {
-    return (getNativeModule() as any).flipVertical(image);
+    return getNativeModule().flipVertical(image);
   },
 
   readExif(data: ArrayBuffer): ExifData {

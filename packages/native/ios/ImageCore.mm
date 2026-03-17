@@ -20,20 +20,14 @@ RCT_EXPORT_MODULE(ImageCore)
 }
 
 RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(install) {
-    if (_installed) {
-        return @YES;
-    }
+    if (_installed) return @YES;
 
     RCTCxxBridge *cxxBridge = (RCTCxxBridge *)self.bridge;
-    if (!cxxBridge || !cxxBridge.runtime) {
-        NSLog(@"[ImageCore] ERROR: bridge.runtime is nil");
-        return @NO;
-    }
+    if (!cxxBridge || !cxxBridge.runtime) return @NO;
 
     auto& runtime = *(facebook::jsi::Runtime *)cxxBridge.runtime;
     imagecore::install(runtime);
     _installed = YES;
-    NSLog(@"[ImageCore] JSI host object installed successfully");
     return @YES;
 }
 

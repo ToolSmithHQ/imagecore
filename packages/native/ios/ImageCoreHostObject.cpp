@@ -52,7 +52,9 @@ static uint32_t g_nextPtrId = 1;
 
 static uint32_t registerPtr(ICImage* ptr) {
     std::lock_guard<std::mutex> lock(g_ptrMutex);
-    return (g_ptrMap[g_nextPtrId] = ptr, g_nextPtrId++);
+    uint32_t id = g_nextPtrId++;
+    g_ptrMap[id] = ptr;
+    return id;
 }
 
 static ICImage* lookupPtr(uint32_t id) {
@@ -82,11 +84,40 @@ private:
     size_t size_;
 };
 
+/* ── Image allocation helpers ────────────────────────────────────────── */
+
+/** Allocate a new ICImage with malloc (consistent with ic_image_free). */
+static ICImage* allocImage() {
+    auto* img = static_cast<ICImage*>(calloc(1, sizeof(ICImage)));
+    return img;
+}
+
+/** Clone an ICImage (deep copy of pixel data). */
+static ICImage* cloneImage(const ICImage* src) {
+    auto* copy = allocImage();
+    if (!copy) return nullptr;
+    copy->width = src->width;
+    copy->height = src->height;
+    copy->stride = src->stride;
+    size_t total = static_cast<size_t>(copy->stride) * copy->height;
+    copy->pixels = static_cast<uint8_t*>(malloc(total));
+    if (copy->pixels) memcpy(copy->pixels, src->pixels, total);
+    return copy;
+}
+
+/** Free an ICImage allocated with allocImage/cloneImage. */
+static void freeImage(ICImage* img) {
+    if (img) {
+        ic_image_free(img);
+        free(img);
+    }
+}
+
 /* Forward declarations */
 static ICImage* extractNativeImage(jsi::Runtime& rt, const jsi::Value& val, const char* op);
 static jsi::Value wrapDecodedImage(jsi::Runtime& rt, ICImage* img);
 
-/* ── Helpers ─────────────────────────────────────────────────────────── */
+/* ── JSI Helpers ─────────────────────────────────────────────────────── */
 
 std::pair<const uint8_t*, size_t>
 ImageCoreHostObject::getArrayBufferData(jsi::Runtime& rt, const jsi::Value& val) {
@@ -123,11 +154,11 @@ static ICFormat stringToFormat(const std::string& s) {
 jsi::Value ImageCoreHostObject::makeImageInfo(jsi::Runtime& rt, uint32_t w, uint32_t h,
                                                const char* fmt, bool hasExif, size_t fileSize) {
     auto obj = jsi::Object(rt);
-    obj.setProperty(rt, "width", (int)w);
-    obj.setProperty(rt, "height", (int)h);
+    obj.setProperty(rt, "width", static_cast<int>(w));
+    obj.setProperty(rt, "height", static_cast<int>(h));
     obj.setProperty(rt, "format", jsi::String::createFromAscii(rt, fmt));
     obj.setProperty(rt, "hasExif", hasExif);
-    obj.setProperty(rt, "fileSize", (int)fileSize);
+    obj.setProperty(rt, "fileSize", static_cast<int>(fileSize));
     return std::move(obj);
 }
 
@@ -155,17 +186,17 @@ static ICImage* extractNativeImage(jsi::Runtime& rt, const jsi::Value& val, cons
 
 static jsi::Value wrapDecodedImage(jsi::Runtime& rt, ICImage* img) {
     auto obj = jsi::Object(rt);
-    obj.setProperty(rt, "width", (int)img->width);
-    obj.setProperty(rt, "height", (int)img->height);
+    obj.setProperty(rt, "width", static_cast<int>(img->width));
+    obj.setProperty(rt, "height", static_cast<int>(img->height));
     uint32_t ptrId = registerPtr(img);
-    obj.setProperty(rt, "_nativePtrId", (int)ptrId);
+    obj.setProperty(rt, "_nativePtrId", static_cast<int>(ptrId));
     obj.setProperty(rt, "free",
         jsi::Function::createFromHostFunction(rt,
             jsi::PropNameID::forAscii(rt, "free"), 0,
             [ptrId](jsi::Runtime&, const jsi::Value&,
                    const jsi::Value*, size_t) -> jsi::Value {
                 auto ptr = lookupPtr(ptrId);
-                if (ptr) { ic_image_free(ptr); delete ptr; unregisterPtr(ptrId); }
+                if (ptr) { freeImage(ptr); unregisterPtr(ptrId); }
                 return jsi::Value::undefined();
             }));
     return std::move(obj);
@@ -184,8 +215,10 @@ jsi::Value ImageCoreHostObject::getImageInfo(jsi::Runtime& rt, const jsi::Value*
 jsi::Value ImageCoreHostObject::decode(jsi::Runtime& rt, const jsi::Value* args, size_t count) {
     if (count < 1) throw jsi::JSError(rt, "decode requires 1 argument");
     auto [data, len] = getArrayBufferData(rt, args[0]);
-    ICImage* img = new ICImage();
-    checkError(rt, ic_decode_with_heic(data, len, img), "decode");
+    ICImage* img = allocImage();
+    if (!img) throw jsi::JSError(rt, "decode: allocation failed");
+    int err = ic_decode_with_heic(data, len, img);
+    if (err != IC_OK) { freeImage(img); checkError(rt, err, "decode"); }
     return wrapDecodedImage(rt, img);
 }
 
@@ -196,7 +229,7 @@ jsi::Value ImageCoreHostObject::encode(jsi::Runtime& rt, const jsi::Value* args,
     ICFormat fmt = stringToFormat(opts_obj.getProperty(rt, "format").asString(rt).utf8(rt));
     if (fmt == IC_FORMAT_UNKNOWN) throw jsi::JSError(rt, "encode: unknown format");
     ICEncodeOpts opts = { 0.85f, 0, 0 };
-    if (opts_obj.hasProperty(rt, "quality")) opts.quality = (float)opts_obj.getProperty(rt, "quality").asNumber();
+    if (opts_obj.hasProperty(rt, "quality")) opts.quality = static_cast<float>(opts_obj.getProperty(rt, "quality").asNumber());
     if (opts_obj.hasProperty(rt, "lossless")) opts.lossless = opts_obj.getProperty(rt, "lossless").getBool() ? 1 : 0;
     uint8_t* out_data = nullptr; size_t out_len = 0;
     checkError(rt, ic_encode_with_heic(img, fmt, &opts, &out_data, &out_len), "encode");
@@ -212,10 +245,9 @@ jsi::Value ImageCoreHostObject::convert(jsi::Runtime& rt, const jsi::Value* args
     ICFormat fmt = stringToFormat(opts_obj.getProperty(rt, "format").asString(rt).utf8(rt));
     if (fmt == IC_FORMAT_UNKNOWN) throw jsi::JSError(rt, "convert: unknown format");
     ICEncodeOpts opts = { 0.85f, 0, 0 };
-    if (opts_obj.hasProperty(rt, "quality")) opts.quality = (float)opts_obj.getProperty(rt, "quality").asNumber();
+    if (opts_obj.hasProperty(rt, "quality")) opts.quality = static_cast<float>(opts_obj.getProperty(rt, "quality").asNumber());
     if (opts_obj.hasProperty(rt, "lossless")) opts.lossless = opts_obj.getProperty(rt, "lossless").getBool() ? 1 : 0;
     if (opts_obj.hasProperty(rt, "stripExif")) opts.strip_exif = opts_obj.getProperty(rt, "stripExif").getBool() ? 1 : 0;
-    // HEIC-aware: decode with platform API if needed, encode with platform API if needed
     ICImage img;
     checkError(rt, ic_decode_with_heic(data, len, &img), "convert(decode)");
     uint8_t* out_data = nullptr; size_t out_len = 0;
@@ -231,7 +263,7 @@ jsi::Value ImageCoreHostObject::jpegLosslessRotate(jsi::Runtime& rt, const jsi::
     if (count < 2) throw jsi::JSError(rt, "jpegLosslessRotate requires 2 arguments");
     auto [data, len] = getArrayBufferData(rt, args[0]);
     uint8_t* out_data = nullptr; size_t out_len = 0;
-    checkError(rt, ic_jpeg_lossless_rotate(data, len, (ICRotation)(int)args[1].asNumber(), &out_data, &out_len), "jpegLosslessRotate");
+    checkError(rt, ic_jpeg_lossless_rotate(data, len, static_cast<ICRotation>(static_cast<int>(args[1].asNumber())), &out_data, &out_len), "jpegLosslessRotate");
     auto result = makeArrayBuffer(rt, out_data, out_len);
     ic_free(out_data);
     return result;
@@ -241,8 +273,12 @@ jsi::Value ImageCoreHostObject::jpegLosslessCrop(jsi::Runtime& rt, const jsi::Va
     if (count < 2) throw jsi::JSError(rt, "jpegLosslessCrop requires 2 arguments");
     auto [data, len] = getArrayBufferData(rt, args[0]);
     auto r = args[1].asObject(rt);
-    ICCropRegion region = { (uint32_t)r.getProperty(rt,"x").asNumber(), (uint32_t)r.getProperty(rt,"y").asNumber(),
-                            (uint32_t)r.getProperty(rt,"width").asNumber(), (uint32_t)r.getProperty(rt,"height").asNumber() };
+    ICCropRegion region = {
+        static_cast<uint32_t>(r.getProperty(rt, "x").asNumber()),
+        static_cast<uint32_t>(r.getProperty(rt, "y").asNumber()),
+        static_cast<uint32_t>(r.getProperty(rt, "width").asNumber()),
+        static_cast<uint32_t>(r.getProperty(rt, "height").asNumber())
+    };
     uint8_t* out_data = nullptr; size_t out_len = 0;
     checkError(rt, ic_jpeg_lossless_crop(data, len, &region, &out_data, &out_len), "jpegLosslessCrop");
     auto result = makeArrayBuffer(rt, out_data, out_len);
@@ -271,7 +307,6 @@ jsi::Value ImageCoreHostObject::stripExif(jsi::Runtime& rt, const jsi::Value* ar
         ic_free(out_data);
         return result;
     }
-    // For other formats: decode → encode without metadata
     ICImage img;
     checkError(rt, ic_decode_with_heic(data, len, &img), "stripExif(decode)");
     ICEncodeOpts opts = { 0.95f, 0, 1 };
@@ -301,10 +336,16 @@ jsi::Value ImageCoreHostObject::crop(jsi::Runtime& rt, const jsi::Value* args, s
     if (count < 2) throw jsi::JSError(rt, "crop requires 2 arguments");
     auto* src = extractNativeImage(rt, args[0], "crop");
     auto r = args[1].asObject(rt);
-    ICCropRegion region = { (uint32_t)r.getProperty(rt,"x").asNumber(), (uint32_t)r.getProperty(rt,"y").asNumber(),
-                            (uint32_t)r.getProperty(rt,"width").asNumber(), (uint32_t)r.getProperty(rt,"height").asNumber() };
-    ICImage* result = new ICImage();
-    checkError(rt, ic_crop(src, &region, result), "crop");
+    ICCropRegion region = {
+        static_cast<uint32_t>(r.getProperty(rt, "x").asNumber()),
+        static_cast<uint32_t>(r.getProperty(rt, "y").asNumber()),
+        static_cast<uint32_t>(r.getProperty(rt, "width").asNumber()),
+        static_cast<uint32_t>(r.getProperty(rt, "height").asNumber())
+    };
+    ICImage* result = allocImage();
+    if (!result) throw jsi::JSError(rt, "crop: allocation failed");
+    int err = ic_crop(src, &region, result);
+    if (err != IC_OK) { freeImage(result); checkError(rt, err, "crop"); }
     return wrapDecodedImage(rt, result);
 }
 
@@ -312,48 +353,48 @@ jsi::Value ImageCoreHostObject::resize(jsi::Runtime& rt, const jsi::Value* args,
     if (count < 2) throw jsi::JSError(rt, "resize requires 2 arguments");
     auto* src = extractNativeImage(rt, args[0], "resize");
     auto o = args[1].asObject(rt);
-    uint32_t w = (uint32_t)o.getProperty(rt,"width").asNumber();
-    uint32_t h = (uint32_t)o.getProperty(rt,"height").asNumber();
+    uint32_t w = static_cast<uint32_t>(o.getProperty(rt, "width").asNumber());
+    uint32_t h = static_cast<uint32_t>(o.getProperty(rt, "height").asNumber());
     ICResizeFilter f = IC_FILTER_LANCZOS;
     if (o.hasProperty(rt, "filter")) {
-        auto fs = o.getProperty(rt,"filter").asString(rt).utf8(rt);
+        auto fs = o.getProperty(rt, "filter").asString(rt).utf8(rt);
         if (fs == "bilinear") f = IC_FILTER_BILINEAR;
         else if (fs == "nearest") f = IC_FILTER_NEAREST;
     }
-    ICImage* result = new ICImage();
-    checkError(rt, ic_resize(src, w, h, f, result), "resize");
+    ICImage* result = allocImage();
+    if (!result) throw jsi::JSError(rt, "resize: allocation failed");
+    int err = ic_resize(src, w, h, f, result);
+    if (err != IC_OK) { freeImage(result); checkError(rt, err, "resize"); }
     return wrapDecodedImage(rt, result);
 }
 
 jsi::Value ImageCoreHostObject::rotate(jsi::Runtime& rt, const jsi::Value* args, size_t count) {
     if (count < 2) throw jsi::JSError(rt, "rotate requires 2 arguments");
     auto* src = extractNativeImage(rt, args[0], "rotate");
-    ICImage* result = new ICImage();
-    checkError(rt, ic_rotate(src, (ICRotation)(int)args[1].asNumber(), result), "rotate");
+    ICImage* result = allocImage();
+    if (!result) throw jsi::JSError(rt, "rotate: allocation failed");
+    int err = ic_rotate(src, static_cast<ICRotation>(static_cast<int>(args[1].asNumber())), result);
+    if (err != IC_OK) { freeImage(result); checkError(rt, err, "rotate"); }
     return wrapDecodedImage(rt, result);
 }
 
 jsi::Value ImageCoreHostObject::flipHorizontal(jsi::Runtime& rt, const jsi::Value* args, size_t count) {
     if (count < 1) throw jsi::JSError(rt, "flipHorizontal requires 1 argument");
     auto* src = extractNativeImage(rt, args[0], "flipHorizontal");
-    ICImage* copy = new ICImage();
-    copy->width = src->width; copy->height = src->height; copy->stride = src->stride;
-    size_t total = (size_t)copy->stride * copy->height;
-    copy->pixels = static_cast<uint8_t*>(malloc(total));
-    memcpy(copy->pixels, src->pixels, total);
-    checkError(rt, ic_flip_horizontal(copy), "flipHorizontal");
+    ICImage* copy = cloneImage(src);
+    if (!copy) throw jsi::JSError(rt, "flipHorizontal: allocation failed");
+    int err = ic_flip_horizontal(copy);
+    if (err != IC_OK) { freeImage(copy); checkError(rt, err, "flipHorizontal"); }
     return wrapDecodedImage(rt, copy);
 }
 
 jsi::Value ImageCoreHostObject::flipVertical(jsi::Runtime& rt, const jsi::Value* args, size_t count) {
     if (count < 1) throw jsi::JSError(rt, "flipVertical requires 1 argument");
     auto* src = extractNativeImage(rt, args[0], "flipVertical");
-    ICImage* copy = new ICImage();
-    copy->width = src->width; copy->height = src->height; copy->stride = src->stride;
-    size_t total = (size_t)copy->stride * copy->height;
-    copy->pixels = static_cast<uint8_t*>(malloc(total));
-    memcpy(copy->pixels, src->pixels, total);
-    checkError(rt, ic_flip_vertical(copy), "flipVertical");
+    ICImage* copy = cloneImage(src);
+    if (!copy) throw jsi::JSError(rt, "flipVertical: allocation failed");
+    int err = ic_flip_vertical(copy);
+    if (err != IC_OK) { freeImage(copy); checkError(rt, err, "flipVertical"); }
     return wrapDecodedImage(rt, copy);
 }
 
@@ -361,12 +402,12 @@ jsi::Value ImageCoreHostObject::flipVertical(jsi::Runtime& rt, const jsi::Value*
 
 std::vector<jsi::PropNameID> ImageCoreHostObject::getPropertyNames(jsi::Runtime& rt) {
     std::vector<jsi::PropNameID> names;
-    names.reserve(14);
     const char* methods[] = {
         "getImageInfo", "decode", "encode", "jpegLosslessRotate", "jpegLosslessCrop",
         "jpegStripExif", "stripExif", "convert", "readExif",
         "crop", "resize", "rotate", "flipHorizontal", "flipVertical"
     };
+    names.reserve(sizeof(methods) / sizeof(methods[0]));
     for (auto m : methods) names.push_back(jsi::PropNameID::forAscii(rt, m));
     return names;
 }

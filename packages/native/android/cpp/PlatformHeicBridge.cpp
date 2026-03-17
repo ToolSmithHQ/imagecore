@@ -22,8 +22,9 @@ static JNIEnv* get_env() {
 
     int status = g_jvm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6);
     if (status == JNI_EDETACHED) {
-        // Thread not attached — attach it (JSI calls come from JS thread)
-        g_jvm->AttachCurrentThread(&env, nullptr);
+        if (g_jvm->AttachCurrentThread(&env, nullptr) != JNI_OK) {
+            return nullptr;
+        }
     }
     return env;
 }
