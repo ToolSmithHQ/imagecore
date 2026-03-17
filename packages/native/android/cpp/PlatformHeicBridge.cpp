@@ -2,7 +2,6 @@
  * JNI bridge to PlatformHeicEncoder.kt for HEIC encode/decode on Android.
  *
  * Converts between C uint8_t* RGBA buffers and Java int[] ARGB_8888 pixels.
- * Android's Bitmap.getPixels() returns ARGB order, so we swizzle to RGBA.
  */
 
 #include "PlatformHeicBridge.h"
@@ -29,16 +28,53 @@ static JNIEnv* get_env() {
     return env;
 }
 
-extern "C" void platform_heic_set_jni(JNIEnv* env, jobject classLoader) {
+extern "C" void platform_heic_set_jni(JNIEnv* env, jobject context) {
     env->GetJavaVM(&g_jvm);
 
-    jclass cls = env->FindClass("com/toolsmith/imagecore/PlatformHeicEncoder");
-    if (!cls) return;
-    g_heicClass = reinterpret_cast<jclass>(env->NewGlobalRef(cls));
+    // Use the app classloader to find our class (FindClass fails on non-main threads)
+    jclass contextClass = env->GetObjectClass(context);
+    jmethodID getClassLoader = env->GetMethodID(contextClass, "getClassLoader",
+                                                 "()Ljava/lang/ClassLoader;");
 
+    jclass cls = nullptr;
+
+    if (getClassLoader) {
+        // Try via app classloader
+        jobject classLoader = env->CallObjectMethod(context, getClassLoader);
+        if (classLoader) {
+            jclass classLoaderClass = env->FindClass("java/lang/ClassLoader");
+            jmethodID loadClass = env->GetMethodID(classLoaderClass, "loadClass",
+                                                    "(Ljava/lang/String;)Ljava/lang/Class;");
+            jstring className = env->NewStringUTF("com.toolsmith.imagecore.PlatformHeicEncoder");
+            cls = static_cast<jclass>(env->CallObjectMethod(classLoader, loadClass, className));
+            env->DeleteLocalRef(className);
+            env->DeleteLocalRef(classLoader);
+            env->DeleteLocalRef(classLoaderClass);
+
+            if (env->ExceptionCheck()) {
+                env->ExceptionClear();
+                cls = nullptr;
+            }
+        }
+    }
+
+    // Fallback to FindClass (works on main thread)
+    if (!cls) {
+        cls = env->FindClass("com/toolsmith/imagecore/PlatformHeicEncoder");
+        if (env->ExceptionCheck()) {
+            env->ExceptionClear();
+            return;
+        }
+    }
+
+    if (!cls) return;
+
+    g_heicClass = static_cast<jclass>(env->NewGlobalRef(cls));
     g_decodeMethod = env->GetStaticMethodID(g_heicClass, "decode", "([B)[I");
     g_encodeMethod = env->GetStaticMethodID(g_heicClass, "encode", "([IIII)[B");
     g_getInfoMethod = env->GetStaticMethodID(g_heicClass, "getInfo", "([B)[I");
+
+    env->DeleteLocalRef(contextClass);
 }
 
 /* ── ARGB <-> RGBA swizzle ───────────────────────────────────────────── */
@@ -46,10 +82,10 @@ extern "C" void platform_heic_set_jni(JNIEnv* env, jobject classLoader) {
 static void argb_to_rgba(const int32_t* argb, uint8_t* rgba, size_t pixel_count) {
     for (size_t i = 0; i < pixel_count; i++) {
         uint32_t p = static_cast<uint32_t>(argb[i]);
-        rgba[i * 4 + 0] = (p >> 16) & 0xFF; /* R */
-        rgba[i * 4 + 1] = (p >> 8)  & 0xFF; /* G */
-        rgba[i * 4 + 2] =  p        & 0xFF; /* B */
-        rgba[i * 4 + 3] = (p >> 24) & 0xFF; /* A */
+        rgba[i * 4 + 0] = (p >> 16) & 0xFF;
+        rgba[i * 4 + 1] = (p >> 8)  & 0xFF;
+        rgba[i * 4 + 2] =  p        & 0xFF;
+        rgba[i * 4 + 3] = (p >> 24) & 0xFF;
     }
 }
 
@@ -75,7 +111,6 @@ extern "C" int platform_heic_decode(const uint8_t* data, size_t len, ICImage* ou
     env->SetByteArrayRegion(jdata, 0, static_cast<jsize>(len),
                             reinterpret_cast<const jbyte*>(data));
 
-    /* Call PlatformHeicEncoder.decode(byte[]) -> int[] */
     jintArray result = static_cast<jintArray>(
         env->CallStaticObjectMethod(g_heicClass, g_decodeMethod, jdata));
     env->DeleteLocalRef(jdata);
@@ -105,14 +140,13 @@ extern "C" int platform_heic_decode(const uint8_t* data, size_t len, ICImage* ou
     env->DeleteLocalRef(info);
 
     out->stride = out->width * 4;
-    size_t pixel_count = (size_t)out->width * out->height;
+    size_t pixel_count = static_cast<size_t>(out->width) * out->height;
     out->pixels = static_cast<uint8_t*>(malloc(pixel_count * 4));
     if (!out->pixels) {
         env->DeleteLocalRef(result);
         return IC_ERROR_ALLOC_FAILED;
     }
 
-    /* Convert ARGB_8888 int[] to RGBA uint8_t[] */
     jint* pixels = env->GetIntArrayElements(result, nullptr);
     argb_to_rgba(pixels, out->pixels, pixel_count);
     env->ReleaseIntArrayElements(result, pixels, 0);
@@ -129,9 +163,8 @@ extern "C" int platform_heic_encode(const ICImage* img, const ICEncodeOpts* opts
     if (!env || !g_heicClass || !g_encodeMethod)
         return IC_ERROR_UNSUPPORTED_FORMAT;
 
-    size_t pixel_count = (size_t)img->width * img->height;
+    size_t pixel_count = static_cast<size_t>(img->width) * img->height;
 
-    /* Convert RGBA to ARGB_8888 int[] */
     jintArray jpixels = env->NewIntArray(static_cast<jsize>(pixel_count));
     if (!jpixels) return IC_ERROR_ALLOC_FAILED;
 
@@ -149,7 +182,6 @@ extern "C" int platform_heic_encode(const ICImage* img, const ICEncodeOpts* opts
     if (quality < 0) quality = 0;
     if (quality > 100) quality = 100;
 
-    /* Call PlatformHeicEncoder.encode(int[], int, int, int) -> byte[] */
     jbyteArray result = static_cast<jbyteArray>(
         env->CallStaticObjectMethod(g_heicClass, g_encodeMethod,
                                      jpixels,
@@ -204,7 +236,7 @@ extern "C" int platform_heic_get_info(const uint8_t* data, size_t len,
     out->width = static_cast<uint32_t>(dims[0]);
     out->height = static_cast<uint32_t>(dims[1]);
     out->format = IC_FORMAT_HEIC;
-    out->has_exif = 0; /* BitmapFactory doesn't expose EXIF presence cheaply */
+    out->has_exif = 0;
     env->ReleaseIntArrayElements(result, dims, 0);
     env->DeleteLocalRef(result);
 

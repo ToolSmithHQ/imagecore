@@ -28,12 +28,12 @@ class ImageCoreModule(reactContext: ReactApplicationContext) :
         return try {
             val jsContextPtr = reactApplicationContext.javaScriptContextHolder?.get() ?: 0L
             if (jsContextPtr == 0L) return false
-            nativeInstall(jsContextPtr)
+            nativeInstall(jsContextPtr, reactApplicationContext)
             true
         } catch (_: Exception) {
             false
         }
     }
 
-    private external fun nativeInstall(jsiRuntimePtr: Long)
+    private external fun nativeInstall(jsiRuntimePtr: Long, context: ReactApplicationContext)
 }

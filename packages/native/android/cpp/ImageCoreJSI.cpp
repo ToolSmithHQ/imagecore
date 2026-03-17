@@ -1,8 +1,5 @@
 /**
  * @toolsmith/imagecore-native — Android JNI + JSI bridge
- *
- * Loads the native C++ library and installs the JSI host object.
- * Also initializes the platform HEIC encoder JNI bridge.
  */
 
 #include <jni.h>
@@ -16,10 +13,11 @@ JNIEXPORT void JNICALL
 Java_com_toolsmith_imagecore_ImageCoreModule_nativeInstall(
     JNIEnv* env,
     jobject thiz,
-    jlong jsiRuntimePtr) {
+    jlong jsiRuntimePtr,
+    jobject context) {
 
-    // Initialize platform HEIC bridge (JNI → PlatformHeicEncoder.kt)
-    platform_heic_set_jni(env, nullptr);
+    // Initialize platform HEIC bridge with app context (for classloader)
+    platform_heic_set_jni(env, context);
 
     // Install JSI host object
     auto& runtime = *reinterpret_cast<facebook::jsi::Runtime*>(jsiRuntimePtr);
