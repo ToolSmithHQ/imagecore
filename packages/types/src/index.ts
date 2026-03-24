@@ -5,8 +5,6 @@
  * Both packages implement the same ImageCore interface.
  */
 
-/* ── Image format enum ───────────────────────────────────────────────── */
-
 export enum ImageFormat {
   JPEG = 'jpeg',
   PNG = 'png',
@@ -18,8 +16,6 @@ export enum ImageFormat {
   GIF = 'gif',
 }
 
-/* ── Image info (without full decode) ────────────────────────────────── */
-
 export interface ImageInfo {
   width: number;
   height: number;
@@ -27,8 +23,6 @@ export interface ImageInfo {
   hasExif: boolean;
   fileSize: number;
 }
-
-/* ── Encode options ──────────────────────────────────────────────────── */
 
 export interface EncodeOptions {
   /** Target format */
@@ -41,8 +35,6 @@ export interface EncodeOptions {
   stripExif?: boolean;
 }
 
-/* ── Resize options ──────────────────────────────────────────────────── */
-
 export type ResizeFilter = 'lanczos' | 'bilinear' | 'nearest';
 
 export interface ResizeOptions {
@@ -52,11 +44,7 @@ export interface ResizeOptions {
   filter?: ResizeFilter;
 }
 
-/* ── Rotation ────────────────────────────────────────────────────────── */
-
 export type Rotation = 90 | 180 | 270;
-
-/* ── Crop region ─────────────────────────────────────────────────────── */
 
 export interface CropRegion {
   x: number;
@@ -64,8 +52,6 @@ export interface CropRegion {
   width: number;
   height: number;
 }
-
-/* ── EXIF data ───────────────────────────────────────────────────────── */
 
 export interface ExifData {
   [key: string]: string | number | boolean | undefined;
@@ -92,12 +78,8 @@ export interface DecodedImage {
  * @toolsmith/imagecore-native (JSI) and @toolsmith/imagecore-web (WASM).
  */
 export interface ImageCore {
-  /* ── Info ───────────────────────────────────────────────────────────── */
 
-  /** Get image info (dimensions, format, EXIF presence) without full decode. */
   getImageInfo(data: ArrayBuffer): ImageInfo;
-
-  /* ── Decode / Encode ───────────────────────────────────────────────── */
 
   /** Decode any supported format to RGBA pixels. */
   decode(data: ArrayBuffer): DecodedImage;
@@ -105,7 +87,7 @@ export interface ImageCore {
   /** Encode decoded image to the specified format. */
   encode(image: DecodedImage, options: EncodeOptions): ArrayBuffer;
 
-  /* ── Lossless JPEG ─────────────────────────────────────────────────── */
+  /* ── Lossless JPEG  ─────────────────────────────────────────────────── */
 
   /**
    * Lossless JPEG rotation (90/180/270).

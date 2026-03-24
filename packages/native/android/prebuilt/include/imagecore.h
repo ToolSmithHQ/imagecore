@@ -146,7 +146,7 @@ int ic_jpeg_lossless_crop(const uint8_t* data, size_t len,
 int ic_jpeg_strip_exif(const uint8_t* data, size_t len,
                        uint8_t** out_data, size_t* out_len);
 
-/* ── Pixel operations (Phase 2) ──────────────────────────────────────── */
+/* ── Pixel operations ──────────────────────────────────────── */
 
 /**
  * Resize decoded image. Allocates new pixel buffer.

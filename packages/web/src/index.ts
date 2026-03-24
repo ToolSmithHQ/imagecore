@@ -286,7 +286,7 @@ export async function createImageCore(): Promise<IImageCore> {
     },
 
     resize(_image: DecodedImage, _options: ResizeOptions): DecodedImage {
-      throw new Error('resize: not yet implemented (Phase 2)');
+      throw new Error('resize: not yet implemented for WASM');
     },
 
     crop(_image: DecodedImage, _region: CropRegion): DecodedImage {

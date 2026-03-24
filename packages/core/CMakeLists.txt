@@ -287,7 +287,15 @@ target_compile_options(imagecore PRIVATE
 
 if(IC_BUILD_TESTS)
     enable_testing()
-    add_executable(test_imagecore tests/test_main.cpp)
+    add_executable(test_imagecore
+        tests/test_main.cpp
+        tests/test_format_detection.cpp
+        tests/test_codec_roundtrips.cpp
+        tests/test_lossless_jpeg.cpp
+        tests/test_pixel_ops.cpp
+        tests/test_sample_images.cpp
+    )
+    target_include_directories(test_imagecore PRIVATE tests)
     target_link_libraries(test_imagecore imagecore)
     add_test(NAME imagecore_tests COMMAND test_imagecore)
 endif()

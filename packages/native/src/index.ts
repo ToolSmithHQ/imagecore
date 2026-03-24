@@ -36,8 +36,7 @@ import { NativeModules } from 'react-native';
 
 /**
  * Install the JSI host object by calling the native install() method.
- * On iOS: installs the C++ JSI HostObject on global.__ImageCoreProxy.
- * On Android: no-op (Android doesn't use JSI yet — operations throw until NDK build is integrated).
+ * Installs the C++ JSI HostObject on global.__ImageCoreProxy.
  */
 let _installed = false;
 function ensureInstalled(): void {
@@ -62,9 +61,7 @@ function ensureInstalled(): void {
 }
 
 /**
- * Get the native JSI module.
- * On iOS: returns global.__ImageCoreProxy (C++ JSI HostObject).
- * On Android: throws — NDK build not yet integrated.
+ * Get the native JSI module (global.__ImageCoreProxy).
  */
 function getNativeModule(): IImageCore {
   ensureInstalled();

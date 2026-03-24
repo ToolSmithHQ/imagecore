@@ -57,10 +57,20 @@ extern "C" int platform_heic_decode(const uint8_t* data, size_t len, ICImage* ou
 extern "C" int platform_heic_encode(const ICImage* img, const ICEncodeOpts* opts,
                                      uint8_t** out_data, size_t* out_len) {
     @autoreleasepool {
+        // Check if image has any non-opaque pixels
+        bool hasAlpha = false;
+        size_t total = (size_t)img->stride * img->height;
+        for (size_t i = 3; i < total; i += 4) {
+            if (img->pixels[i] != 255) { hasAlpha = true; break; }
+        }
+
+        CGBitmapInfo bitmapInfo = (CGBitmapInfo)kCGBitmapByteOrder32Big |
+            (hasAlpha ? kCGImageAlphaPremultipliedLast : kCGImageAlphaNoneSkipLast);
+
         CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
         CGContextRef ctx = CGBitmapContextCreate(
             img->pixels, img->width, img->height, 8, img->stride, colorSpace,
-            kCGImageAlphaPremultipliedLast | (CGBitmapInfo)kCGBitmapByteOrder32Big);
+            bitmapInfo);
         CGColorSpaceRelease(colorSpace);
         if (!ctx) return IC_ERROR_ENCODE_FAILED;
 
