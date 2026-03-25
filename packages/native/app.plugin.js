@@ -1,1 +1,1 @@
-module.exports = require("./plugin/index.js");
+module.exports = require('./plugin/index.js');
