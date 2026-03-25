@@ -1,20 +1,20 @@
 /**
- * @toolsmith/imagecore-files
+ * @toolsmithhq/imagecore-files
  *
  * High-level file-based API for imagecore on React Native.
  * Wraps imagecore's ArrayBuffer API with file URI convenience functions.
  *
  * Usage:
- *   import { convertFile, resizeFile } from '@toolsmith/imagecore-files';
+ *   import { convertFile, resizeFile } from '@toolsmithhq/imagecore-files';
  *   const jpegUri = await convertFile('file:///photo.heic', 'jpeg', 0.85);
  */
 
 import { File, Paths, Directory } from 'expo-file-system/next';
-import { ImageCore, ImageFormat } from '@toolsmith/imagecore-native';
-import type { Rotation, ImageInfo } from '@toolsmith/imagecore-types';
+import { ImageCore, ImageFormat } from '@toolsmithhq/imagecore-native';
+import type { Rotation, ImageInfo } from '@toolsmithhq/imagecore-types';
 
-export { ImageFormat } from '@toolsmith/imagecore-native';
-export type { ImageInfo, Rotation, CropRegion, ResizeOptions, EncodeOptions, ExifData } from '@toolsmith/imagecore-types';
+export { ImageFormat } from '@toolsmithhq/imagecore-native';
+export type { ImageInfo, Rotation, CropRegion, ResizeOptions, EncodeOptions, ExifData } from '@toolsmithhq/imagecore-types';
 
 const CACHE_DIR_NAME = 'imagecore';
 

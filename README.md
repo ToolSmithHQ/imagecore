@@ -14,11 +14,11 @@ Native C/C++ image processing for React Native. Lossless JPEG ops, full format s
 ## Quick Start
 
 ```bash
-npm install @toolsmith/imagecore-native @toolsmith/imagecore-files
+npm install @toolsmithhq/imagecore-native @toolsmithhq/imagecore-files
 ```
 
 ```typescript
-import { convertFile, resizeFile, getFileImageInfo } from '@toolsmith/imagecore-files';
+import { convertFile, resizeFile, getFileImageInfo } from '@toolsmithhq/imagecore-files';
 
 // Convert HEIC to JPEG
 const jpegUri = await convertFile('file:///path/to/photo.heic', 'jpeg', 0.85);
@@ -33,14 +33,14 @@ console.log(info.width, info.height, info.format);
 
 That's it. File in, file out. No ArrayBuffers, no manual memory management.
 
-## File API (`@toolsmith/imagecore-files`)
+## File API (`@toolsmithhq/imagecore-files`)
 
 The recommended way to use imagecore in React Native. All functions take file URIs and return file URIs.
 
 ### Convert format
 
 ```typescript
-import { convertFile } from '@toolsmith/imagecore-files';
+import { convertFile } from '@toolsmithhq/imagecore-files';
 
 const pngUri = await convertFile(sourceUri, 'png');           // default quality: 0.85
 const jpegUri = await convertFile(sourceUri, 'jpeg', 0.9);  // custom quality
@@ -51,7 +51,7 @@ const heicUri = await convertFile(sourceUri, 'heic', 0.8);
 ### Resize
 
 ```typescript
-import { resizeFile } from '@toolsmith/imagecore-files';
+import { resizeFile } from '@toolsmithhq/imagecore-files';
 
 const resizedUri = await resizeFile(sourceUri, 800, 600, 'jpeg');  // default quality: 0.95
 const thumbUri = await resizeFile(sourceUri, 200, 200, 'png', 0.8);  // custom quality
@@ -60,7 +60,7 @@ const thumbUri = await resizeFile(sourceUri, 200, 200, 'png', 0.8);  // custom q
 ### Crop
 
 ```typescript
-import { cropFile } from '@toolsmith/imagecore-files';
+import { cropFile } from '@toolsmithhq/imagecore-files';
 
 // cropFile(uri, x, y, width, height, outputFormat, quality?)
 const croppedUri = await cropFile(sourceUri, 100, 50, 400, 300, 'jpeg');  // default quality: 0.95
@@ -69,7 +69,7 @@ const croppedUri = await cropFile(sourceUri, 100, 50, 400, 300, 'jpeg');  // def
 ### Rotate
 
 ```typescript
-import { rotateFile } from '@toolsmith/imagecore-files';
+import { rotateFile } from '@toolsmithhq/imagecore-files';
 
 const rotatedUri = await rotateFile(sourceUri, 90, 'jpeg');   // 90, 180, or 270. default quality: 0.95
 ```
@@ -77,7 +77,7 @@ const rotatedUri = await rotateFile(sourceUri, 90, 'jpeg');   // 90, 180, or 270
 ### Flip
 
 ```typescript
-import { flipFile } from '@toolsmith/imagecore-files';
+import { flipFile } from '@toolsmithhq/imagecore-files';
 
 // flipFile(uri, horizontal, vertical, outputFormat, quality?). default quality: 0.95
 const mirroredUri = await flipFile(sourceUri, true, false, 'png');   // horizontal flip
@@ -88,7 +88,7 @@ const bothUri = await flipFile(sourceUri, true, true, 'png');        // both
 ### Compress
 
 ```typescript
-import { compressFile } from '@toolsmith/imagecore-files';
+import { compressFile } from '@toolsmithhq/imagecore-files';
 
 // Re-encode at lower quality
 const compressedUri = await compressFile(sourceUri, 0.5, 'jpeg');
@@ -99,7 +99,7 @@ const compressedUri = await compressFile(sourceUri, 0.5, 'jpeg');
 Rotates JPEG without decoding pixels. Zero quality loss — rearranges DCT blocks directly.
 
 ```typescript
-import { losslessJpegRotate } from '@toolsmith/imagecore-files';
+import { losslessJpegRotate } from '@toolsmithhq/imagecore-files';
 
 const rotatedUri = await losslessJpegRotate(sourceUri, 90);  // 90, 180, or 270
 ```
@@ -107,7 +107,7 @@ const rotatedUri = await losslessJpegRotate(sourceUri, 90);  // 90, 180, or 270
 ### Image info
 
 ```typescript
-import { getFileImageInfo } from '@toolsmith/imagecore-files';
+import { getFileImageInfo } from '@toolsmithhq/imagecore-files';
 
 const info = await getFileImageInfo(sourceUri);
 // { width: 4032, height: 3024, format: 'jpeg', hasExif: true, fileSize: 2048576 }
@@ -116,7 +116,7 @@ const info = await getFileImageInfo(sourceUri);
 ### EXIF metadata
 
 ```typescript
-import { readFileExif, stripFileExif } from '@toolsmith/imagecore-files';
+import { readFileExif, stripFileExif } from '@toolsmithhq/imagecore-files';
 
 // Read EXIF tags
 const exif = await readFileExif(sourceUri);
@@ -129,7 +129,7 @@ const strippedUri = await stripFileExif(sourceUri);
 ### Utility functions
 
 ```typescript
-import { readFileAsArrayBuffer, writeArrayBufferToFile } from '@toolsmith/imagecore-files';
+import { readFileAsArrayBuffer, writeArrayBufferToFile } from '@toolsmithhq/imagecore-files';
 
 // Read file to ArrayBuffer (for custom workflows)
 const buffer = await readFileAsArrayBuffer(sourceUri);
@@ -138,16 +138,16 @@ const buffer = await readFileAsArrayBuffer(sourceUri);
 const outputUri = writeArrayBufferToFile(buffer, 'png');
 ```
 
-## Low-Level API (`@toolsmith/imagecore-native`)
+## Low-Level API (`@toolsmithhq/imagecore-native`)
 
 For working with in-memory buffers, chaining multiple operations without intermediate files, or custom workflows.
 
 ```bash
-npm install @toolsmith/imagecore-native
+npm install @toolsmithhq/imagecore-native
 ```
 
 ```typescript
-import { ImageCore } from '@toolsmith/imagecore-native';
+import { ImageCore } from '@toolsmithhq/imagecore-native';
 
 // All methods are synchronous (JSI) and operate on ArrayBuffers.
 // DecodedImage objects must be freed when done.
@@ -210,12 +210,12 @@ try {
 }
 ```
 
-The file API (`@toolsmith/imagecore-files`) handles this automatically.
+The file API (`@toolsmithhq/imagecore-files`) handles this automatically.
 
 ## Packages
 
 ```
-@toolsmith/imagecore-types     ← shared TypeScript types
+@toolsmithhq/imagecore-types     ← shared TypeScript types
          |
     +---------+
     |         |
@@ -226,12 +226,12 @@ imagecore-files                    ← high-level file URI convenience layer (Re
 
 | Package | Install | Platform |
 |---|---|---|
-| `@toolsmith/imagecore-files` | `npm install @toolsmith/imagecore-files` | React Native (iOS + Android) |
-| `@toolsmith/imagecore-native` | `npm install @toolsmith/imagecore-native` | React Native (iOS + Android) |
-| `@toolsmith/imagecore-types` | `npm install @toolsmith/imagecore-types` | All |
-| `@toolsmith/imagecore-web` | `npm install @toolsmith/imagecore-web` | Web (not yet available) |
+| `@toolsmithhq/imagecore-files` | `npm install @toolsmithhq/imagecore-files` | React Native (iOS + Android) |
+| `@toolsmithhq/imagecore-native` | `npm install @toolsmithhq/imagecore-native` | React Native (iOS + Android) |
+| `@toolsmithhq/imagecore-types` | `npm install @toolsmithhq/imagecore-types` | All |
+| `@toolsmithhq/imagecore-web` | `npm install @toolsmithhq/imagecore-web` | Web (not yet available) |
 
-> `packages/core` contains the C++ source. It is not published to npm — it gets compiled into prebuilt `.a` files (iOS/Android) that ship inside `@toolsmith/imagecore-native`.
+> `packages/core` contains the C++ source. It is not published to npm — it gets compiled into prebuilt `.a` files (iOS/Android) that ship inside `@toolsmithhq/imagecore-native`.
 
 ## Supported Formats
 
@@ -250,14 +250,14 @@ imagecore-files                    ← high-level file URI convenience layer (Re
 
 ## Web
 
-The web package (`@toolsmith/imagecore-web`) is not yet available. It will provide the same API backed by WASM:
+The web package (`@toolsmithhq/imagecore-web`) is not yet available. It will provide the same API backed by WASM:
 
 ```typescript
-import { createImageCore } from '@toolsmith/imagecore-web';
+import { createImageCore } from '@toolsmithhq/imagecore-web';
 
 const core = await createImageCore(); // loads WASM module
 const pngBuffer = core.convert(inputBuffer, { format: 'png', quality: 0.9 });
-// Same API as @toolsmith/imagecore-native
+// Same API as @toolsmithhq/imagecore-native
 ```
 
 > **Why no `imagecore-files` for web?** On React Native, reading a file URI into an ArrayBuffer requires `expo-file-system` with base64 encoding/decoding — that's the boilerplate `imagecore-files` eliminates. On web, the browser has this built in:

@@ -1,11 +1,11 @@
 /**
- * @toolsmith/imagecore-native
+ * @toolsmithhq/imagecore-native
  *
  * React Native image processing via JSI.
- * Same API as @toolsmith/imagecore-web — import from whichever matches your platform.
+ * Same API as @toolsmithhq/imagecore-web — import from whichever matches your platform.
  *
  * Usage:
- *   import { ImageCore } from '@toolsmith/imagecore-native';
+ *   import { ImageCore } from '@toolsmithhq/imagecore-native';
  *   const rotated = ImageCore.jpegLosslessRotate(buffer, 90);
  */
 
@@ -18,7 +18,7 @@ import type {
   CropRegion,
   ResizeOptions,
   ExifData,
-} from '@toolsmith/imagecore-types';
+} from '@toolsmithhq/imagecore-types';
 
 export type {
   ImageInfo,
@@ -30,7 +30,7 @@ export type {
   ExifData,
 };
 
-export { ImageFormat } from '@toolsmith/imagecore-types';
+export { ImageFormat } from '@toolsmithhq/imagecore-types';
 
 import { NativeModules } from 'react-native';
 
@@ -45,7 +45,7 @@ function ensureInstalled(): void {
   const nativeModule = NativeModules.ImageCore;
   if (!nativeModule) {
     throw new Error(
-      '@toolsmith/imagecore-native: NativeModule not found. ' +
+      '@toolsmithhq/imagecore-native: NativeModule not found. ' +
       'Make sure you have rebuilt the app (not Expo Go).'
     );
   }
@@ -53,7 +53,7 @@ function ensureInstalled(): void {
   const result = nativeModule.install();
   if (!result) {
     throw new Error(
-      '@toolsmith/imagecore-native: install() failed — bridge.runtime is nil.'
+      '@toolsmithhq/imagecore-native: install() failed — bridge.runtime is nil.'
     );
   }
 
@@ -70,7 +70,7 @@ function getNativeModule(): IImageCore {
   const mod = global.__ImageCoreProxy;
   if (!mod) {
     throw new Error(
-      '@toolsmith/imagecore-native: __ImageCoreProxy not found after install(). ' +
+      '@toolsmithhq/imagecore-native: __ImageCoreProxy not found after install(). ' +
       'Make sure you have rebuilt the app with npx expo prebuild --clean.'
     );
   }

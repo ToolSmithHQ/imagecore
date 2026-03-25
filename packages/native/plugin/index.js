@@ -1,5 +1,5 @@
 /**
- * Expo config plugin for @toolsmith/imagecore-native.
+ * Expo config plugin for @toolsmithhq/imagecore-native.
  * Registers ImageCorePackage in Android MainApplication.
  */
 
@@ -15,7 +15,7 @@ try {
 
 const { withMainApplication, createRunOncePlugin } = configPlugins;
 
-const PACKAGE_NAME = "@toolsmith/imagecore-native";
+const PACKAGE_NAME = "@toolsmithhq/imagecore-native";
 const PACKAGE_VERSION = "0.1.0";
 
 function withImageCoreAndroid(config) {

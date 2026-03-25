@@ -1,7 +1,7 @@
 /**
- * @toolsmith/imagecore-types
+ * @toolsmithhq/imagecore-types
  *
- * Shared types for @toolsmith/imagecore-native and @toolsmith/imagecore-web.
+ * Shared types for @toolsmithhq/imagecore-native and @toolsmithhq/imagecore-web.
  * Both packages implement the same ImageCore interface.
  */
 
@@ -75,7 +75,7 @@ export interface DecodedImage {
 
 /**
  * The ImageCore API, implemented identically by both
- * @toolsmith/imagecore-native (JSI) and @toolsmith/imagecore-web (WASM).
+ * @toolsmithhq/imagecore-native (JSI) and @toolsmithhq/imagecore-web (WASM).
  */
 export interface ImageCore {
 

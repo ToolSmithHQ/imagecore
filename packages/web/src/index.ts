@@ -1,11 +1,11 @@
 /**
- * @toolsmith/imagecore-web
+ * @toolsmithhq/imagecore-web
  *
  * WASM-based image processing for web/React apps.
- * Same API as @toolsmith/imagecore-native.
+ * Same API as @toolsmithhq/imagecore-native.
  *
  * Usage:
- *   import { createImageCore } from '@toolsmith/imagecore-web';
+ *   import { createImageCore } from '@toolsmithhq/imagecore-web';
  *   const core = await createImageCore();
  *   const rotated = core.jpegLosslessRotate(buffer, 90);
  */
@@ -19,7 +19,7 @@ import type {
   CropRegion,
   ResizeOptions,
   ExifData,
-} from '@toolsmith/imagecore-types';
+} from '@toolsmithhq/imagecore-types';
 
 export type {
   ImageInfo,
@@ -31,7 +31,7 @@ export type {
   ExifData,
 };
 
-export { ImageFormat } from '@toolsmith/imagecore-types';
+export { ImageFormat } from '@toolsmithhq/imagecore-types';
 
 /* ── WASM module interface ───────────────────────────────────────────── */
 

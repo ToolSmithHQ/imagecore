@@ -1,5 +1,5 @@
 /**
- * @toolsmith/imagecore-native — Android JNI + JSI bridge
+ * @toolsmithhq/imagecore-native — Android JNI + JSI bridge
  */
 
 #include <jni.h>
