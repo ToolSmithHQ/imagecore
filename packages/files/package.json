@@ -1,6 +1,6 @@
 {
   "name": "@toolsmithhq/imagecore-files",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "High-level file-based API for imagecore — convert, resize, crop, rotate images by file URI",
   "license": "MIT",
   "main": "dist/index.js",
@@ -14,8 +14,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@toolsmithhq/imagecore-native": "0.0.1",
-    "@toolsmithhq/imagecore-types": "0.0.1"
+    "@toolsmithhq/imagecore-native": "0.0.4",
+    "@toolsmithhq/imagecore-types": "0.0.4"
   },
   "peerDependencies": {
     "expo-file-system": ">=18.0.0"
