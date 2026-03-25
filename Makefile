@@ -1,5 +1,5 @@
 
-.PHONY: help build test test-samples clean build-ios build-android
+.PHONY: help build test test-samples clean build-ios build-android build-ts publish
 
 CORE_DIR = packages/core
 BUILD_DIR = $(CORE_DIR)/build
@@ -29,7 +29,21 @@ test: build ## Run C++ tests (without sample images)
 test-samples: build ## Run C++ tests with sample images (63 tests)
 	$(BUILD_DIR)/test_imagecore "$$(cd $(CORE_DIR) && pwd)/tests/samples/"
 
+# ── TypeScript ───────────────────────────────────────────────────────── #
+
+build-ts: ## Build TypeScript packages (types, native, files)
+	cd packages/types && npx tsc
+	cd packages/native && npx tsc
+	cd packages/files && npx tsc
+
+# ── Publish ──────────────────────────────────────────────────────────── #
+
+publish: build-ts ## Publish all packages to npm (in dependency order)
+	cd packages/types && npm publish --access public
+	cd packages/native && npm publish --access public
+	cd packages/files && npm publish --access public
+
 # ── Clean ────────────────────────────────────────────────────────────── #
 
 clean: ## Remove all build directories
-	rm -rf $(CORE_DIR)/build $(CORE_DIR)/build-*
+	rm -rf $(CORE_DIR)/build $(CORE_DIR)/build-* packages/*/dist

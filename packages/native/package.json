@@ -1,6 +1,6 @@
 {
   "name": "@toolsmithhq/imagecore-native",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Native C/C++ image processing for React Native via JSI — lossless JPEG ops, full format support",
   "license": "MIT",
   "main": "dist/index.js",
@@ -9,8 +9,13 @@
     "src",
     "dist",
     "ios",
-    "android",
-    "plugin"
+    "android/build.gradle",
+    "android/CMakeLists.txt",
+    "android/cpp",
+    "android/prebuilt",
+    "android/src",
+    "plugin",
+    "expo-module.config.json"
   ],
   "scripts": {
     "build": "tsc",
@@ -27,7 +32,7 @@
     }
   },
   "dependencies": {
-    "@toolsmithhq/imagecore-types": "0.1.0"
+    "@toolsmithhq/imagecore-types": "0.0.1"
   },
   "expo": {
     "configPlugin": "./plugin/index.js"
