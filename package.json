@@ -4,7 +4,8 @@
   "workspaces": [
     "packages/types",
     "packages/native",
-    "packages/web"
+    "packages/web",
+    "packages/files"
   ],
   "scripts": {
     "build:types": "cd packages/types && npm run build",
@@ -15,5 +16,8 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }

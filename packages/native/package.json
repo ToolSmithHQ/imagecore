@@ -3,16 +3,18 @@
   "version": "0.1.0",
   "description": "Native C/C++ image processing for React Native via JSI — lossless JPEG ops, full format support",
   "license": "MIT",
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "src",
+    "dist",
     "ios",
     "android",
     "plugin"
   ],
   "scripts": {
-    "build": "echo 'Native module is built by React Native build system'"
+    "build": "tsc",
+    "clean": "rm -rf dist"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
