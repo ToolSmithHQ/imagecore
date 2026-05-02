@@ -1,8 +1,22 @@
 {
   "name": "@toolsmithhq/imagecore-native",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Native C/C++ image processing for React Native via JSI — lossless JPEG ops, full format support",
   "license": "MIT",
+  "keywords": [
+    "react-native", "image", "image-processing", "jsi", "native", "cpp",
+    "convert", "resize", "crop", "rotate", "compress", "exif", "metadata",
+    "jpeg", "png", "webp", "heic", "avif", "tiff", "bmp",
+    "lossless", "lossless-jpeg", "format-conversion",
+    "expo", "expo-plugin", "ios", "android",
+    "imagecore", "toolsmith", "privacy", "offline", "client-side"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ToolSmithHQ/imagecore",
+    "directory": "packages/native"
+  },
+  "homepage": "https://github.com/ToolSmithHQ/imagecore#readme",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -33,7 +47,7 @@
     }
   },
   "dependencies": {
-    "@toolsmithhq/imagecore-types": "0.0.4"
+    "@toolsmithhq/imagecore-types": "0.0.6"
   },
   "expo": {
     "configPlugin": "./plugin/index.js"

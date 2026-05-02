@@ -1,8 +1,22 @@
 {
   "name": "@toolsmithhq/imagecore-files",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "High-level file-based API for imagecore — convert, resize, crop, rotate images by file URI",
   "license": "MIT",
+  "keywords": [
+    "react-native", "image", "image-processing", "file", "uri",
+    "convert", "resize", "crop", "rotate", "flip", "compress", "exif",
+    "jpeg", "png", "webp", "heic", "tiff", "bmp",
+    "lossless-jpeg", "format-conversion", "metadata", "strip-exif",
+    "expo", "ios", "android", "privacy", "offline", "client-side",
+    "imagecore", "toolsmith"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ToolSmithHQ/imagecore",
+    "directory": "packages/files"
+  },
+  "homepage": "https://github.com/ToolSmithHQ/imagecore#readme",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -14,8 +28,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@toolsmithhq/imagecore-native": "0.0.5",
-    "@toolsmithhq/imagecore-types": "0.0.4"
+    "@toolsmithhq/imagecore-native": "0.0.6",
+    "@toolsmithhq/imagecore-types": "0.0.6"
   },
   "peerDependencies": {
     "expo-file-system": ">=18.0.0"

@@ -1,8 +1,19 @@
 {
   "name": "@toolsmithhq/imagecore-types",
-  "version": "0.0.4",
-  "description": "Shared TypeScript types for @toolsmithhq/imagecore",
+  "version": "0.0.6",
+  "description": "Shared TypeScript types for @toolsmithhq/imagecore — image processing library for React Native and Web",
   "license": "MIT",
+  "keywords": [
+    "image", "image-processing", "react-native", "typescript", "types",
+    "jpeg", "png", "webp", "heic", "avif", "tiff", "bmp",
+    "imagecore", "toolsmith"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ToolSmithHQ/imagecore",
+    "directory": "packages/types"
+  },
+  "homepage": "https://github.com/ToolSmithHQ/imagecore#readme",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

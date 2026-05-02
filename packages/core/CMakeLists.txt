@@ -23,6 +23,15 @@ if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
         -DCMAKE_OSX_DEPLOYMENT_TARGET=${CMAKE_OSX_DEPLOYMENT_TARGET}
         -DCMAKE_OSX_SYSROOT=${CMAKE_OSX_SYSROOT}
     )
+elseif(EMSCRIPTEN)
+    list(APPEND IC_CROSS_COMPILE_ARGS
+        -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
+        -DCMAKE_CROSSCOMPILING_EMULATOR=${CMAKE_CROSSCOMPILING_EMULATOR}
+        # WASM has no dynamic linking — all deps must be static
+        -DBUILD_SHARED_LIBS=OFF
+    )
+    # libaom needs explicit generic CPU target for WASM (no x86/ARM SIMD)
+    set(IC_LIBAOM_WASM_ARGS -DAOM_TARGET_CPU=generic)
 endif()
 
 # ── libjpeg-turbo (ExternalProject — it blocks add_subdirectory) ────── #
@@ -58,6 +67,7 @@ ExternalProject_Add(zlib-ext
         -DCMAKE_POSITION_INDEPENDENT_CODE=ON
         ${IC_CROSS_COMPILE_ARGS}
         -DZLIB_BUILD_EXAMPLES=OFF
+        -DZLIB_BUILD_SHARED=OFF
     BUILD_BYPRODUCTS ${IC_DEPS_INSTALL_DIR}/lib/libz.a
 )
 
@@ -184,6 +194,7 @@ ExternalProject_Add(libaom-ext
         -DENABLE_TOOLS=OFF
         -DCONFIG_AV1_HIGHBITDEPTH=0
         -DCONFIG_WEBM_IO=0
+        ${IC_LIBAOM_WASM_ARGS}
     BUILD_BYPRODUCTS ${IC_DEPS_INSTALL_DIR}/lib/libaom.a
 )
 
@@ -205,12 +216,14 @@ ExternalProject_Add(libavif-ext
         -DCMAKE_POSITION_INDEPENDENT_CODE=ON
         ${IC_CROSS_COMPILE_ARGS}
         -DBUILD_SHARED_LIBS=OFF
+        -DAVIF_BUILD_SHARED_LIBS=OFF
         -DAVIF_CODEC_AOM=SYSTEM
         -DAVIF_LIBYUV=OFF
         -DAVIF_BUILD_APPS=OFF
         -DAVIF_BUILD_TESTS=OFF
         -DAVIF_BUILD_EXAMPLES=OFF
         -DCMAKE_PREFIX_PATH=${IC_DEPS_INSTALL_DIR}
+        -DCMAKE_FIND_ROOT_PATH=${IC_DEPS_INSTALL_DIR}
     DEPENDS libaom-ext
     BUILD_BYPRODUCTS ${IC_DEPS_INSTALL_DIR}/lib/libavif.a
 )
