@@ -306,8 +306,9 @@ if(IC_USE_LIBHEIF)
         DOWNLOAD_COMMAND ${CMAKE_COMMAND} -E copy_directory
             ${CMAKE_CURRENT_SOURCE_DIR}/third_party/libheif
             ${CMAKE_CURRENT_BINARY_DIR}/libheif-src
-        PATCH_COMMAND patch -p1 -N -i
-            ${CMAKE_CURRENT_SOURCE_DIR}/patches/libheif-keep-deblocking.patch
+        # Idempotent: skip if already applied (a re-run of only the patch step would
+        # otherwise fail with "Reversed (or previously applied) patch detected").
+        PATCH_COMMAND sh -c "patch -p1 -R -s -f --dry-run -i '${CMAKE_CURRENT_SOURCE_DIR}/patches/libheif-keep-deblocking.patch' >/dev/null 2>&1 || patch -p1 -N -i '${CMAKE_CURRENT_SOURCE_DIR}/patches/libheif-keep-deblocking.patch'"
         CMAKE_ARGS
             -DCMAKE_INSTALL_PREFIX=${IC_DEPS_INSTALL_DIR}
             -DCMAKE_INSTALL_LIBDIR=lib

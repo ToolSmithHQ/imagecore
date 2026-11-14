@@ -14,6 +14,18 @@ extern "C" int avif_get_info(const uint8_t* data, size_t len, ICImageInfo* out) 
     decoder->ignoreExif = AVIF_FALSE;
 
     avifResult result = avifDecoderParse(decoder);
+    int malformed_exif = 0;
+    if (result == AVIF_RESULT_INVALID_EXIF_PAYLOAD) {
+        /* Some writers store a wrong Exif tiff_header_offset. libavif then fails the
+         * whole parse; the image itself is fine, so re-parse ignoring Exif. */
+        malformed_exif = 1;
+        avifDecoderDestroy(decoder);
+        decoder = avifDecoderCreate();
+        if (!decoder) return IC_ERROR_ALLOC_FAILED;
+        (void)avifDecoderSetIOMemory(decoder, data, len);
+        decoder->ignoreExif = AVIF_TRUE;
+        result = avifDecoderParse(decoder);
+    }
     if (result != AVIF_RESULT_OK) {
         avifDecoderDestroy(decoder);
         return IC_ERROR_DECODE_FAILED;
@@ -22,7 +34,7 @@ extern "C" int avif_get_info(const uint8_t* data, size_t len, ICImageInfo* out) 
     out->width = decoder->image->width;
     out->height = decoder->image->height;
     out->format = IC_FORMAT_AVIF;
-    out->has_exif = (decoder->image->exif.size > 0) ? 1 : 0;
+    out->has_exif = (malformed_exif || decoder->image->exif.size > 0) ? 1 : 0;
 
     avifDecoderDestroy(decoder);
     return IC_OK;
@@ -35,6 +47,10 @@ extern "C" int avif_decode(const uint8_t* data, size_t len, ICImage* out) {
     if (!decoder) return IC_ERROR_ALLOC_FAILED;
 
     (void)avifDecoderSetIOMemory(decoder, data, len);
+    /* Pixels don't need metadata, and a malformed Exif/XMP payload would otherwise
+     * make libavif reject an otherwise valid image. */
+    decoder->ignoreExif = AVIF_TRUE;
+    decoder->ignoreXMP = AVIF_TRUE;
 
     avifResult result = avifDecoderParse(decoder);
     if (result != AVIF_RESULT_OK) {
@@ -160,9 +176,13 @@ extern "C" int avif_get_exif(const uint8_t* data, size_t len,
     (void)avifDecoderSetIOMemory(decoder, data, len);
     decoder->ignoreExif = AVIF_FALSE;
 
-    if (avifDecoderParse(decoder) != AVIF_RESULT_OK) {
+    avifResult parsed = avifDecoderParse(decoder);
+    if (parsed != AVIF_RESULT_OK) {
         avifDecoderDestroy(decoder);
-        return IC_ERROR_DECODE_FAILED;
+        /* Exif present but unreadable (bad header offset): report "no usable EXIF"
+         * rather than claiming the whole file is corrupt. */
+        return parsed == AVIF_RESULT_INVALID_EXIF_PAYLOAD ? IC_ERROR_EXIF_NOT_FOUND
+                                                          : IC_ERROR_DECODE_FAILED;
     }
 
     const avifRWData* exif = &decoder->image->exif;

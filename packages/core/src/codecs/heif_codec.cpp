@@ -250,8 +250,10 @@ extern "C" int heif_codec_encode(const ICImage* img, const ICEncodeOpts* opts,
         if (q < 0.0f) q = 0.0f;
         if (q > 1.0f) q = 1.0f;
         int quality = (int)(q * 65.0f + 0.5f);
-        if (opts && opts->lossless) heif_encoder_set_lossless(encoder, 1);
-        else heif_encoder_set_lossy_quality(encoder, quality);
+        /* libheif's kvazaar plugin always converts to YCbCr 4:2:0, so "lossless"
+         * HEVC would still lose chroma. Refuse instead of silently degrading. */
+        if (opts && opts->lossless) { result = IC_ERROR_UNSUPPORTED_FORMAT; goto done; }
+        heif_encoder_set_lossy_quality(encoder, quality);
 
         heif_encoding_options* eo = heif_encoding_options_alloc();
         eo->save_alpha_channel = has_alpha ? 1 : 0;

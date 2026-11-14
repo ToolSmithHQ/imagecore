@@ -308,8 +308,11 @@ static int jpeg_find_exif(const uint8_t* data, size_t len,
         if (seg_len < 2 || pos + 2 + seg_len > len) break;
         if (marker == 0xE1 && seg_len >= 8 &&
             memcmp(data + pos + 4, "Exif\0\0", 6) == 0) {
-            return ic_exif_copy_payload(data + pos + 4, seg_len - 2,
-                                        out_data, out_len);
+            int rc = ic_exif_copy_payload(data + pos + 4, seg_len - 2,
+                                          out_data, out_len);
+            /* An empty/invalid Exif APP1 (some editors leave one) shouldn't hide
+             * a valid one later in the file: keep scanning. */
+            if (rc != IC_ERROR_EXIF_NOT_FOUND) return rc;
         }
         pos += 2 + seg_len;
     }

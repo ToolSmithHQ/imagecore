@@ -42,6 +42,35 @@ TEST(get_exif_jpeg_app1) {
     free(buf);
 }
 
+TEST(get_exif_jpeg_skips_empty_app1) {
+    /* Some editors leave an empty "Exif\0\0" APP1; a valid one may follow it. */
+    ICImage img = make_test_image(16, 16);
+    uint8_t* jpg = nullptr; size_t jpg_len = 0;
+    ICEncodeOpts opts = { 0.9f, 0, 0 };
+    ASSERT(ic_encode(&img, IC_FORMAT_JPEG, &opts, &jpg, &jpg_len) == IC_OK);
+    ic_image_free(&img);
+
+    const size_t empty_seg = 2 + 6;                   /* length field + "Exif\0\0" */
+    const size_t real_seg = 2 + 6 + sizeof(kTiff);
+    size_t len = jpg_len + (2 + empty_seg) + (2 + real_seg);
+    uint8_t* buf = static_cast<uint8_t*>(malloc(len));
+    uint8_t* p = buf;
+    memcpy(p, jpg, 2); p += 2;                        /* SOI */
+    *p++ = 0xFF; *p++ = 0xE1; *p++ = 0; *p++ = (uint8_t)empty_seg;
+    memcpy(p, "Exif\0\0", 6); p += 6;               /* empty Exif APP1 */
+    *p++ = 0xFF; *p++ = 0xE1; *p++ = (uint8_t)(real_seg >> 8); *p++ = (uint8_t)real_seg;
+    memcpy(p, "Exif\0\0", 6); p += 6;
+    memcpy(p, kTiff, sizeof(kTiff)); p += sizeof(kTiff);
+    memcpy(p, jpg + 2, jpg_len - 2);
+    ic_free(jpg);
+
+    uint8_t* out = nullptr; size_t out_len = 0;
+    ASSERT(ic_get_exif(buf, len, &out, &out_len) == IC_OK);
+    ASSERT(exif_matches(out, out_len));
+    ic_free(out);
+    free(buf);
+}
+
 TEST(get_exif_png_exif_chunk) {
     ICImage img = make_test_image(16, 16);
     uint8_t* png = nullptr; size_t png_len = 0;
