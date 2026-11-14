@@ -1,13 +1,28 @@
 #!/usr/bin/env bash
+# Build imagecore.js + imagecore.wasm with Emscripten.
+#
+# Usage: bash packages/web/scripts/build-wasm.sh [OUT_DIR]
+#   OUT_DIR defaults to packages/web/src. The CMake build tree lives in
+#   packages/core/build-wasm (git-ignored); delete it for a clean rebuild.
+#
+# Env overrides:
+#   IC_WASM_BUILD_DIR   CMake build dir (default packages/core/build-wasm)
+#   IC_USE_LIBHEIF      ON/OFF (default ON) - HEIC decode (libde265) + encode (kvazaar)
+#   JOBS                parallel build jobs
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-BUILD_DIR="$SCRIPT_DIR/../build"
-OUT_DIR="$SCRIPT_DIR/../src"
+CORE_DIR="$(cd "$SCRIPT_DIR/../../core" && pwd)"
+BUILD_DIR="${IC_WASM_BUILD_DIR:-$CORE_DIR/build-wasm}"
+OUT_DIR="${1:-$SCRIPT_DIR/../src}"
+JOBS="${JOBS:-$(sysctl -n hw.logicalcpu 2>/dev/null || nproc)}"
 
-echo "==> Building imagecore WASM..."
-
-# Check for Emscripten
+if ! command -v emcmake &> /dev/null; then
+    if [ -f "$HOME/emsdk/emsdk_env.sh" ]; then
+        # shellcheck disable=SC1091
+        source "$HOME/emsdk/emsdk_env.sh" > /dev/null 2>&1
+    fi
+fi
 if ! command -v emcmake &> /dev/null; then
     echo "Error: Emscripten not found. Install it from https://emscripten.org/docs/getting_started/"
     echo "  git clone https://github.com/emscripten-core/emsdk.git"
@@ -16,18 +31,19 @@ if ! command -v emcmake &> /dev/null; then
     exit 1
 fi
 
-# Configure
-echo "==> Configuring with emcmake..."
-emcmake cmake -S "$BUILD_DIR" -B "$BUILD_DIR/build_wasm" \
-    -DCMAKE_BUILD_TYPE=Release
+if [ ! -f "$CORE_DIR/third_party/libaom/CMakeLists.txt" ]; then
+    echo "==> Initializing submodules..."
+    git -C "$CORE_DIR" submodule update --init --recursive
+fi
 
-# Build
-echo "==> Building with emmake..."
-emmake cmake --build "$BUILD_DIR/build_wasm" --config Release -j$(nproc 2>/dev/null || sysctl -n hw.logicalcpu)
+echo "==> Configuring ($BUILD_DIR)..."
+emcmake cmake -S "$CORE_DIR" -B "$BUILD_DIR" \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DIC_USE_LIBHEIF="${IC_USE_LIBHEIF:-ON}"
 
-# Copy outputs
-echo "==> Copying WASM artifacts..."
-cp "$BUILD_DIR/build_wasm/imagecore.js" "$OUT_DIR/"
-cp "$BUILD_DIR/build_wasm/imagecore.wasm" "$OUT_DIR/"
+echo "==> Building with $JOBS jobs..."
+cmake --build "$BUILD_DIR" --config Release --target imagecore_wasm -j"$JOBS"
 
-echo "==> Done! Output: $OUT_DIR/imagecore.{js,wasm}"
+mkdir -p "$OUT_DIR"
+cp "$BUILD_DIR/imagecore.js" "$BUILD_DIR/imagecore.wasm" "$OUT_DIR/"
+echo "==> Done: $OUT_DIR/imagecore.{js,wasm} ($(du -h "$OUT_DIR/imagecore.wasm" | cut -f1) wasm)"

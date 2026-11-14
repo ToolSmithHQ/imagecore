@@ -10,6 +10,11 @@ include(ExternalProject)
 
 option(IC_BUILD_TESTS "Build tests" OFF)
 option(IC_USE_LIBHEIF "Build with libheif (LGPL, WASM only)" OFF)
+# libaom's AV1 encoder (recursive partition search) overflows Emscripten's
+# default 64 KB stack; libde265/kvazaar are stack-hungry too.
+set(IC_WASM_STACK_SIZE "1048576" CACHE STRING "WASM stack size in bytes")
+set(IC_WASM_LINK_OPT "-O3" CACHE STRING "Link-time (wasm-opt) optimization level for the WASM module")
+set(IC_WASM_EXTRA_LINK_FLAGS "" CACHE STRING "Extra emcc link flags for the WASM module")
 
 set(IC_DEPS_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/deps)
 
@@ -67,6 +72,7 @@ ExternalProject_Add(zlib-ext
         -DCMAKE_POSITION_INDEPENDENT_CODE=ON
         ${IC_CROSS_COMPILE_ARGS}
         -DZLIB_BUILD_EXAMPLES=OFF
+        -DZLIB_BUILD_TESTING=OFF
         -DZLIB_BUILD_SHARED=OFF
     BUILD_BYPRODUCTS ${IC_DEPS_INSTALL_DIR}/lib/libz.a
 )
@@ -296,6 +302,42 @@ target_compile_options(imagecore PRIVATE
     -Wall -Wextra -Wno-unused-parameter
     $<$<CONFIG:Release>:-O2>
 )
+
+# ── WebAssembly module (Emscripten only) ─────────────────────────────── #
+#
+# Produces imagecore.js + imagecore.wasm (MODULARIZE, factory createImageCore).
+# The exported C ABI is consumed by packages/web and the imagesmith-web app;
+# keep the export list stable.
+
+if(EMSCRIPTEN)
+    set(IC_WASM_EXPORTS
+        _ic_detect_format _ic_get_image_info _ic_decode _ic_encode _ic_convert
+        _ic_jpeg_lossless_rotate _ic_jpeg_lossless_crop _ic_jpeg_strip_exif
+        _ic_strip_exif _ic_resize _ic_crop _ic_rotate
+        _ic_flip_horizontal _ic_flip_vertical
+        _ic_get_exif _ic_read_exif_internal
+        _ic_free _ic_image_free _ic_version
+        _malloc _free
+    )
+    list(JOIN IC_WASM_EXPORTS "," IC_WASM_EXPORTS_STR)
+
+    add_executable(imagecore_wasm src/wasm_main.c)
+    set_target_properties(imagecore_wasm PROPERTIES OUTPUT_NAME imagecore SUFFIX ".js")
+    target_link_libraries(imagecore_wasm PRIVATE imagecore)
+    target_link_options(imagecore_wasm PRIVATE
+        ${IC_WASM_LINK_OPT}
+        -sMODULARIZE=1
+        -sEXPORT_NAME=createImageCore
+        "-sEXPORTED_FUNCTIONS=${IC_WASM_EXPORTS_STR}"
+        "-sEXPORTED_RUNTIME_METHODS=HEAPU8,HEAPU32,HEAPF32,UTF8ToString,ccall,cwrap"
+        -sALLOW_MEMORY_GROWTH=1
+        -sINITIAL_MEMORY=32MB
+        -sMAXIMUM_MEMORY=2GB
+        -sSTACK_SIZE=${IC_WASM_STACK_SIZE}
+        -sFILESYSTEM=0
+        ${IC_WASM_EXTRA_LINK_FLAGS}
+    )
+endif()
 
 # ── Tests ────────────────────────────────────────────────────────────── #
 
