@@ -308,6 +308,7 @@ if(IC_BUILD_TESTS)
         tests/test_lossless_jpeg.cpp
         tests/test_pixel_ops.cpp
         tests/test_sample_images.cpp
+        tests/test_exif.cpp
     )
     target_include_directories(test_imagecore PRIVATE tests)
     target_link_libraries(test_imagecore imagecore)

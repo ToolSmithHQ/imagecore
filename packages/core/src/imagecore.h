@@ -185,6 +185,17 @@ int ic_flip_vertical(ICImage* img);
 int ic_strip_exif(const uint8_t* data, size_t len,
                   uint8_t** out_data, size_t* out_len);
 
+/**
+ * Extract the raw EXIF block as a TIFF structure (starts with "II*\0" or
+ * "MM\0*"; any "Exif\0\0" prefix is stripped). Supports JPEG (APP1),
+ * PNG (eXIf), WebP (EXIF chunk), TIFF (whole file), AVIF (when built with
+ * libavif) and HEIC (when built with libheif).
+ * Returns IC_ERROR_EXIF_NOT_FOUND when the image carries no EXIF.
+ * Caller must free out_data with ic_free().
+ */
+int ic_get_exif(const uint8_t* data, size_t len,
+                uint8_t** out_data, size_t* out_len);
+
 /* ── Memory management ───────────────────────────────────────────────── */
 
 void ic_free(void* ptr);

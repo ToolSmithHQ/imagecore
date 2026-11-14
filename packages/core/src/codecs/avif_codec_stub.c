@@ -21,3 +21,9 @@ int avif_get_info(const uint8_t* data, size_t len, ICImageInfo* out) {
     (void)data; (void)len; (void)out;
     return IC_ERROR_UNSUPPORTED_FORMAT;
 }
+
+int avif_get_exif(const uint8_t* data, size_t len,
+                  uint8_t** out_data, size_t* out_len) {
+    (void)data; (void)len; (void)out_data; (void)out_len;
+    return IC_ERROR_UNSUPPORTED_FORMAT;
+}

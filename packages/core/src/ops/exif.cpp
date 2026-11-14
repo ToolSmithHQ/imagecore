@@ -262,3 +262,110 @@ extern "C" int ic_read_exif_internal(const uint8_t* data, size_t len,
 
     return IC_ERROR_EXIF_NOT_FOUND;
 }
+
+/* ── Public API: raw EXIF (TIFF structure) extraction ────────────────── */
+
+extern "C" int avif_get_exif(const uint8_t* data, size_t len,
+                             uint8_t** out_data, size_t* out_len);
+extern "C" int heif_codec_get_exif(const uint8_t* data, size_t len,
+                                   uint8_t** out_data, size_t* out_len);
+
+static int is_tiff_header(const uint8_t* p, size_t n) {
+    return n >= 8 &&
+           ((p[0] == 'I' && p[1] == 'I' && p[2] == 0x2A && p[3] == 0x00) ||
+            (p[0] == 'M' && p[1] == 'M' && p[2] == 0x00 && p[3] == 0x2A));
+}
+
+/*
+ * Copy an EXIF payload into a malloc'd buffer, skipping an optional
+ * "Exif\0\0" prefix. The result must start with a TIFF header.
+ */
+extern "C" int ic_exif_copy_payload(const uint8_t* p, size_t n,
+                                    uint8_t** out_data, size_t* out_len) {
+    if (n >= 6 && memcmp(p, "Exif\0\0", 6) == 0) { p += 6; n -= 6; }
+    if (!is_tiff_header(p, n)) return IC_ERROR_EXIF_NOT_FOUND;
+    uint8_t* buf = static_cast<uint8_t*>(malloc(n));
+    if (!buf) return IC_ERROR_ALLOC_FAILED;
+    memcpy(buf, p, n);
+    *out_data = buf;
+    *out_len = n;
+    return IC_OK;
+}
+
+static int jpeg_find_exif(const uint8_t* data, size_t len,
+                          uint8_t** out_data, size_t* out_len) {
+    size_t pos = 2;
+    while (pos + 4 <= len) {
+        if (data[pos] != 0xFF) break;
+        uint8_t marker = data[pos + 1];
+        if (marker == 0xFF) { pos++; continue; }          /* fill byte */
+        if (marker == 0xDA || marker == 0xD9) break;      /* SOS / EOI */
+        if (marker == 0x01 || (marker >= 0xD0 && marker <= 0xD7)) {
+            pos += 2;
+            continue;
+        }
+        size_t seg_len = (size_t)((data[pos + 2] << 8) | data[pos + 3]);
+        if (seg_len < 2 || pos + 2 + seg_len > len) break;
+        if (marker == 0xE1 && seg_len >= 8 &&
+            memcmp(data + pos + 4, "Exif\0\0", 6) == 0) {
+            return ic_exif_copy_payload(data + pos + 4, seg_len - 2,
+                                        out_data, out_len);
+        }
+        pos += 2 + seg_len;
+    }
+    return IC_ERROR_EXIF_NOT_FOUND;
+}
+
+static int png_find_exif(const uint8_t* data, size_t len,
+                         uint8_t** out_data, size_t* out_len) {
+    size_t pos = 8;
+    while (pos + 12 <= len) {
+        uint32_t clen = read_u32(data + pos, 1);
+        if (clen > len - pos - 12) break;
+        const uint8_t* type = data + pos + 4;
+        if (memcmp(type, "eXIf", 4) == 0)
+            return ic_exif_copy_payload(data + pos + 8, clen, out_data, out_len);
+        if (memcmp(type, "IDAT", 4) == 0 || memcmp(type, "IEND", 4) == 0) {
+            /* eXIf may legally follow IDAT; keep scanning until IEND */
+            if (type[1] == 'E') break;
+        }
+        pos += 12 + clen;
+    }
+    return IC_ERROR_EXIF_NOT_FOUND;
+}
+
+static int webp_find_exif(const uint8_t* data, size_t len,
+                          uint8_t** out_data, size_t* out_len) {
+    size_t pos = 12;
+    while (pos + 8 <= len) {
+        uint32_t clen = read_u32(data + pos + 4, 0);
+        if (clen > len - pos - 8) break;
+        if (memcmp(data + pos, "EXIF", 4) == 0)
+            return ic_exif_copy_payload(data + pos + 8, clen, out_data, out_len);
+        pos += 8 + clen + (clen & 1);
+    }
+    return IC_ERROR_EXIF_NOT_FOUND;
+}
+
+/*
+ * ic_get_exif: return the raw EXIF TIFF structure (starting at "II*\0" or
+ * "MM\0*", no "Exif\0\0" prefix). For TIFF input the whole file is returned
+ * (it *is* a TIFF structure whose IFD0 carries the tags).
+ */
+extern "C" int ic_get_exif(const uint8_t* data, size_t len,
+                           uint8_t** out_data, size_t* out_len) {
+    if (!data || !len || !out_data || !out_len) return IC_ERROR_INVALID_INPUT;
+    *out_data = nullptr;
+    *out_len = 0;
+
+    switch (ic_detect_format(data, len)) {
+        case IC_FORMAT_JPEG: return jpeg_find_exif(data, len, out_data, out_len);
+        case IC_FORMAT_PNG:  return png_find_exif(data, len, out_data, out_len);
+        case IC_FORMAT_WEBP: return webp_find_exif(data, len, out_data, out_len);
+        case IC_FORMAT_TIFF: return ic_exif_copy_payload(data, len, out_data, out_len);
+        case IC_FORMAT_AVIF: return avif_get_exif(data, len, out_data, out_len);
+        case IC_FORMAT_HEIC: return heif_codec_get_exif(data, len, out_data, out_len);
+        case IC_FORMAT_UNKNOWN: return IC_ERROR_UNSUPPORTED_FORMAT;
+        default: return IC_ERROR_EXIF_NOT_FOUND;
+    }
+}

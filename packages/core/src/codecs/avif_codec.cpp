@@ -147,3 +147,32 @@ extern "C" int avif_encode(const ICImage* img, const ICEncodeOpts* opts,
     avifRWDataFree(&output);
     return IC_OK;
 }
+
+/* ── EXIF ────────────────────────────────────────────────────────────── */
+
+extern "C" int ic_exif_copy_payload(const uint8_t* p, size_t n,
+                                    uint8_t** out_data, size_t* out_len);
+
+extern "C" int avif_get_exif(const uint8_t* data, size_t len,
+                             uint8_t** out_data, size_t* out_len) {
+    avifDecoder* decoder = avifDecoderCreate();
+    if (!decoder) return IC_ERROR_ALLOC_FAILED;
+    (void)avifDecoderSetIOMemory(decoder, data, len);
+    decoder->ignoreExif = AVIF_FALSE;
+
+    if (avifDecoderParse(decoder) != AVIF_RESULT_OK) {
+        avifDecoderDestroy(decoder);
+        return IC_ERROR_DECODE_FAILED;
+    }
+
+    const avifRWData* exif = &decoder->image->exif;
+    int err = IC_ERROR_EXIF_NOT_FOUND;
+    if (exif->size > 0) {
+        size_t offset = 0;
+        if (avifGetExifTiffHeaderOffset(exif->data, exif->size, &offset) == AVIF_RESULT_OK)
+            err = ic_exif_copy_payload(exif->data + offset, exif->size - offset,
+                                       out_data, out_len);
+    }
+    avifDecoderDestroy(decoder);
+    return err;
+}
