@@ -192,7 +192,8 @@ ExternalProject_Add(libaom-ext
         -DENABLE_TESTDATA=OFF
         -DENABLE_TESTS=OFF
         -DENABLE_TOOLS=OFF
-        -DCONFIG_AV1_HIGHBITDEPTH=0
+        # 10/12-bit AVIF (HDR, most phone cameras) needs high bitdepth support
+        -DCONFIG_AV1_HIGHBITDEPTH=1
         -DCONFIG_WEBM_IO=0
         ${IC_LIBAOM_WASM_ARGS}
     BUILD_BYPRODUCTS ${IC_DEPS_INSTALL_DIR}/lib/libaom.a
