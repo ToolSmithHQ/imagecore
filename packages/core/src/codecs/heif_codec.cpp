@@ -1,5 +1,6 @@
 /*
- * HEIF/HEIC codec — WASM only (LGPL libheif + libde265).
+ * HEIF/HEIC codec — WASM only (LGPL libheif + libde265 decode,
+ * BSD-3 kvazaar encode; all statically linked, single-threaded).
  * On mobile, HEIC is handled by platform APIs (ImageIO on iOS, BitmapFactory on Android).
  *
  * Only compiled when IC_HAS_LIBHEIF is defined (set by CMake when IC_USE_LIBHEIF=ON).
@@ -163,6 +164,124 @@ extern "C" int heif_codec_get_exif(const uint8_t* data, size_t len,
     return result;
 }
 
+/* ── Encode (HEVC via kvazaar) ───────────────────────────────────────── */
+
+struct ICHeifMemWriter {
+    uint8_t* data = nullptr;
+    size_t len = 0;
+};
+
+static heif_error heif_mem_write(heif_context*, const void* data, size_t size, void* userdata) {
+    auto* w = static_cast<ICHeifMemWriter*>(userdata);
+    w->data = static_cast<uint8_t*>(malloc(size ? size : 1));
+    if (!w->data)
+        return { heif_error_Memory_allocation_error, heif_suberror_Unspecified, "out of memory" };
+    memcpy(w->data, data, size);
+    w->len = size;
+    return { heif_error_Ok, heif_suberror_Unspecified, "" };
+}
+
+extern "C" int heif_codec_encode(const ICImage* img, const ICEncodeOpts* opts,
+                                 uint8_t** out_data, size_t* out_len) {
+    if (!img->width || !img->height || img->stride < img->width * 4)
+        return IC_ERROR_INVALID_INPUT;
+
+    /* Only carry an alpha plane when the image actually has transparency. */
+    bool has_alpha = false;
+    for (uint32_t y = 0; y < img->height && !has_alpha; y++) {
+        const uint8_t* row = img->pixels + (size_t)y * img->stride;
+        for (uint32_t x = 0; x < img->width; x++) {
+            if (row[x * 4 + 3] != 0xFF) { has_alpha = true; break; }
+        }
+    }
+
+    heif_image* image = nullptr;
+    heif_error err = heif_image_create((int)img->width, (int)img->height,
+                                       heif_colorspace_RGB,
+                                       has_alpha ? heif_chroma_interleaved_RGBA
+                                                 : heif_chroma_interleaved_RGB,
+                                       &image);
+    if (err.code != heif_error_Ok) return IC_ERROR_ALLOC_FAILED;
+
+    err = heif_image_add_plane(image, heif_channel_interleaved,
+                               (int)img->width, (int)img->height, 8);
+    if (err.code != heif_error_Ok) {
+        heif_image_release(image);
+        return IC_ERROR_ALLOC_FAILED;
+    }
+
+    int dst_stride = 0;
+    uint8_t* dst = heif_image_get_plane(image, heif_channel_interleaved, &dst_stride);
+    for (uint32_t y = 0; y < img->height; y++) {
+        const uint8_t* s = img->pixels + (size_t)y * img->stride;
+        uint8_t* d = dst + (size_t)y * dst_stride;
+        if (has_alpha) {
+            memcpy(d, s, (size_t)img->width * 4);
+        } else {
+            for (uint32_t x = 0; x < img->width; x++) {
+                d[x * 3 + 0] = s[x * 4 + 0];
+                d[x * 3 + 1] = s[x * 4 + 1];
+                d[x * 3 + 2] = s[x * 4 + 2];
+            }
+        }
+    }
+
+    heif_context* ctx = heif_context_alloc();
+    heif_encoder* encoder = nullptr;
+    int result = IC_ERROR_ENCODE_FAILED;
+    if (!ctx) {
+        heif_image_release(image);
+        return IC_ERROR_ALLOC_FAILED;
+    }
+
+    err = heif_context_get_encoder_for_format(ctx, heif_compression_HEVC, &encoder);
+    if (err.code != heif_error_Ok || !encoder) {
+        result = IC_ERROR_UNSUPPORTED_FORMAT; /* no HEVC encoder compiled in */
+        goto done;
+    }
+
+    {
+        /* libheif's kvazaar plugin maps quality Q to QP = (100-Q)*51/100,
+         * so a straight q*100 gives QP 8 at q=0.85: ~2x the bytes of AVIF
+         * or JPEG for no visible gain (4:2:0 output plateaus ~42 dB PSNR).
+         * Scale to Q = q*65 so q=0.85 -> QP ~23 and q=1.0 -> QP ~18, which
+         * is typical camera-HEIC quality and matches AVIF/JPEG sizes. */
+        float q = opts ? opts->quality : 0.85f;
+        if (q < 0.0f) q = 0.0f;
+        if (q > 1.0f) q = 1.0f;
+        int quality = (int)(q * 65.0f + 0.5f);
+        if (opts && opts->lossless) heif_encoder_set_lossless(encoder, 1);
+        else heif_encoder_set_lossy_quality(encoder, quality);
+
+        heif_encoding_options* eo = heif_encoding_options_alloc();
+        eo->save_alpha_channel = has_alpha ? 1 : 0;
+        err = heif_context_encode_image(ctx, image, encoder, eo, nullptr);
+        heif_encoding_options_free(eo);
+        if (err.code != heif_error_Ok) goto done;
+    }
+
+    {
+        ICHeifMemWriter mem;
+        heif_writer writer = {};
+        writer.writer_api_version = 1;
+        writer.write = heif_mem_write;
+        err = heif_context_write(ctx, &writer, &mem);
+        if (err.code != heif_error_Ok || !mem.data) {
+            free(mem.data);
+            goto done;
+        }
+        *out_data = mem.data;
+        *out_len = mem.len;
+        result = IC_OK;
+    }
+
+done:
+    if (encoder) heif_encoder_release(encoder);
+    heif_context_free(ctx);
+    heif_image_release(image);
+    return result;
+}
+
 #else
 
 /* Stubs when libheif is not available (native builds) */
@@ -175,6 +294,10 @@ extern "C" int heif_codec_get_info(const uint8_t*, size_t, ICImageInfo*) {
 }
 
 extern "C" int heif_codec_get_exif(const uint8_t*, size_t, uint8_t**, size_t*) {
+    return IC_ERROR_UNSUPPORTED_FORMAT;
+}
+
+extern "C" int heif_codec_encode(const ICImage*, const ICEncodeOpts*, uint8_t**, size_t*) {
     return IC_ERROR_UNSUPPORTED_FORMAT;
 }
 

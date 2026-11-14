@@ -56,6 +56,8 @@ extern int avif_get_info(const uint8_t* data, size_t len, ICImageInfo* out);
 /* HEIC */
 extern int heif_codec_decode(const uint8_t* data, size_t len, ICImage* out);
 extern int heif_codec_get_info(const uint8_t* data, size_t len, ICImageInfo* out);
+extern int heif_codec_encode(const ICImage* img, const ICEncodeOpts* opts,
+                             uint8_t** out_data, size_t* out_len);
 
 } /* extern "C" */
 
@@ -170,6 +172,7 @@ int ic_encode(const ICImage* img, ICFormat fmt, const ICEncodeOpts* opts,
         case IC_FORMAT_TIFF: return tiff_encode(img, opts, out_data, out_len);
         case IC_FORMAT_BMP:  return bmp_encode(img, opts, out_data, out_len);
         case IC_FORMAT_AVIF: return avif_encode(img, opts, out_data, out_len);
+        case IC_FORMAT_HEIC: return heif_codec_encode(img, opts, out_data, out_len);
         default:             return IC_ERROR_UNSUPPORTED_FORMAT;
     }
 }

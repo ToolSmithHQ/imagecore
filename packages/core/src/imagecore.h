@@ -32,8 +32,8 @@ typedef enum {
     IC_FORMAT_TIFF,
     IC_FORMAT_BMP,
     IC_FORMAT_AVIF,
-    IC_FORMAT_HEIC,   /* Decode: libheif (WASM) or platform API (mobile)  */
-                      /* Encode: platform API only (mobile), not on web   */
+    IC_FORMAT_HEIC,   /* WASM: libheif (libde265 decode, kvazaar encode)  */
+                      /* Mobile: platform API (core returns unsupported)  */
     IC_FORMAT_GIF,
 } ICFormat;
 

@@ -241,6 +241,137 @@ set_target_properties(avif-imported PROPERTIES
 )
 add_dependencies(avif-imported libavif-ext)
 
+# ── HEIC: libde265 (decode) + kvazaar (encode) + libheif ─────────────── #
+#
+# Off by default: iOS/Android use platform HEIC APIs. The WASM build
+# (packages/web/scripts/build-wasm.sh) turns it on. Licenses: libheif and
+# libde265 are LGPL-3.0, kvazaar is BSD-3-Clause. x265 (GPL) is never used.
+# Built single-threaded (no pthreads in the WASM module).
+
+if(IC_USE_LIBHEIF)
+    set(IC_LIBHEIF_EXTRA_ARGS)
+    # libheif is container parsing + color conversion, not hot codec loops:
+    # optimize it for size (saves ~0.5 MB of WASM at negligible speed cost).
+    if(EMSCRIPTEN)
+        set(IC_LIBHEIF_BUILD_TYPE MinSizeRel)
+    else()
+        set(IC_LIBHEIF_BUILD_TYPE ${CMAKE_BUILD_TYPE})
+    endif()
+    if(EMSCRIPTEN)
+        # Skip libheif's built-in embind JS bindings (heif_emscripten.h); we
+        # export our own C API. Same switch libheif's build-emscripten.sh uses.
+        list(APPEND IC_LIBHEIF_EXTRA_ARGS
+            "-DCMAKE_CXX_FLAGS=-D__EMSCRIPTEN_STANDALONE_WASM__=1")
+    endif()
+
+    ExternalProject_Add(libde265-ext
+        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_party/libde265
+        CMAKE_ARGS
+            -DCMAKE_INSTALL_PREFIX=${IC_DEPS_INSTALL_DIR}
+            -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+            -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
+            -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
+            -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+            ${IC_CROSS_COMPILE_ARGS}
+            -DBUILD_SHARED_LIBS=OFF
+            -DENABLE_SDL=OFF
+            -DENABLE_DECODER=OFF
+            -DENABLE_ENCODER=OFF
+            -DENABLE_TOOLS=OFF
+        BUILD_BYPRODUCTS ${IC_DEPS_INSTALL_DIR}/lib/libde265.a
+    )
+
+    ExternalProject_Add(kvazaar-ext
+        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_party/kvazaar
+        CMAKE_ARGS
+            -DCMAKE_INSTALL_PREFIX=${IC_DEPS_INSTALL_DIR}
+            -DCMAKE_INSTALL_LIBDIR=lib
+            -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+            -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
+            -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
+            -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+            ${IC_CROSS_COMPILE_ARGS}
+            -DBUILD_SHARED_LIBS=OFF
+            -DBUILD_TESTS=OFF
+            -DBUILD_KVAZAAR_BINARY=OFF
+            -DGIT_SUBMODULE=OFF
+            -DUSE_CRYPTO=OFF
+        BUILD_BYPRODUCTS ${IC_DEPS_INSTALL_DIR}/lib/libkvazaar.a
+    )
+
+    # libheif is built from a patched copy so the submodule stays pristine
+    # (see patches/libheif-keep-deblocking.patch).
+    ExternalProject_Add(libheif-ext
+        SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/libheif-src
+        DOWNLOAD_COMMAND ${CMAKE_COMMAND} -E copy_directory
+            ${CMAKE_CURRENT_SOURCE_DIR}/third_party/libheif
+            ${CMAKE_CURRENT_BINARY_DIR}/libheif-src
+        PATCH_COMMAND patch -p1 -N -i
+            ${CMAKE_CURRENT_SOURCE_DIR}/patches/libheif-keep-deblocking.patch
+        CMAKE_ARGS
+            -DCMAKE_INSTALL_PREFIX=${IC_DEPS_INSTALL_DIR}
+            -DCMAKE_INSTALL_LIBDIR=lib
+            -DCMAKE_BUILD_TYPE=${IC_LIBHEIF_BUILD_TYPE}
+            -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
+            -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
+            -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+            ${IC_CROSS_COMPILE_ARGS}
+            -DBUILD_SHARED_LIBS=OFF
+            -DENABLE_PLUGIN_LOADING=OFF
+            -DENABLE_MULTITHREADING_SUPPORT=OFF
+            -DENABLE_PARALLEL_TILE_DECODING=OFF
+            -DWITH_LIBDE265=ON
+            -DWITH_LIBDE265_PLUGIN=OFF
+            -DLIBDE265_INCLUDE_DIR=${IC_DEPS_INSTALL_DIR}/include
+            -DLIBDE265_LIBRARY=${IC_DEPS_INSTALL_DIR}/lib/libde265.a
+            -DWITH_KVAZAAR=ON
+            -DWITH_KVAZAAR_PLUGIN=OFF
+            -DKVAZAAR_INCLUDE_DIR=${IC_DEPS_INSTALL_DIR}/include
+            -DKVAZAAR_LIBRARY=${IC_DEPS_INSTALL_DIR}/lib/libkvazaar.a
+            -DWITH_X265=OFF
+            -DWITH_X264=OFF
+            -DWITH_OpenH264_DECODER=OFF
+            -DWITH_AOM_DECODER=OFF
+            -DWITH_AOM_ENCODER=OFF
+            -DWITH_DAV1D=OFF
+            -DWITH_RAV1E=OFF
+            -DWITH_SvtEnc=OFF
+            -DWITH_JPEG_DECODER=OFF
+            -DWITH_JPEG_ENCODER=OFF
+            -DWITH_OpenJPEG_DECODER=OFF
+            -DWITH_OpenJPEG_ENCODER=OFF
+            -DWITH_OPENJPH_ENCODER=OFF
+            -DWITH_FFMPEG_DECODER=OFF
+            -DWITH_UVG266=OFF
+            -DWITH_VVDEC=OFF
+            -DWITH_VVENC=OFF
+            -DWITH_UNCOMPRESSED_CODEC=OFF
+            -DWITH_WEBCODECS=OFF
+            -DWITH_LIBSHARPYUV=OFF
+            -DWITH_HEADER_COMPRESSION=OFF
+            -DHEIF_WITH_OMAF=OFF
+            -DWITH_EXAMPLES=OFF
+            -DWITH_GDK_PIXBUF=OFF
+            -DBUILD_DOCUMENTATION=OFF
+            -DBUILD_TESTING=OFF
+            -DWITH_FUZZERS=OFF
+            ${IC_LIBHEIF_EXTRA_ARGS}
+            -DCMAKE_PREFIX_PATH=${IC_DEPS_INSTALL_DIR}
+            -DCMAKE_FIND_ROOT_PATH=${IC_DEPS_INSTALL_DIR}
+        DEPENDS libde265-ext kvazaar-ext
+        BUILD_BYPRODUCTS ${IC_DEPS_INSTALL_DIR}/lib/libheif.a
+    )
+
+    foreach(_lib heif de265 kvazaar)
+        add_library(${_lib}-imported STATIC IMPORTED)
+        set_target_properties(${_lib}-imported PROPERTIES
+            IMPORTED_LOCATION ${IC_DEPS_INSTALL_DIR}/lib/lib${_lib}.a)
+    endforeach()
+    add_dependencies(heif-imported libheif-ext)
+    add_dependencies(de265-imported libde265-ext)
+    add_dependencies(kvazaar-imported kvazaar-ext)
+endif()
+
 # ── imagecore static library ─────────────────────────────────────────── #
 
 set(IC_SOURCES
@@ -295,6 +426,17 @@ target_link_libraries(imagecore PUBLIC
     avif-imported
     aom-imported
 )
+
+if(IC_USE_LIBHEIF)
+    add_dependencies(imagecore libheif-ext)
+    target_compile_definitions(imagecore PRIVATE IC_HAS_LIBHEIF LIBHEIF_STATIC_BUILD)
+    # Order matters for static linking: libheif before its codecs.
+    target_link_libraries(imagecore PUBLIC heif-imported de265-imported kvazaar-imported)
+    if(NOT EMSCRIPTEN)
+        find_package(Threads REQUIRED)
+        target_link_libraries(imagecore PUBLIC Threads::Threads)
+    endif()
+endif()
 
 # ── Compiler flags ───────────────────────────────────────────────────── #
 

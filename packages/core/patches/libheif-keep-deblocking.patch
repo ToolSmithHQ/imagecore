@@ -1,0 +1,20 @@
+imagecore: keep HEVC in-loop filters enabled under Emscripten.
+
+Upstream libheif disables deblocking and SAO in WASM builds for speed. That
+costs ~1 dB PSNR and visible block edges; the decode-time cost of keeping
+them is ~30 ms for a 1.4 MP image, so we keep them on.
+
+--- a/libheif/plugins/decoder_libde265.cc
++++ b/libheif/plugins/decoder_libde265.cc
+@@ -177,9 +177,8 @@ heif_error libde265_new_decoder2(void** dec, const heif_decoder_plugin_options* options)
+ 
+   decoder->ctx = de265_new_decoder();
+ #if defined(__EMSCRIPTEN__)
+-  // Speed up decoding from JavaScript.
+-  de265_set_parameter_bool(decoder->ctx, DE265_DECODER_PARAM_DISABLE_DEBLOCKING, 1);
+-  de265_set_parameter_bool(decoder->ctx, DE265_DECODER_PARAM_DISABLE_SAO, 1);
++  // imagecore: keep deblocking + SAO (upstream disables them for speed).
++  // Worker threads are not available without pthreads.
+ #else
+   int nThreads = (options->num_threads ? options->num_threads : 1);
+ 
