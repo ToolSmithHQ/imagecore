@@ -112,6 +112,32 @@ int ic_encode(const ICImage* img, ICFormat fmt, const ICEncodeOpts* opts,
               uint8_t** out_data, size_t* out_len);
 
 /**
+ * Like ic_encode, but embeds `exif` (raw TIFF-structure EXIF bytes starting
+ * with "II*\0" or "MM\0*", exactly as ic_get_exif returns them; NULL/0 = none)
+ * into the output. Except for TIFF, the bytes are written verbatim (not
+ * parsed or patched), so ic_get_exif on the output returns them unchanged.
+ *   JPEG: APP1 "Exif\0\0" segment. Skipped (still IC_OK) when the block is
+ *         larger than 65527 bytes (APP1 payload limit 65533 minus the
+ *         6-byte "Exif\0\0" header).
+ *   PNG:  eXIf chunk before IDAT.
+ *   WebP: EXIF chunk in an extended (VP8X) container.
+ *   AVIF: Exif item (where AVIF is supported).
+ *   HEIC: Exif item on the primary image (where HEIC encode is supported).
+ *   TIFF: EXIF is TIFF IFDs, so the block is merged: descriptive IFD0 tags
+ *         (Make, Artist, ...) join the image IFD, Exif/GPS/Interop IFDs
+ *         become sub-IFDs. Values are kept exactly; MakerNote and IFD1
+ *         (thumbnail) are dropped. If the block can't be parsed the file
+ *         is written without EXIF (still IC_OK).
+ *   BMP:  no metadata support; EXIF ignored.
+ * opts->strip_exif is ignored. Returns IC_ERROR_INVALID_INPUT if exif is
+ * non-NULL but does not start with a TIFF header.
+ * Caller must free out_data with ic_free().
+ */
+int ic_encode_with_exif(const ICImage* img, ICFormat fmt, const ICEncodeOpts* opts,
+                        const uint8_t* exif, size_t exif_len,
+                        uint8_t** out_data, size_t* out_len);
+
+/**
  * Convenience: decode + encode in one call (format conversion).
  * Caller must free out_data with ic_free().
  */
@@ -188,7 +214,8 @@ int ic_strip_exif(const uint8_t* data, size_t len,
 /**
  * Extract the raw EXIF block as a TIFF structure (starts with "II*\0" or
  * "MM\0*"; any "Exif\0\0" prefix is stripped). Supports JPEG (APP1),
- * PNG (eXIf), WebP (EXIF chunk), TIFF (whole file), AVIF (when built with
+ * PNG (eXIf), WebP (EXIF chunk), TIFF (IFD0 descriptive tags + Exif/GPS
+ * sub-IFDs rebuilt as a compact block, no pixel data), AVIF (when built with
  * libavif) and HEIC (when built with libheif).
  * Returns IC_ERROR_EXIF_NOT_FOUND when the image carries no EXIF.
  * Caller must free out_data with ic_free().

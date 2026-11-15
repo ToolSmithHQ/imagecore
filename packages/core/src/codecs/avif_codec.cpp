@@ -98,6 +98,7 @@ extern "C" int avif_decode(const uint8_t* data, size_t len, ICImage* out) {
 /* ── Encode ──────────────────────────────────────────────────────────── */
 
 extern "C" int avif_encode(const ICImage* img, const ICEncodeOpts* opts,
+                           const uint8_t* exif, size_t exif_len,
                            uint8_t** out_data, size_t* out_len) {
     avifImage* image = avifImageCreate(img->width, img->height, 8,
                                         AVIF_PIXEL_FORMAT_YUV444);
@@ -114,6 +115,15 @@ extern "C" int avif_encode(const ICImage* img, const ICEncodeOpts* opts,
     if (result != AVIF_RESULT_OK) {
         avifImageDestroy(image);
         return IC_ERROR_ENCODE_FAILED;
+    }
+
+    if (exif && exif_len > 0) {
+        /* libavif stores it as an 'Exif' item (with the 4-byte
+         * tiff_header_offset prefix) linked to the primary image. */
+        if (avifImageSetMetadataExif(image, exif, exif_len) != AVIF_RESULT_OK) {
+            avifImageDestroy(image);
+            return IC_ERROR_ALLOC_FAILED;
+        }
     }
 
     avifEncoder* encoder = avifEncoderCreate();

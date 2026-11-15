@@ -20,7 +20,7 @@ int tests_failed = 0;
 
 /* Sample test infrastructure (declared extern in test_harness.h) */
 const char* g_samples_dir = nullptr;
-SampleTest g_sample_tests[64];
+SampleTest g_sample_tests[128];
 int g_sample_test_count = 0;
 
 int main(int argc, char** argv) {

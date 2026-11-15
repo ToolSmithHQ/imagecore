@@ -267,6 +267,8 @@ extern "C" int ic_read_exif_internal(const uint8_t* data, size_t len,
 
 extern "C" int avif_get_exif(const uint8_t* data, size_t len,
                              uint8_t** out_data, size_t* out_len);
+extern "C" int tiff_get_exif(const uint8_t* data, size_t len,
+                             uint8_t** out_data, size_t* out_len);
 extern "C" int heif_codec_get_exif(const uint8_t* data, size_t len,
                                    uint8_t** out_data, size_t* out_len);
 
@@ -352,8 +354,9 @@ static int webp_find_exif(const uint8_t* data, size_t len,
 
 /*
  * ic_get_exif: return the raw EXIF TIFF structure (starting at "II*\0" or
- * "MM\0*", no "Exif\0\0" prefix). For TIFF input the whole file is returned
- * (it *is* a TIFF structure whose IFD0 carries the tags).
+ * "MM\0*", no "Exif\0\0" prefix). For TIFF input a compact standalone
+ * block is rebuilt from the file's IFD0 tags and Exif/GPS sub-IFDs (no pixel
+ * data); see tiff_get_exif().
  */
 extern "C" int ic_get_exif(const uint8_t* data, size_t len,
                            uint8_t** out_data, size_t* out_len) {
@@ -365,7 +368,7 @@ extern "C" int ic_get_exif(const uint8_t* data, size_t len,
         case IC_FORMAT_JPEG: return jpeg_find_exif(data, len, out_data, out_len);
         case IC_FORMAT_PNG:  return png_find_exif(data, len, out_data, out_len);
         case IC_FORMAT_WEBP: return webp_find_exif(data, len, out_data, out_len);
-        case IC_FORMAT_TIFF: return ic_exif_copy_payload(data, len, out_data, out_len);
+        case IC_FORMAT_TIFF: return tiff_get_exif(data, len, out_data, out_len);
         case IC_FORMAT_AVIF: return avif_get_exif(data, len, out_data, out_len);
         case IC_FORMAT_HEIC: return heif_codec_get_exif(data, len, out_data, out_len);
         case IC_FORMAT_UNKNOWN: return IC_ERROR_UNSUPPORTED_FORMAT;

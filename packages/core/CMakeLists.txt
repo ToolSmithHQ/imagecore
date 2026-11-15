@@ -454,7 +454,7 @@ target_compile_options(imagecore PRIVATE
 
 if(EMSCRIPTEN)
     set(IC_WASM_EXPORTS
-        _ic_detect_format _ic_get_image_info _ic_decode _ic_encode _ic_convert
+        _ic_detect_format _ic_get_image_info _ic_decode _ic_encode _ic_encode_with_exif _ic_convert
         _ic_jpeg_lossless_rotate _ic_jpeg_lossless_crop _ic_jpeg_strip_exif
         _ic_strip_exif _ic_resize _ic_crop _ic_rotate
         _ic_flip_horizontal _ic_flip_vertical
@@ -494,6 +494,7 @@ if(IC_BUILD_TESTS)
         tests/test_pixel_ops.cpp
         tests/test_sample_images.cpp
         tests/test_exif.cpp
+        tests/test_exif_embed.cpp
     )
     target_include_directories(test_imagecore PRIVATE tests)
     target_link_libraries(test_imagecore imagecore)

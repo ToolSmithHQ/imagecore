@@ -201,9 +201,11 @@ static bool ic_png_is_opaque(const ICImage* img) {
 
 /*
  * Writes 8-bit RGB (colour type 2) when every pixel is opaque, RGBA (6)
- * otherwise.
+ * otherwise. `exif` (raw TIFF structure, may be NULL) goes into an eXIf chunk
+ * ahead of IDAT.
  */
 extern "C" int png_encode(const ICImage* img, const ICEncodeOpts* opts,
+                          const uint8_t* exif, size_t exif_len,
                           uint8_t** out_data, size_t* out_len) {
     (void)opts;
     if (!img->width || !img->height || img->stride < img->width * 4)
@@ -244,6 +246,14 @@ extern "C" int png_encode(const ICImage* img, const ICEncodeOpts* opts,
 
     png_set_compression_level(png, IC_PNG_COMPRESSION_LEVEL);
     png_set_filter(png, PNG_FILTER_TYPE_BASE, PNG_ALL_FILTERS);
+
+#ifdef PNG_eXIf_SUPPORTED
+    if (exif && exif_len > 0 && exif_len <= 0x7FFFFFFFu)
+        png_set_eXIf_1(png, info, static_cast<png_uint_32>(exif_len),
+                       const_cast<png_bytep>(exif));
+#else
+    (void)exif; (void)exif_len;
+#endif
 
     png_write_info(png, info);
 

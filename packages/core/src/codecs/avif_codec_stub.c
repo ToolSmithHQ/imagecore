@@ -12,8 +12,9 @@ int avif_decode(const uint8_t* data, size_t len, ICImage* out) {
 }
 
 int avif_encode(const ICImage* img, const ICEncodeOpts* opts,
+                const uint8_t* exif, size_t exif_len,
                 uint8_t** out_data, size_t* out_len) {
-    (void)img; (void)opts; (void)out_data; (void)out_len;
+    (void)img; (void)opts; (void)exif; (void)exif_len; (void)out_data; (void)out_len;
     return IC_ERROR_UNSUPPORTED_FORMAT;
 }
 

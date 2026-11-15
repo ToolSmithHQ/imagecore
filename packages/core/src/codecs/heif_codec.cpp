@@ -182,6 +182,7 @@ static heif_error heif_mem_write(heif_context*, const void* data, size_t size, v
 }
 
 extern "C" int heif_codec_encode(const ICImage* img, const ICEncodeOpts* opts,
+                                 const uint8_t* exif, size_t exif_len,
                                  uint8_t** out_data, size_t* out_len) {
     if (!img->width || !img->height || img->stride < img->width * 4)
         return IC_ERROR_INVALID_INPUT;
@@ -257,8 +258,19 @@ extern "C" int heif_codec_encode(const ICImage* img, const ICEncodeOpts* opts,
 
         heif_encoding_options* eo = heif_encoding_options_alloc();
         eo->save_alpha_channel = has_alpha ? 1 : 0;
-        err = heif_context_encode_image(ctx, image, encoder, eo, nullptr);
+        heif_image_handle* handle = nullptr;
+        err = heif_context_encode_image(ctx, image, encoder, eo, &handle);
         heif_encoding_options_free(eo);
+        if (err.code != heif_error_Ok) {
+            if (handle) heif_image_handle_release(handle);
+            goto done;
+        }
+        if (exif && exif_len > 0) {
+            /* Adds an 'Exif' item (4-byte tiff_header_offset + TIFF) with a
+             * cdsc reference to the primary image. */
+            err = heif_context_add_exif_metadata(ctx, handle, exif, (int)exif_len);
+        }
+        heif_image_handle_release(handle);
         if (err.code != heif_error_Ok) goto done;
     }
 
@@ -299,7 +311,8 @@ extern "C" int heif_codec_get_exif(const uint8_t*, size_t, uint8_t**, size_t*) {
     return IC_ERROR_UNSUPPORTED_FORMAT;
 }
 
-extern "C" int heif_codec_encode(const ICImage*, const ICEncodeOpts*, uint8_t**, size_t*) {
+extern "C" int heif_codec_encode(const ICImage*, const ICEncodeOpts*, const uint8_t*, size_t,
+                                 uint8_t**, size_t*) {
     return IC_ERROR_UNSUPPORTED_FORMAT;
 }
 

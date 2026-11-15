@@ -12,6 +12,7 @@ extern "C" {
 /* JPEG */
 extern int jpeg_decode(const uint8_t* data, size_t len, ICImage* out);
 extern int jpeg_encode(const ICImage* img, const ICEncodeOpts* opts,
+                       const uint8_t* exif, size_t exif_len,
                        uint8_t** out_data, size_t* out_len);
 extern int jpeg_get_info(const uint8_t* data, size_t len, ICImageInfo* out);
 extern int jpeg_lossless_rotate(const uint8_t* data, size_t len,
@@ -26,18 +27,21 @@ extern int jpeg_strip_exif(const uint8_t* data, size_t len,
 /* PNG */
 extern int png_decode(const uint8_t* data, size_t len, ICImage* out);
 extern int png_encode(const ICImage* img, const ICEncodeOpts* opts,
+                      const uint8_t* exif, size_t exif_len,
                       uint8_t** out_data, size_t* out_len);
 extern int png_get_info(const uint8_t* data, size_t len, ICImageInfo* out);
 
 /* WebP */
 extern int webp_decode(const uint8_t* data, size_t len, ICImage* out);
 extern int webp_encode(const ICImage* img, const ICEncodeOpts* opts,
+                       const uint8_t* exif, size_t exif_len,
                        uint8_t** out_data, size_t* out_len);
 extern int webp_get_info(const uint8_t* data, size_t len, ICImageInfo* out);
 
 /* TIFF */
 extern int tiff_decode(const uint8_t* data, size_t len, ICImage* out);
 extern int tiff_encode(const ICImage* img, const ICEncodeOpts* opts,
+                       const uint8_t* exif, size_t exif_len,
                        uint8_t** out_data, size_t* out_len);
 extern int tiff_get_info(const uint8_t* data, size_t len, ICImageInfo* out);
 
@@ -50,6 +54,7 @@ extern int bmp_get_info(const uint8_t* data, size_t len, ICImageInfo* out);
 /* AVIF */
 extern int avif_decode(const uint8_t* data, size_t len, ICImage* out);
 extern int avif_encode(const ICImage* img, const ICEncodeOpts* opts,
+                       const uint8_t* exif, size_t exif_len,
                        uint8_t** out_data, size_t* out_len);
 extern int avif_get_info(const uint8_t* data, size_t len, ICImageInfo* out);
 
@@ -57,6 +62,7 @@ extern int avif_get_info(const uint8_t* data, size_t len, ICImageInfo* out);
 extern int heif_codec_decode(const uint8_t* data, size_t len, ICImage* out);
 extern int heif_codec_get_info(const uint8_t* data, size_t len, ICImageInfo* out);
 extern int heif_codec_encode(const ICImage* img, const ICEncodeOpts* opts,
+                             const uint8_t* exif, size_t exif_len,
                              uint8_t** out_data, size_t* out_len);
 
 } /* extern "C" */
@@ -157,24 +163,42 @@ int ic_decode(const uint8_t* data, size_t len, ICImage* out) {
 
 /* ── Encode ──────────────────────────────────────────────────────────── */
 
-int ic_encode(const ICImage* img, ICFormat fmt, const ICEncodeOpts* opts,
-              uint8_t** out_data, size_t* out_len) {
+static int is_tiff_exif(const uint8_t* p, size_t n) {
+    return n >= 8 &&
+           ((p[0] == 'I' && p[1] == 'I' && p[2] == 0x2A && p[3] == 0x00) ||
+            (p[0] == 'M' && p[1] == 'M' && p[2] == 0x00 && p[3] == 0x2A));
+}
+
+int ic_encode_with_exif(const ICImage* img, ICFormat fmt, const ICEncodeOpts* opts,
+                        const uint8_t* exif, size_t exif_len,
+                        uint8_t** out_data, size_t* out_len) {
     if (!img || !img->pixels || !out_data || !out_len)
         return IC_ERROR_INVALID_INPUT;
+    if (!exif || !exif_len) {
+        exif = nullptr;
+        exif_len = 0;
+    } else if (!is_tiff_exif(exif, exif_len)) {
+        return IC_ERROR_INVALID_INPUT;
+    }
 
     ICEncodeOpts default_opts = { 0.85f, 0, 0 };
     if (!opts) opts = &default_opts;
 
     switch (fmt) {
-        case IC_FORMAT_JPEG: return jpeg_encode(img, opts, out_data, out_len);
-        case IC_FORMAT_PNG:  return png_encode(img, opts, out_data, out_len);
-        case IC_FORMAT_WEBP: return webp_encode(img, opts, out_data, out_len);
-        case IC_FORMAT_TIFF: return tiff_encode(img, opts, out_data, out_len);
-        case IC_FORMAT_BMP:  return bmp_encode(img, opts, out_data, out_len);
-        case IC_FORMAT_AVIF: return avif_encode(img, opts, out_data, out_len);
-        case IC_FORMAT_HEIC: return heif_codec_encode(img, opts, out_data, out_len);
+        case IC_FORMAT_JPEG: return jpeg_encode(img, opts, exif, exif_len, out_data, out_len);
+        case IC_FORMAT_PNG:  return png_encode(img, opts, exif, exif_len, out_data, out_len);
+        case IC_FORMAT_WEBP: return webp_encode(img, opts, exif, exif_len, out_data, out_len);
+        case IC_FORMAT_TIFF: return tiff_encode(img, opts, exif, exif_len, out_data, out_len);
+        case IC_FORMAT_BMP:  return bmp_encode(img, opts, out_data, out_len); /* no EXIF in BMP */
+        case IC_FORMAT_AVIF: return avif_encode(img, opts, exif, exif_len, out_data, out_len);
+        case IC_FORMAT_HEIC: return heif_codec_encode(img, opts, exif, exif_len, out_data, out_len);
         default:             return IC_ERROR_UNSUPPORTED_FORMAT;
     }
+}
+
+int ic_encode(const ICImage* img, ICFormat fmt, const ICEncodeOpts* opts,
+              uint8_t** out_data, size_t* out_len) {
+    return ic_encode_with_exif(img, fmt, opts, nullptr, 0, out_data, out_len);
 }
 
 /* ── Convert ─────────────────────────────────────────────────────────── */
