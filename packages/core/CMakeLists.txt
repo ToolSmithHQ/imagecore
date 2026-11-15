@@ -496,6 +496,7 @@ if(IC_BUILD_TESTS)
         tests/test_sample_images.cpp
         tests/test_exif.cpp
         tests/test_exif_embed.cpp
+        tests/test_orientation.cpp
     )
     target_include_directories(test_imagecore PRIVATE tests)
     target_link_libraries(test_imagecore imagecore)

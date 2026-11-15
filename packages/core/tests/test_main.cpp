@@ -7,6 +7,7 @@
  *   test_lossless_jpeg.cpp     — lossless JPEG rotate, crop, EXIF strip
  *   test_pixel_ops.cpp         — crop, resize, rotate, flip
  *   test_sample_images.cpp     — real sample image file tests (deferred)
+ *   test_orientation.cpp       — EXIF/TIFF/AVIF orientation (samples/orientation)
  *
  * Build: cmake -S . -B build -DIC_BUILD_TESTS=ON && cmake --build build
  * Run:   ./build/test_imagecore [path/to/samples/]
