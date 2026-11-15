@@ -177,8 +177,39 @@ extern "C" int png_decode(const uint8_t* data, size_t len, ICImage* out) {
 
 /* ── Encode ──────────────────────────────────────────────────────────── */
 
+/*
+ * zlib level for PNG output. PNG is lossless, so ICEncodeOpts::quality does
+ * not apply (it used to pick the zlib level, which made q=0.85-0.9 encode at
+ * level 1-2). Level 6 with libpng's adaptive per-row filter choice
+ * (PNG_ALL_FILTERS) is the sweet spot: measured on photos, level 9 is only
+ * ~1-2% smaller but 2-4x slower on small images and ~6-9x slower at 48 MP
+ * (8000x6000: ~57 s vs ~6-9 s natively), which is unusable in the browser.
+ * Overridable at build time.
+ */
+#ifndef IC_PNG_COMPRESSION_LEVEL
+#define IC_PNG_COMPRESSION_LEVEL 6
+#endif
+
+static bool ic_png_is_opaque(const ICImage* img) {
+    for (uint32_t y = 0; y < img->height; y++) {
+        const uint8_t* a = img->pixels + (size_t)y * img->stride + 3;
+        for (uint32_t x = 0; x < img->width; x++, a += 4)
+            if (*a != 0xFF) return false;
+    }
+    return true;
+}
+
+/*
+ * Writes 8-bit RGB (colour type 2) when every pixel is opaque, RGBA (6)
+ * otherwise.
+ */
 extern "C" int png_encode(const ICImage* img, const ICEncodeOpts* opts,
                           uint8_t** out_data, size_t* out_len) {
+    (void)opts;
+    if (!img->width || !img->height || img->stride < img->width * 4)
+        return IC_ERROR_INVALID_INPUT;
+    const bool opaque = ic_png_is_opaque(img);
+
     png_structp png = png_create_write_struct(PNG_LIBPNG_VER_STRING,
                                               nullptr, nullptr, nullptr);
     if (!png) return IC_ERROR_ALLOC_FAILED;
@@ -189,12 +220,8 @@ extern "C" int png_encode(const ICImage* img, const ICEncodeOpts* opts,
         return IC_ERROR_ALLOC_FAILED;
     }
 
-    if (setjmp(png_jmpbuf(png))) {
-        png_destroy_write_struct(&png, &info);
-        return IC_ERROR_ENCODE_FAILED;
-    }
-
-    /* Initial buffer: 64KB */
+    /* Initial buffer: 64KB. Lives outside the setjmp scope so it can be
+     * released when libpng longjmps out on error. */
     ic_png_write_state state = { nullptr, 0, 65536 };
     state.data = static_cast<uint8_t*>(malloc(state.capacity));
     if (!state.data) {
@@ -202,25 +229,30 @@ extern "C" int png_encode(const ICImage* img, const ICEncodeOpts* opts,
         return IC_ERROR_ALLOC_FAILED;
     }
 
+    if (setjmp(png_jmpbuf(png))) {
+        png_destroy_write_struct(&png, &info);
+        free(state.data);
+        return IC_ERROR_ENCODE_FAILED;
+    }
+
     png_set_write_fn(png, &state, ic_png_write_fn, ic_png_flush_fn);
 
     png_set_IHDR(png, info, img->width, img->height, 8,
-                 PNG_COLOR_TYPE_RGBA, PNG_INTERLACE_NONE,
+                 opaque ? PNG_COLOR_TYPE_RGB : PNG_COLOR_TYPE_RGBA,
+                 PNG_INTERLACE_NONE,
                  PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
-    /* Map quality to compression level (0-9). Higher quality = less compression */
-    int compression = 6; /* default */
-    if (opts) {
-        compression = 9 - static_cast<int>(opts->quality * 9.0f);
-        if (compression < 0) compression = 0;
-        if (compression > 9) compression = 9;
-    }
-    png_set_compression_level(png, compression);
+    png_set_compression_level(png, IC_PNG_COMPRESSION_LEVEL);
+    png_set_filter(png, PNG_FILTER_TYPE_BASE, PNG_ALL_FILTERS);
 
     png_write_info(png, info);
 
+    /* Opaque: rows are still RGBA in memory; have libpng drop the 4th byte. */
+    if (opaque)
+        png_set_filler(png, 0, PNG_FILLER_AFTER);
+
     for (uint32_t y = 0; y < img->height; y++) {
-        png_bytep row = img->pixels + y * img->stride;
+        png_bytep row = img->pixels + (size_t)y * img->stride;
         png_write_row(png, row);
     }
 

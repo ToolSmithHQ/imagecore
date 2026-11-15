@@ -125,3 +125,79 @@ TEST(cross_format_jpeg_to_webp) {
 
     ic_free(jpeg); ic_free(webp); ic_image_free(&src);
 }
+
+/* ── PNG: RGB when opaque, RGBA otherwise; always lossless ───────────── */
+
+static bool rt_same_pixels(const ICImage& a, const ICImage& b) {
+    if (a.width != b.width || a.height != b.height) return false;
+    for (uint32_t y = 0; y < a.height; y++)
+        if (memcmp(a.pixels + (size_t)y * a.stride, b.pixels + (size_t)y * b.stride, a.width * 4))
+            return false;
+    return true;
+}
+
+static ICImage rt_alpha_image(uint32_t w, uint32_t h) {
+    ICImage img = make_test_image(w, h);
+    for (uint32_t y = 0; y < h; y++)
+        for (uint32_t x = 0; x < w; x++)
+            img.pixels[y * img.stride + x * 4 + 3] = (uint8_t)((x * 7 + y * 3) & 0xFF);
+    return img;
+}
+
+TEST(png_opaque_writes_rgb_lossless) {
+    ICImage img = make_test_image(37, 23);
+    uint8_t* out = nullptr; size_t len = 0;
+    ASSERT(ic_encode(&img, IC_FORMAT_PNG, nullptr, &out, &len) == IC_OK);
+    ASSERT(len > 26 && out[24] == 8 && out[25] == 2); /* IHDR: depth 8, colour type RGB */
+    ICImage back;
+    ASSERT(ic_decode(out, len, &back) == IC_OK);
+    ASSERT(rt_same_pixels(img, back));
+    ic_image_free(&back);
+    ic_free(out);
+    ic_image_free(&img);
+}
+
+TEST(png_transparent_writes_rgba_lossless) {
+    ICImage img = rt_alpha_image(37, 23);
+    img.pixels[3] = 0;   /* fully transparent pixel keeps its RGB */
+    uint8_t* out = nullptr; size_t len = 0;
+    ASSERT(ic_encode(&img, IC_FORMAT_PNG, nullptr, &out, &len) == IC_OK);
+    ASSERT(len > 26 && out[24] == 8 && out[25] == 6); /* RGBA */
+    ICImage back;
+    ASSERT(ic_decode(out, len, &back) == IC_OK);
+    ASSERT(rt_same_pixels(img, back));
+    ic_image_free(&back);
+    ic_free(out);
+    ic_image_free(&img);
+}
+
+TEST(png_single_translucent_pixel_keeps_alpha) {
+    ICImage img = make_test_image(16, 16);
+    img.pixels[(15 * 16 + 15) * 4 + 3] = 254;
+    uint8_t* out = nullptr; size_t len = 0;
+    ASSERT(ic_encode(&img, IC_FORMAT_PNG, nullptr, &out, &len) == IC_OK);
+    ASSERT(out[25] == 6);
+    ICImage back;
+    ASSERT(ic_decode(out, len, &back) == IC_OK);
+    ASSERT(rt_same_pixels(img, back));
+    ic_image_free(&back);
+    ic_free(out);
+    ic_image_free(&img);
+}
+
+TEST(png_padded_stride_roundtrip) {
+    ICImage src = make_test_image(10, 7);
+    ICImage img = src;
+    img.stride = 10 * 4 + 12;
+    img.pixels = static_cast<uint8_t*>(calloc(img.stride * 7, 1));
+    for (uint32_t y = 0; y < 7; y++) memcpy(img.pixels + y * img.stride, src.pixels + y * src.stride, 40);
+    uint8_t* out = nullptr; size_t len = 0;
+    ASSERT(ic_encode(&img, IC_FORMAT_PNG, nullptr, &out, &len) == IC_OK);
+    ICImage back;
+    ASSERT(ic_decode(out, len, &back) == IC_OK);
+    ASSERT(rt_same_pixels(src, back));
+    ic_image_free(&back);
+    ic_free(out);
+    free(img.pixels);
+    ic_image_free(&src);
+}

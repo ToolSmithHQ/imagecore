@@ -26,7 +26,7 @@ build-android: ## Build prebuilt .a libraries for Android (arm64-v8a)
 test: build ## Run C++ tests (without sample images)
 	$(BUILD_DIR)/test_imagecore
 
-test-samples: build ## Run C++ tests with sample images (63 tests)
+test-samples: build ## Run C++ tests with sample images
 	$(BUILD_DIR)/test_imagecore "$$(cd $(CORE_DIR) && pwd)/tests/samples/"
 
 # ── TypeScript ───────────────────────────────────────────────────────── #
