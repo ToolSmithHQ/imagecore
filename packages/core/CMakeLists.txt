@@ -388,6 +388,7 @@ set(IC_SOURCES
     src/codecs/avif_codec.cpp
     src/codecs/heif_codec.cpp
     src/ops/exif.cpp
+    src/ops/orientation.cpp
     src/ops/resize.cpp
     src/ops/crop.cpp
     src/ops/rotate.cpp
@@ -458,7 +459,7 @@ if(EMSCRIPTEN)
         _ic_jpeg_lossless_rotate _ic_jpeg_lossless_crop _ic_jpeg_strip_exif
         _ic_strip_exif _ic_resize _ic_crop _ic_rotate
         _ic_flip_horizontal _ic_flip_vertical
-        _ic_get_exif _ic_read_exif_internal
+        _ic_get_exif _ic_read_exif_internal _ic_exif_for_output
         _ic_free _ic_image_free _ic_version
         _malloc _free
     )

@@ -1,4 +1,5 @@
 #include "imagecore.h"
+#include "ops/orientation.h"
 
 #include <cstdlib>
 #include <cstring>
@@ -15,13 +16,14 @@ extern int jpeg_encode(const ICImage* img, const ICEncodeOpts* opts,
                        const uint8_t* exif, size_t exif_len,
                        uint8_t** out_data, size_t* out_len);
 extern int jpeg_get_info(const uint8_t* data, size_t len, ICImageInfo* out);
+/* `orientation`: the source's EXIF Orientation (1–8). */
 extern int jpeg_lossless_rotate(const uint8_t* data, size_t len,
-                                ICRotation rotation,
+                                ICRotation rotation, int orientation,
                                 uint8_t** out_data, size_t* out_len);
 extern int jpeg_lossless_crop(const uint8_t* data, size_t len,
-                              const ICCropRegion* region,
+                              const ICCropRegion* region, int orientation,
                               uint8_t** out_data, size_t* out_len);
-extern int jpeg_strip_exif(const uint8_t* data, size_t len,
+extern int jpeg_strip_exif(const uint8_t* data, size_t len, int orientation,
                            uint8_t** out_data, size_t* out_len);
 
 /* PNG */
@@ -66,6 +68,26 @@ extern int heif_codec_encode(const ICImage* img, const ICEncodeOpts* opts,
                              uint8_t** out_data, size_t* out_len);
 
 } /* extern "C" */
+
+/* ── Orientation ─────────────────────────────────────────────────────── */
+
+/*
+ * EXIF Orientation of a JPEG/PNG/WebP file (1 if none). For these formats
+ * the EXIF tag is the only orientation signal and no decoder applies it.
+ * TIFF (own Orientation tag) and AVIF (irot/imir) are handled in their
+ * codecs; HEIC orientation (irot/imir) is applied by libheif, and the spec
+ * says to ignore EXIF orientation there.
+ */
+static int exif_orientation_of(const uint8_t* data, size_t len, ICFormat fmt) {
+    if (fmt != IC_FORMAT_JPEG && fmt != IC_FORMAT_PNG && fmt != IC_FORMAT_WEBP)
+        return 1;
+    uint8_t* exif = nullptr;
+    size_t exif_len = 0;
+    if (ic_get_exif(data, len, &exif, &exif_len) != IC_OK) return 1;
+    int o = ic_exif_orientation(exif, exif_len);
+    free(exif);
+    return o;
+}
 
 /* ── Format detection ────────────────────────────────────────────────── */
 
@@ -129,16 +151,27 @@ int ic_get_image_info(const uint8_t* data, size_t len, ICImageInfo* out) {
     out->file_size = len;
     out->format = ic_detect_format(data, len);
 
+    int err;
     switch (out->format) {
-        case IC_FORMAT_JPEG: return jpeg_get_info(data, len, out);
-        case IC_FORMAT_PNG:  return png_get_info(data, len, out);
-        case IC_FORMAT_WEBP: return webp_get_info(data, len, out);
+        case IC_FORMAT_JPEG: err = jpeg_get_info(data, len, out); break;
+        case IC_FORMAT_PNG:  err = png_get_info(data, len, out); break;
+        case IC_FORMAT_WEBP: err = webp_get_info(data, len, out); break;
+        /* TIFF, AVIF and HEIC codecs report displayed dimensions themselves. */
         case IC_FORMAT_TIFF: return tiff_get_info(data, len, out);
         case IC_FORMAT_BMP:  return bmp_get_info(data, len, out);
         case IC_FORMAT_AVIF: return avif_get_info(data, len, out);
         case IC_FORMAT_HEIC: return heif_codec_get_info(data, len, out);
         default:             return IC_ERROR_UNSUPPORTED_FORMAT;
     }
+    if (err != IC_OK) return err;
+
+    /* Report the size as displayed: EXIF orientations 5–8 swap the axes. */
+    if (exif_orientation_of(data, len, out->format) >= 5) {
+        uint32_t w = out->width;
+        out->width = out->height;
+        out->height = w;
+    }
+    return IC_OK;
 }
 
 /* ── Decode ──────────────────────────────────────────────────────────── */
@@ -149,16 +182,24 @@ int ic_decode(const uint8_t* data, size_t len, ICImage* out) {
     memset(out, 0, sizeof(ICImage));
     ICFormat fmt = ic_detect_format(data, len);
 
+    int err;
     switch (fmt) {
-        case IC_FORMAT_JPEG: return jpeg_decode(data, len, out);
-        case IC_FORMAT_PNG:  return png_decode(data, len, out);
-        case IC_FORMAT_WEBP: return webp_decode(data, len, out);
+        case IC_FORMAT_JPEG: err = jpeg_decode(data, len, out); break;
+        case IC_FORMAT_PNG:  err = png_decode(data, len, out); break;
+        case IC_FORMAT_WEBP: err = webp_decode(data, len, out); break;
+        /* TIFF and AVIF apply their own orientation; libheif applies HEIC's. */
         case IC_FORMAT_TIFF: return tiff_decode(data, len, out);
         case IC_FORMAT_BMP:  return bmp_decode(data, len, out);
         case IC_FORMAT_AVIF: return avif_decode(data, len, out);
         case IC_FORMAT_HEIC: return heif_codec_decode(data, len, out);
         default:             return IC_ERROR_UNSUPPORTED_FORMAT;
     }
+    if (err != IC_OK) return err;
+
+    /* Return the image as displayed: bake in the EXIF orientation. */
+    err = ic_orient_image(out, exif_orientation_of(data, len, fmt));
+    if (err != IC_OK) ic_image_free(out);
+    return err;
 }
 
 /* ── Encode ──────────────────────────────────────────────────────────── */
@@ -227,7 +268,9 @@ int ic_jpeg_lossless_rotate(const uint8_t* data, size_t len,
     if (ic_detect_format(data, len) != IC_FORMAT_JPEG)
         return IC_ERROR_UNSUPPORTED_FORMAT;
 
-    return jpeg_lossless_rotate(data, len, rotation, out_data, out_len);
+    return jpeg_lossless_rotate(data, len, rotation,
+                                exif_orientation_of(data, len, IC_FORMAT_JPEG),
+                                out_data, out_len);
 }
 
 int ic_jpeg_lossless_crop(const uint8_t* data, size_t len,
@@ -238,7 +281,9 @@ int ic_jpeg_lossless_crop(const uint8_t* data, size_t len,
     if (ic_detect_format(data, len) != IC_FORMAT_JPEG)
         return IC_ERROR_UNSUPPORTED_FORMAT;
 
-    return jpeg_lossless_crop(data, len, region, out_data, out_len);
+    return jpeg_lossless_crop(data, len, region,
+                              exif_orientation_of(data, len, IC_FORMAT_JPEG),
+                              out_data, out_len);
 }
 
 int ic_jpeg_strip_exif(const uint8_t* data, size_t len,
@@ -248,11 +293,34 @@ int ic_jpeg_strip_exif(const uint8_t* data, size_t len,
     if (ic_detect_format(data, len) != IC_FORMAT_JPEG)
         return IC_ERROR_UNSUPPORTED_FORMAT;
 
-    return jpeg_strip_exif(data, len, out_data, out_len);
+    return jpeg_strip_exif(data, len, exif_orientation_of(data, len, IC_FORMAT_JPEG),
+                           out_data, out_len);
 }
 
 /* ── Generic EXIF strip ──────────────────────────────────────────────── */
 
+/* True if a WebP file's image data is lossless (VP8L). */
+static bool webp_is_lossless(const uint8_t* data, size_t len) {
+    size_t pos = 12;
+    while (pos + 8 <= len) {
+        if (memcmp(data + pos, "VP8L", 4) == 0) return true;
+        if (memcmp(data + pos, "VP8 ", 4) == 0) return false;
+        uint32_t clen = (uint32_t)data[pos + 4] | ((uint32_t)data[pos + 5] << 8) |
+                        ((uint32_t)data[pos + 6] << 16) | ((uint32_t)data[pos + 7] << 24);
+        if (clen > len - pos - 8) return false;
+        pos += 8 + (size_t)clen + (clen & 1);
+    }
+    return false;
+}
+
+/*
+ * JPEG: binary removal of the Exif APP1 (an orientation-only APP1 is kept
+ * when the photo is stored sideways, see jpeg_strip_exif).
+ * Other formats: decode + re-encode without metadata. ic_decode returns the
+ * image as displayed (orientation applied), so the output is upright without
+ * needing any orientation metadata. PNG is lossless; a lossless (VP8L) WebP
+ * stays lossless; other lossy formats use quality 0.95.
+ */
 int ic_strip_exif(const uint8_t* data, size_t len,
                   uint8_t** out_data, size_t* out_len) {
     if (!data || !len || !out_data || !out_len)
@@ -261,18 +329,25 @@ int ic_strip_exif(const uint8_t* data, size_t len,
     ICFormat fmt = ic_detect_format(data, len);
 
     if (fmt == IC_FORMAT_JPEG)
-        return jpeg_strip_exif(data, len, out_data, out_len);
+        return jpeg_strip_exif(data, len, exif_orientation_of(data, len, IC_FORMAT_JPEG),
+                               out_data, out_len);
 
-    /* For other formats, decode and re-encode without metadata */
     ICImage img;
     int err = ic_decode(data, len, &img);
     if (err != IC_OK) return err;
 
     ICEncodeOpts opts = { 0.95f, 0, 1 };
+    if (fmt == IC_FORMAT_WEBP && webp_is_lossless(data, len)) {
+        opts.quality = 1.0f;
+        opts.lossless = 1;
+    }
     err = ic_encode(&img, fmt, &opts, out_data, out_len);
     ic_image_free(&img);
     return err;
 }
+
+/* ── EXIF for re-encoded output ──────────────────────────────────────── */
+/* ic_exif_for_output: see ops/orientation.cpp */
 
 /* ── Memory management ───────────────────────────────────────────────── */
 

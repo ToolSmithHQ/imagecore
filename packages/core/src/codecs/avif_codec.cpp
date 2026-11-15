@@ -1,8 +1,30 @@
 #include "../imagecore.h"
+#include "../ops/orientation.h"
 
 #include <cstdlib>
 #include <cstring>
 #include <avif/avif.h>
+
+/*
+ * Orientation (EXIF numbering) of the displayed image relative to the decoded
+ * pixels, from the 'irot' / 'imir' properties. libavif reports them but does
+ * not apply them. Per HEIF (ISO/IEC 23008-12) the rotation is applied before
+ * the mirror:
+ *   irot.angle: anti-clockwise rotation by angle * 90 degrees;
+ *   imir.axis (this libavif's header, ISO/IEC 23008-12:2022 semantics):
+ *     0 = top and bottom exchanged (EXIF 4), 1 = left and right (EXIF 2).
+ * The Exif Orientation tag is ignored for AVIF, as the spec requires.
+ */
+static int avif_orientation(const avifImage* image) {
+    int o = 1;
+    if (image->transformFlags & AVIF_TRANSFORM_IROT) {
+        static const int by_angle[4] = { 1, 8, 3, 6 }; /* 0, 90, 180, 270 CCW */
+        o = by_angle[image->irot.angle & 3];
+    }
+    if (image->transformFlags & AVIF_TRANSFORM_IMIR)
+        o = ic_orientation_compose(o, image->imir.axis ? 2 : 4);
+    return o;
+}
 
 /* ── Get info ────────────────────────────────────────────────────────── */
 
@@ -31,8 +53,10 @@ extern "C" int avif_get_info(const uint8_t* data, size_t len, ICImageInfo* out) 
         return IC_ERROR_DECODE_FAILED;
     }
 
-    out->width = decoder->image->width;
-    out->height = decoder->image->height;
+    /* Displayed dimensions: a 90/270 degree irot swaps width and height. */
+    bool swap = avif_orientation(decoder->image) >= 5;
+    out->width = swap ? decoder->image->height : decoder->image->width;
+    out->height = swap ? decoder->image->width : decoder->image->height;
     out->format = IC_FORMAT_AVIF;
     out->has_exif = (malformed_exif || decoder->image->exif.size > 0) ? 1 : 0;
 
@@ -91,7 +115,13 @@ extern "C" int avif_decode(const uint8_t* data, size_t len, ICImage* out) {
         return IC_ERROR_DECODE_FAILED;
     }
 
+    int err = ic_orient_image(out, avif_orientation(image));
     avifDecoderDestroy(decoder);
+    if (err != IC_OK) {
+        free(out->pixels);
+        out->pixels = nullptr;
+        return err;
+    }
     return IC_OK;
 }
 
@@ -124,6 +154,10 @@ extern "C" int avif_encode(const ICImage* img, const ICEncodeOpts* opts,
             avifImageDestroy(image);
             return IC_ERROR_ALLOC_FAILED;
         }
+        /* avifImageSetMetadataExif also turns the Exif Orientation into
+         * irot/imir. Our pixels are already upright (and AVIF readers must
+         * ignore Exif orientation), so never write those transforms. */
+        image->transformFlags &= ~(avifTransformFlags)(AVIF_TRANSFORM_IROT | AVIF_TRANSFORM_IMIR);
     }
 
     avifEncoder* encoder = avifEncoderCreate();

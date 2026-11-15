@@ -1,4 +1,5 @@
 #include "../imagecore.h"
+#include "../ops/orientation.h"
 
 #include <cstdlib>
 #include <cstring>
@@ -88,8 +89,12 @@ extern "C" int tiff_get_info(const uint8_t* data, size_t len, ICImageInfo* out) 
     TIFFGetField(tif, TIFFTAG_IMAGEWIDTH, &w);
     TIFFGetField(tif, TIFFTAG_IMAGELENGTH, &h);
 
-    out->width = w;
-    out->height = h;
+    /* Report displayed dimensions: orientations 5–8 swap width and height. */
+    uint16_t orientation = ORIENTATION_TOPLEFT;
+    TIFFGetFieldDefaulted(tif, TIFFTAG_ORIENTATION, &orientation);
+    bool swap = orientation >= ORIENTATION_LEFTTOP && orientation <= ORIENTATION_LEFTBOT;
+    out->width = swap ? h : w;
+    out->height = swap ? w : h;
     out->format = IC_FORMAT_TIFF;
 
     TIFFClose(tif);
@@ -128,14 +133,31 @@ extern "C" int tiff_decode(const uint8_t* data, size_t len, ICImage* out) {
      * On macOS/ARM and x86 (both little-endian), the uint32 pixel layout is:
      *   byte 0 = R, byte 1 = G, byte 2 = B, byte 3 = A
      * which matches our RGBA layout — no swizzle needed.
+     *
+     * Orientation: libtiff only handles the flips (1–4) correctly; for 5–8 it
+     * silently drops the transpose. So ask for the raster in the file's own
+     * orientation (no flipping: rows/columns exactly as stored) and apply the
+     * full Orientation transform ourselves.
      */
+    uint16_t orientation = ORIENTATION_TOPLEFT;
+    TIFFGetFieldDefaulted(tif, TIFFTAG_ORIENTATION, &orientation);
+    if (orientation < ORIENTATION_TOPLEFT || orientation > ORIENTATION_LEFTBOT)
+        orientation = ORIENTATION_TOPLEFT;
     if (!TIFFReadRGBAImageOriented(tif, w, h,
                                     reinterpret_cast<uint32_t*>(out->pixels),
-                                    ORIENTATION_TOPLEFT, 0)) {
+                                    orientation, 0)) {
         free(out->pixels);
         out->pixels = nullptr;
         TIFFClose(tif);
         return IC_ERROR_DECODE_FAILED;
+    }
+
+    int err = ic_orient_image(out, orientation);
+    if (err != IC_OK) {
+        free(out->pixels);
+        out->pixels = nullptr;
+        TIFFClose(tif);
+        return err;
     }
 
     TIFFClose(tif);

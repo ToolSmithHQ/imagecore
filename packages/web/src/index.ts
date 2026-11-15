@@ -44,6 +44,8 @@ interface WasmModule {
   _ic_encode_with_exif(imgPtr: number, fmt: number, optsPtr: number,
                        exifPtr: number, exifLen: number,
                        outDataPtr: number, outLenPtr: number): number;
+  _ic_exif_for_output(exifPtr: number, exifLen: number, width: number, height: number,
+                      outDataPtr: number, outLenPtr: number): number;
   _ic_convert(dataPtr: number, len: number, fmt: number, optsPtr: number,
               outDataPtr: number, outLenPtr: number): number;
   _ic_jpeg_lossless_rotate(dataPtr: number, len: number, rotation: number,

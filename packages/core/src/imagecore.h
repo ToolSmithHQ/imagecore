@@ -53,6 +53,24 @@ typedef enum {
     IC_FILTER_NEAREST,
 } ICResizeFilter;
 
+/* ── Orientation ─────────────────────────────────────────────────────────
+ *
+ * Photos are often stored sideways with an orientation flag saying how to
+ * display them. ImageCore works in *displayed* orientation everywhere:
+ *   - ic_decode returns upright pixels and ic_get_image_info reports the
+ *     displayed width/height. Sources: EXIF Orientation (JPEG, PNG eXIf,
+ *     WebP EXIF), the TIFF Orientation tag, AVIF irot/imir. HEIC irot/imir
+ *     are applied by libheif; EXIF orientation is ignored for HEIF/AVIF, as
+ *     their spec requires.
+ *   - ic_rotate/ic_crop/ic_resize/ic_flip_* operate on those upright pixels.
+ *   - Lossless JPEG rotate/crop take rotations/regions relative to the image
+ *     as displayed.
+ *   - ic_get_exif returns the source's EXIF unchanged (Orientation included).
+ *     Since decoded pixels are already upright, EXIF embedded into a
+ *     re-encoded output must say Orientation=1: pass it through
+ *     ic_exif_for_output() before ic_encode_with_exif().
+ * ─────────────────────────────────────────────────────────────────────── */
+
 /* ── Structs ─────────────────────────────────────────────────────────── */
 
 typedef struct {
@@ -93,13 +111,17 @@ ICFormat ic_detect_format(const uint8_t* data, size_t len);
 
 /**
  * Get image info (dimensions, format, EXIF presence) without full decode.
+ * width/height are as displayed: swapped when the orientation (EXIF 5–8,
+ * TIFF Orientation 5–8, AVIF/HEIC irot 90/270) turns the image sideways.
  */
 int ic_get_image_info(const uint8_t* data, size_t len, ICImageInfo* out);
 
 /* ── Decode / Encode ─────────────────────────────────────────────────── */
 
 /**
- * Decode any supported format to RGBA pixels.
+ * Decode any supported format to RGBA pixels, as displayed: the image's
+ * orientation (see "Orientation" above) is applied, so a photo stored
+ * sideways comes out upright with width/height swapped accordingly.
  * Caller must free with ic_image_free().
  */
 int ic_decode(const uint8_t* data, size_t len, ICImage* out);
@@ -129,6 +151,9 @@ int ic_encode(const ICImage* img, ICFormat fmt, const ICEncodeOpts* opts,
  *         (thumbnail) are dropped. If the block can't be parsed the file
  *         is written without EXIF (still IC_OK).
  *   BMP:  no metadata support; EXIF ignored.
+ * Pixels are taken as upright, so `exif` should carry Orientation=1 (use
+ * ic_exif_for_output); for AVIF any Exif orientation is never turned into
+ * irot/imir, and libheif itself resets it to 1 for HEIC.
  * opts->strip_exif is ignored. Returns IC_ERROR_INVALID_INPUT if exif is
  * non-NULL but does not start with a TIFF header.
  * Caller must free out_data with ic_free().
@@ -139,6 +164,7 @@ int ic_encode_with_exif(const ICImage* img, ICFormat fmt, const ICEncodeOpts* op
 
 /**
  * Convenience: decode + encode in one call (format conversion).
+ * The output is upright (orientation applied) and carries no metadata.
  * Caller must free out_data with ic_free().
  */
 int ic_convert(const uint8_t* data, size_t len, ICFormat target_fmt,
@@ -147,8 +173,13 @@ int ic_convert(const uint8_t* data, size_t len, ICFormat target_fmt,
 /* ── Lossless JPEG operations ────────────────────────────────────────── */
 
 /**
- * Lossless JPEG rotation (90/180/270).
- * Rearranges DCT blocks without decoding pixels. Zero quality loss.
+ * Lossless JPEG rotation (90/180/270 clockwise, relative to the image as
+ * displayed). Rearranges DCT blocks without decoding pixels. Zero quality
+ * loss. Partial MCU blocks at edges that would move to the top/left are
+ * trimmed, so the output may be a few pixels smaller.
+ * With EXIF Orientation != 1 the orientation and the rotation are composed
+ * into a single lossless transform (rotate/flip/transpose/transverse) and
+ * the copied EXIF gets Orientation=1 and updated PixelX/YDimension.
  * Caller must free out_data with ic_free().
  */
 int ic_jpeg_lossless_rotate(const uint8_t* data, size_t len,
@@ -158,6 +189,10 @@ int ic_jpeg_lossless_rotate(const uint8_t* data, size_t len,
 /**
  * Lossless JPEG crop at MCU boundaries.
  * Adjusts region to nearest MCU boundary. Zero quality loss for aligned crops.
+ * `region` is in displayed coordinates. With EXIF Orientation != 1 it is
+ * mapped onto the stored pixels and the orientation tag is kept (the region
+ * must then lie within the image, else IC_ERROR_INVALID_CROP); the MCU
+ * alignment can grow the region on any side as displayed.
  * Caller must free out_data with ic_free().
  */
 int ic_jpeg_lossless_crop(const uint8_t* data, size_t len,
@@ -166,7 +201,9 @@ int ic_jpeg_lossless_crop(const uint8_t* data, size_t len,
 
 /**
  * Strip EXIF from JPEG by binary removal of APP1 marker segment.
- * No pixel re-encoding. Output is always smaller than input.
+ * No pixel re-encoding. Output is never larger than input.
+ * If the EXIF Orientation is not 1, a minimal EXIF APP1 holding only the
+ * Orientation tag is kept in its place, so the photo still displays upright.
  * Caller must free out_data with ic_free().
  */
 int ic_jpeg_strip_exif(const uint8_t* data, size_t len,
@@ -204,8 +241,11 @@ int ic_flip_vertical(ICImage* img);
 
 /**
  * Strip EXIF/metadata from any supported format (binary removal where possible).
- * Falls back to decode+encode without metadata for formats that don't support
- * binary stripping.
+ * JPEG: as ic_jpeg_strip_exif (orientation-only EXIF kept when needed).
+ * Other formats: decode + encode without metadata. Decoding applies the
+ * orientation, so the output is upright with no orientation tag. PNG stays
+ * lossless, a lossless (VP8L) WebP stays lossless, lossy formats re-encode
+ * at quality 0.95.
  * Caller must free out_data with ic_free().
  */
 int ic_strip_exif(const uint8_t* data, size_t len,
@@ -222,6 +262,21 @@ int ic_strip_exif(const uint8_t* data, size_t len,
  */
 int ic_get_exif(const uint8_t* data, size_t len,
                 uint8_t** out_data, size_t* out_len);
+
+/**
+ * Prepare a source image's EXIF (as returned by ic_get_exif; an "Exif\0\0"
+ * prefix is accepted and dropped) for embedding in a re-encoded output via
+ * ic_encode_with_exif: returns a copy with Orientation set to 1 (decoded
+ * pixels are already upright) and PixelXDimension/PixelYDimension set to
+ * width/height (the output size after resize/crop/rotate). Values are
+ * patched in place (inline SHORT/LONG entries in IFD0 and the Exif IFD), so
+ * the structure and every other tag are unchanged; absent tags are not added.
+ * Returns IC_ERROR_INVALID_INPUT if `exif` isn't a readable TIFF/EXIF block.
+ * Caller must free *out with ic_free().
+ */
+int ic_exif_for_output(const uint8_t* exif, size_t len,
+                       uint32_t width, uint32_t height,
+                       uint8_t** out, size_t* out_len);
 
 /* ── Memory management ───────────────────────────────────────────────── */
 

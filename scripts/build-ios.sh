@@ -152,6 +152,7 @@ build_target() {
         "$CORE_DIR/src/codecs/bmp_codec.cpp"
         "$CORE_DIR/src/codecs/heif_codec.cpp"
         "$CORE_DIR/src/ops/exif.cpp"
+        "$CORE_DIR/src/ops/orientation.cpp"
         "$CORE_DIR/src/ops/resize.cpp"
         "$CORE_DIR/src/ops/crop.cpp"
         "$CORE_DIR/src/ops/rotate.cpp"
